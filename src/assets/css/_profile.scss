@@ -1,0 +1,58 @@
+
+
+.main {
+  padding: 10px;
+
+  .user_info {
+    //border: 1px solid darkgray;
+
+    .info-container {
+      margin: 0;
+      padding: 0 1em;
+      position: relative;
+
+      .info {
+        * {
+          text-align: left !important;
+        }
+        h2 {
+          font-size: 2em;
+          color: $light_slate;
+        }
+
+        .user-detail {
+          p {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .action_btn {
+        position: absolute;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .booking-detail {
+    background: #DBDFEA;
+
+    .room-book {
+      width: 100%;
+      border: .01em solid $dark_white;
+      height: 100%;
+      padding: 1.3em;
+
+      h1 {
+        font-size: 1.6em;
+        font-family: $font_family_poppins;
+      }
+
+      p {
+        color: #355764;
+        font-size: 16px;
+      }
+    }
+  }
+
+}
