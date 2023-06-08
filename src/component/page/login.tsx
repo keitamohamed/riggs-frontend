@@ -1,10 +1,40 @@
+import {useLogin} from "../../custom-hook/useLogin.ts";
 
 export const Login = () => {
-
+    const {error, onChange, onSubmit} = useLogin()
 
     return (
         <>
-            <h2>Login Page</h2>
+            <div className="login_container">
+                <div className="content">
+                    <form action=""
+                          onSubmit={onSubmit}
+                          className="form">
+                        <div className="form-group">
+                            <input type="email"
+                                   name="email"
+                                   autoComplete="off"
+                                   onChange={onChange}
+                                   placeholder={error?.email ? error.email : "Enter your email"}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input type="password"
+                                   name="password"
+                                   autoComplete="new-password"
+                                   onChange={onChange}
+                                   placeholder={error?.password ? error.password : "Enter password"}
+                            />
+                        </div>
+                        {error?.message !== '' ? <p className="error_message">{error?.message}</p> : ''}
+                        <div className="form_group">
+                            <input type="submit"
+                                   value='Login'
+                            />
+                        </div>
+                    </form>
+                </div>
+            </div>
         </>
     )
 }

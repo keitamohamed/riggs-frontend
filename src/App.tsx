@@ -1,6 +1,6 @@
 import RouteSwitch from "./setup/route/RouteSwitch.tsx";
 
-import './App.css'
+import './App'
 
 function App() {
 

@@ -19,7 +19,9 @@ const initialState: UserInit = {
             role: ""
         }
     },
-    userList: []
+    userList: [],
+    message: {},
+    error: {}
 }
 
 const userSlice = createSlice({
@@ -34,7 +36,10 @@ const userSlice = createSlice({
         },
         userList(state, action) {
             state.userList = action.payload
-        }
+        },
+        setError(state, action) {
+            state.error = action.payload.error;
+        },
     }
 
 })

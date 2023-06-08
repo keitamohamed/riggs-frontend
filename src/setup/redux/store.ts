@@ -1,11 +1,13 @@
 import {configureStore, combineReducers, AnyAction} from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 
+import authSlice from "./authenticate.ts";
 import userSlice from "./user.tsx";
 
 
 
 const reducers = combineReducers({
+    auth: authSlice.reducer,
     user: userSlice.reducer
 })
 
