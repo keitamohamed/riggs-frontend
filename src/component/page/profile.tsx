@@ -1,6 +1,7 @@
 import {AiFillEdit} from "react-icons/ai";
 import {LuEdit2} from "react-icons/lu";
 
+import {Booking} from "../sub-page/booking.tsx";
 import img from "../../assets/img/profile-img.jpg"
 
 
@@ -14,7 +15,7 @@ export const Profile = () => {
                         space-x-6 sm:grid sm:grid-cols-1 border-1 sm:border-0">
                             <img src={img} alt="avatar" className="w-24 h-24 rounded sm:w-full sm:h-full"/>
                             <div className="info-container infocol-span-6
-                            flex items-center space-x-4 w-full">
+                            flex items-center space-x-4 w-full sm:mb-5">
                                 <div className="info grow sm:p-2">
                                     <h2>Andres Botero</h2>
                                     <div className="user-detail">
@@ -30,7 +31,8 @@ export const Profile = () => {
                                 top-0 right-2
                                 sm:-top-5
                                 sm:bg-[#ED2B2A] sm:p-4">
-                                    <LuEdit2 className="text-1xl sm:text-white text-[#19A7CE]"/>
+                                    <LuEdit2 className="text-1xl hidden sm:block sm:text-white text-[#19A7CE]"/>
+                                    <AiFillEdit className="text-1xl block sm:hidden sm:text-white text-[#19A7CE]"/>
                                     <p className="sm:hidden text-[#19A7CE]">Edit</p>
                                 </div>
                             </div>
@@ -55,6 +57,7 @@ export const Profile = () => {
                                 </div>
                             </div>
                         </div>
+                        <Booking/>
                     </div>
                 </div>
             </div>

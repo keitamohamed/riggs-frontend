@@ -1,0 +1,58 @@
+
+
+.booking-list {
+
+  .check {
+
+  }
+
+  .action-btn, .detail, .check {
+    display: grid;
+    place-items: center;
+    justify-content: center;
+  }
+
+  .detail {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .check {
+    grid-template-columns: repeat(2, 1fr);
+    list-style: none;
+  }
+
+
+  .action-btn {
+    grid-template-columns: repeat(3, 1fr);
+
+    button {
+      display: grid;
+      justify-content: center;
+      place-content: center;
+
+      &:last-child {
+        width: fit-content;
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+
+        * {
+          list-style: none;
+          width: fit-content;
+        }
+
+        svg {
+          margin-right: .2em;
+        }
+      }
+    }
+
+     //button {
+     //  display: grid;
+     //  &:first-child {
+     //    p {
+     //      font-size: 14px;
+     //    }
+     //  }
+     //}
+  }
+}
