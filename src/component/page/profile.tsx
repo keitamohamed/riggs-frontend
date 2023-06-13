@@ -3,9 +3,20 @@ import {LuEdit2} from "react-icons/lu";
 
 import {Booking} from "../sub-page/booking.tsx";
 import img from "../../assets/img/profile-img.jpg"
+import {useUser} from "../../custom-hook/useUser.ts";
+import {useEffect} from "react";
+import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 
 
 export const Profile = () => {
+    const {user} = useAppSelector((state) => state.user)
+    const {credentials} = useAppSelector((state) => state.auth)
+    const {findUserByEmail} = useUser()
+
+    useEffect(() => {
+        findUserByEmail(credentials.email)
+    }, [])
+
     return (
         <>
             <div className="profile_profile">
@@ -17,10 +28,12 @@ export const Profile = () => {
                             <div className="info-container infocol-span-6
                             flex items-center space-x-4 w-full sm:mb-5">
                                 <div className="info grow sm:p-2">
-                                    <h2>Andres Botero</h2>
+                                    <h2>{`${user.firstName + " " + user.lastName}`}</h2>
                                     <div className="user-detail">
-                                        <p>keitamohamed12@gmail.com</p>
-                                        <p>111 28th Street NW, Roanoke NC</p>
+                                        <p>{user.auth.email}</p>
+                                        <p>{user.address.street + '\n' +
+                                            user.address.city + ", " + user.address.state +
+                                            " " + user.address.zipcode}</p>
                                     </div>
 
                                 </div>

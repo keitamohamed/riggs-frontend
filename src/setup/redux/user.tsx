@@ -4,6 +4,7 @@ import {UserInit} from "../../interface/interface.ts";
 
 const initialState: UserInit = {
     user: {
+        userID: 0,
         firstName: "",
         lastName: "",
         phoneNum: "",
@@ -19,6 +20,7 @@ const initialState: UserInit = {
             role: ""
         }
     },
+    booking: [],
     userList: [],
     message: {},
     error: {}
@@ -34,8 +36,18 @@ const userSlice = createSlice({
             // @ts-ignore
             state.user[user.name as keyof object] = user.value
         },
+        setBooking(state, action) {
+            const {book} = action.payload
+            state.booking = book
+        },
+        setUser(state, action) {
+            state.user = action.payload
+        },
         userList(state, action) {
             state.userList = action.payload
+        },
+        setMessage(state, action) {
+            state.message = action.payload
         },
         setError(state, action) {
             state.error = action.payload.error;

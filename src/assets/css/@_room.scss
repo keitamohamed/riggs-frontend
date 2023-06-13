@@ -2,8 +2,14 @@
 
 .booking-list {
 
-  .check {
+  .room-detail {
+    padding: 0 1em;
 
+    h3 {
+      text-align: left;
+      font-weight: bold;
+      color: #005A8D;
+    }
   }
 
   .action-btn, .detail, .check {
@@ -14,11 +20,32 @@
 
   .detail {
     grid-template-columns: repeat(1, 1fr);
-  }
 
-  .check {
-    grid-template-columns: repeat(2, 1fr);
-    list-style: none;
+    .check {
+      grid-template-columns: repeat(2, 1fr);
+      list-style: none;
+      width: 100%;
+      place-items: start;
+      padding: 0 10px;
+      margin-top: .5em;
+
+      &:last-child {
+        margin-top: .2em;
+        margin-bottom: .5em;
+      }
+
+      li {
+        font-size: 16px;
+        color: $color_blue;
+      }
+
+      i {
+        padding-left: 10px;
+        color: $dark;
+        font-size: 16px;
+        font-style: normal;
+      }
+    }
   }
 
 
@@ -29,11 +56,30 @@
       display: grid;
       justify-content: center;
       place-content: center;
+      background: $color_b;
+      height: 100%;
+      padding: 0 10px;
+      width: 100%;
+      border-right: 1px solid $color_light_blue;
+      font-size: 16px;
+      font-weight: bold;
+      color: $text_color;
+
+      &:first-child {
+        p {
+          font-size: 12px;
+        }
+      }
 
       &:last-child {
+        display: flex;
         width: fit-content;
         grid-template-columns: repeat(2, 1fr);
         place-items: center;
+        border: 1px solid $light_slate;
+        background: #F5F5F5;
+        row-gap: .3em;
+        color: $color_blue;
 
         * {
           list-style: none;
@@ -41,18 +87,24 @@
         }
 
         svg {
+          font-size: 1.2em;
           margin-right: .2em;
+        }
+
+        li {
+          text-align: left;
+
+          i {
+            font-style: normal;
+          }
+        }
+
+        &:hover {
+          svg {
+            color: $color_red;
+          }
         }
       }
     }
-
-     //button {
-     //  display: grid;
-     //  &:first-child {
-     //    p {
-     //      font-size: 14px;
-     //    }
-     //  }
-     //}
   }
 }

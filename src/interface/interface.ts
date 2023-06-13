@@ -21,22 +21,28 @@ export type LoginError = {
 
 export interface UserInit {
     user: {
+        userID: number
         firstName: string,
         lastName: string,
         phoneNum: string,
-        address: {
-            street: string,
-            city: string,
-            state: string,
-            zipcode: string
-        },
-        auth: {
-            email: string,
-            password: string,
-            role: string
-        }
+        address: UserAddress
+        auth: UserAuth
     },
     userList: never[],
+    booking: any[]
     message: any,
     error: any
+}
+
+interface UserAddress {
+    street: string,
+    city: string,
+    state: string,
+    zipcode: string
+}
+
+interface UserAuth {
+    email: string,
+    password: string,
+    role: string
 }

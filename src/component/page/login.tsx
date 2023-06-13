@@ -27,7 +27,7 @@ export const Login = () => {
                             />
                         </div>
                         {error?.message !== '' ? <p className="error_message">{error?.message}</p> : ''}
-                        <div className="form_group">
+                        <div className="form_group submit">
                             <input type="submit"
                                    value='Login'
                             />

@@ -1,0 +1,44 @@
+
+.login_container {
+  width: 100%;
+
+  .content {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  form {
+    width: 40%;
+    margin: 0 auto;
+
+    .form-group {
+      width: 100%;
+      border-bottom: 1px solid $light_slate;
+      border-radius: 5px;
+      margin-bottom: 1em;
+      padding: 10px 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .submit {
+      margin-top: 2em;
+      border: .1em solid $light_slate;
+      padding: 2px 0;
+
+      input {
+        width: 100%;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -7,13 +7,13 @@ import {authAction} from "../setup/redux/authenticate.ts";
 import {Credentials, LoginCredential, LoginError} from "../interface/interface.ts";
 import {POST_AUTHENTICATE_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
+import {userAction} from "../setup/redux/user.tsx";
 
 export const useLogin = () => {
     const nav = useNavigate()
     const dispatch = useAppDispatch()
     const [loginCred, setLoginCred] = useState<LoginCredential>()
     const [error, setLoginError] = useState<LoginError>()
-
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target
@@ -31,18 +31,15 @@ export const useLogin = () => {
         } else {
             dispatch(authAction.setCredentials(data))
             dispatch(authAction.setCookie(data))
-            // uiCtx.setShowHide(true)
-            nav("/index")
+            nav("/profile")
         }
     }
-
     const onSubmit =  async (e: any) => {
         e.preventDefault();
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        dispatch(POST_AUTHENTICATE_REQUEST(APIPath.LOGIN, loginCred, setCredential, setError))
+        await dispatch(POST_AUTHENTICATE_REQUEST(APIPath.LOGIN, loginCred, setCredential, setError))
     }
-
     const setError = (error: LoginError) => {
         const {email, password, message} = error;
         setLoginError({
@@ -51,6 +48,9 @@ export const useLogin = () => {
             password,
             message
         })
+    }
+    const setMessage = async (response: any) => {
+        dispatch(userAction.setMessage(response))
     }
 
     return {onChange, onSubmit, error}

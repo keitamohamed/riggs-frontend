@@ -64,11 +64,10 @@ export const POST_REQUEST = (
     setError: (error: object) => void,
     token: string) => {
     return async () => {
-        axios.defaults.url = 'http://localhost:8080'
         const send = async () => {
             return axios({
                 method: 'POST',
-                url: `task/${url}`,
+                url: `riggs/${url}`,
                 data: data,
                 headers: {
                     Authorization: token ? `Bearer ${token}` : 'Bearer',
@@ -92,7 +91,6 @@ export const GET_REQUEST = (
     action: (data: object) => void,
     setError: (error: any) => void,
 ) => {
-
     return async () => {
         const fetch = async () => {
             return axios({
