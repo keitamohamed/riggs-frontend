@@ -108,3 +108,47 @@
     }
   }
 }
+
+.room-list {
+
+  .room {
+    justify-content: center;
+    place-items: center;
+    border: 1px solid $light_slate;
+    margin-bottom: .5em;
+
+    .room-action {
+      width: 100%;
+      justify-items: center;
+
+      h1, h3 {
+        width: 50%;
+        text-align: left;
+        margin-left: 1em;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      h3 {
+        text-align: center;
+        border: 1px solid $light_slate;
+        float: right;
+        font-size: 1em;
+        padding: 5px 0;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .details {
+    padding: 10px;
+    width: min(80% - 2rem);
+
+    li {
+      display: grid;
+      list-style: none;
+      width: fit-content;
+      justify-items: center;
+    }
+  }
+}

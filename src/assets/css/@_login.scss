@@ -1,5 +1,5 @@
 
-.login_container {
+.login_container, .signup_container {
   width: 100%;
 
   .content {
@@ -10,33 +10,53 @@
     transform: translate(-50%, -50%);
   }
 
-  form {
+  form, .form {
     width: 40%;
     margin: 0 auto;
+
+    h3 {
+      text-align: left;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 1.2em;
+      color: $text_color;
+      font-family: $font_family_roboto;
+    }
 
     .form-group {
       width: 100%;
       border-bottom: 1px solid $light_slate;
-      border-radius: 5px;
       margin-bottom: 1em;
-      padding: 10px 0;
+      padding: 5px;
 
       &:last-child {
         margin-bottom: 0;
       }
 
       input {
+        text-align: left;
         width: 100%;
+        padding-left: 10px;
       }
     }
 
-    .submit {
+    .submit, .next {
+      display: flex;
       margin-top: 2em;
-      border: .1em solid $light_slate;
       padding: 2px 0;
+      justify-content: flex-end;
+
+      svg {
+        cursor: pointer;
+      }
+
+      p {
+        border: 1px solid $light_slate;
+        padding: 2px 15px;
+        cursor: pointer;
+      }
 
       input {
-        width: 100%;
         cursor: pointer;
       }
     }

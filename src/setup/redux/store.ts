@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 
 import authSlice from "./authenticate.ts";
 import userSlice from "./user.tsx";
+import roomSlice from "./room.ts";
 
 
 
 const reducers = combineReducers({
     auth: authSlice.reducer,
-    user: userSlice.reducer
+    user: userSlice.reducer,
+    room: roomSlice.reducer
 })
 
 

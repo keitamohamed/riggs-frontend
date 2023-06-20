@@ -1,3 +1,4 @@
+import {AiOutlineLogin} from "react-icons/ai";
 import {useLogin} from "../../custom-hook/useLogin.ts";
 
 export const Login = () => {
@@ -28,9 +29,8 @@ export const Login = () => {
                         </div>
                         {error?.message !== '' ? <p className="error_message">{error?.message}</p> : ''}
                         <div className="form_group submit">
-                            <input type="submit"
-                                   value='Login'
-                            />
+                            <input type="submit"/>
+                            <AiOutlineLogin/>
                         </div>
                     </form>
                 </div>

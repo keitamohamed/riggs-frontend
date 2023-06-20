@@ -1,3 +1,4 @@
+import {ReactNode} from "react";
 
 export interface Credentials  {
     accessToken: string,
@@ -19,7 +20,7 @@ export type LoginError = {
     message?: string;
 }
 
-export interface UserInit {
+interface User {
     user: {
         userID: number
         firstName: string,
@@ -28,10 +29,14 @@ export interface UserInit {
         address: UserAddress
         auth: UserAuth
     },
+}
+
+export interface UserInit {
+    user: User
     userList: never[],
     booking: any[]
     message: any,
-    error: any
+    error: User
 }
 
 interface UserAddress {
@@ -45,4 +50,35 @@ interface UserAuth {
     email: string,
     password: string,
     role: string
+}
+
+export interface Room {
+    nameName: string,
+    description: string,
+    size: string,
+    detail: {
+        view: string,
+        bed: string,
+        animal: string,
+        smoking: string,
+        bathroom: string,
+        tv: string,
+        numOfBed: number
+    }
+}
+
+export interface InitRoom {
+    room: Room,
+    rooms: any[],
+    message: any,
+    error: any
+}
+
+export interface UIHideShowContextProvider {
+    getShowAuth: () => boolean,
+    setShowAuth: (value: boolean) => void
+}
+
+export interface Props {
+    children?: ReactNode
 }

@@ -31,3 +31,12 @@ svg {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
+.invalid-input::placeholder {
+  color: $color_red !important;
+}
+
+.index {
+  width: min(100% - 2rem);
+  margin-inline: auto;
+}
