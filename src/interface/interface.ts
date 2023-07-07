@@ -9,6 +9,19 @@ export interface Credentials  {
     code: string
 }
 
+export interface AuthContextProperty {
+    getCookie: () => any
+    setCredentials: (useCredential: Credentials) => void,
+    isAuthenticated: () => boolean,
+    isAdmin: () => boolean,
+    logout: () => void,
+}
+
+export interface UIHideShowContextProvider {
+    getShowAuth: () => boolean,
+    setShowAuth: (value: boolean) => void
+}
+
 export type LoginCredential = {
     email?: string,
     password?: string;
@@ -20,15 +33,13 @@ export type LoginError = {
     message?: string;
 }
 
-interface User {
-    user: {
-        userID: number
-        firstName: string,
-        lastName: string,
-        phoneNum: string,
-        address: UserAddress
-        auth: UserAuth
-    },
+export interface User {
+    userID: number
+    firstName: string,
+    lastName: string,
+    phoneNum: string,
+    address: UserAddress
+    auth: UserAuth
 }
 
 export interface UserInit {
@@ -74,9 +85,9 @@ export interface InitRoom {
     error: any
 }
 
-export interface UIHideShowContextProvider {
-    getShowAuth: () => boolean,
-    setShowAuth: (value: boolean) => void
+export interface ShowRoomDetail {
+    setShowDetail: (id: number, value: boolean) => void
+    getShowDetail: () => boolean
 }
 
 export interface Props {

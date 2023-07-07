@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {useAppDispatch} from "../setup/redux/reduxHook.ts";
@@ -7,9 +7,10 @@ import {authAction} from "../setup/redux/authenticate.ts";
 import {Credentials, LoginCredential, LoginError} from "../interface/interface.ts";
 import {POST_AUTHENTICATE_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
-import {userAction} from "../setup/redux/user.tsx";
+import {AuthContext} from "../setup/context/context.ts";
 
 export const useLogin = () => {
+    const authCtx = useContext(AuthContext)
     const nav = useNavigate()
     const dispatch = useAppDispatch()
     const [loginCred, setLoginCred] = useState<LoginCredential>()
@@ -25,16 +26,17 @@ export const useLogin = () => {
         )
     }
 
-    const setCredential = (data: Credentials) => {
-        if (data.code === "406" || data.code === "400") {
-            setError(data)
+    const setCredential = (credentials: Credentials) => {
+        if (credentials.code === "401" || credentials.code === "400") {
+            setError(credentials)
         } else {
-            dispatch(authAction.setCredentials(data))
-            dispatch(authAction.setCookie(data))
+            authCtx.setCredentials(credentials)
+            dispatch(authAction.setCredentials(credentials))
+            dispatch(authAction.setCookie(credentials))
             nav("/profile")
         }
     }
-    const onSubmit =  async (e: any) => {
+    const onSubmit =  async (e: React.SyntheticEvent) => {
         e.preventDefault();
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -48,9 +50,6 @@ export const useLogin = () => {
             password,
             message
         })
-    }
-    const setMessage = async (response: any) => {
-        dispatch(userAction.setMessage(response))
     }
 
     return {onChange, onSubmit, error}

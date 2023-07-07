@@ -1,0 +1,115 @@
+
+.header {
+  z-index: 3;
+  padding: 10px;
+
+  .context-container {
+    justify-items: right;
+    place-items: center;
+  }
+
+  .nav {
+    color: $dark_white;
+    font-size: 1.5em;
+  }
+
+  .title-container {
+    display: grid;
+    place-items: center;
+    color: $dark_white;
+    text-transform: uppercase;
+
+    p {
+      font-size: 11px;
+      letter-spacing: .1em;
+    }
+
+     h1 {
+       font-size: 2.5em;
+       font-weight: bolder;
+       letter-spacing: .2em;
+       font-family: $font_family_domine;
+     }
+
+    p {
+
+    }
+  }
+
+  .action-btn {
+    justify-items: right;
+    place-items: end;
+
+    .book {
+      width: fit-content;
+      color: $dark;
+      font-size: .7em;
+      border: 1px solid $dark_white;
+      padding:5px 15px;
+      background: #FFF;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      cursor: pointer;
+    }
+
+    .login-signup {
+      background: none;
+      color: $dark_white;
+      font-weight: bold;
+      border: none;
+
+      h5 {
+        color: #FFF;
+      }
+    }
+  }
+}
+
+.new-letter {
+  width: 100%;
+  background-size: cover;
+  background: #121628 url("../../../public/background-pattern.svg") ;
+  color: #FFF;
+  text-align: center;
+  padding: 60px 4.15%;
+  margin: 0 auto;
+
+  .text-container {
+    padding: 3em 15px;
+
+    h2 {
+      font-size: 1.4em;
+      letter-spacing: .1em;
+      font-family: $font_family_domine;
+      margin: 2em 0 1em;
+    }
+  }
+
+  .email-container {
+    padding: 2em 1em 1em;
+    input {
+      background: transparent;
+      border-bottom: 1px solid $dark_white;
+      text-align: left;
+      padding: 5px 10px;
+    }
+  }
+
+  .btn-container {
+    border: 1px solid $dark_white;
+  }
+}
+
+.icon-container {
+  bottom: 2em;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  svg {
+    color: $dark_white;
+  }
+}

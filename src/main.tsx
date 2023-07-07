@@ -5,17 +5,23 @@ import store from "./setup/redux/store.ts";
 
 import App from './App.tsx'
 import UIContextProvider from "./setup/context/UIProvider.tsx";
+import {RoomContextProvider} from "./setup/context/RoomProvider.tsx";
 
 
 import "./index.scss"
+import AuthProvider from "./setup/context/AuthProvider.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 
 root.render(
     <Provider store={store}>
-        <UIContextProvider>
-            <App />
-        </UIContextProvider>
+        <AuthProvider>
+            <UIContextProvider>
+                <RoomContextProvider>
+                    <App />
+                </RoomContextProvider>
+            </UIContextProvider>
+        </AuthProvider>
     </Provider>
 )
 

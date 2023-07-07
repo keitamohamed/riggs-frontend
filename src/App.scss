@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @import "assets/css/@_variable";
-@import "./assets/css/profile";
+@import "assets/css/@_profile";
 @import "assets/css/@_room";
 @import "assets/css/@_login";
+@import "assets/css/@_resuable";
+
+.swiper {
+  border: 1px solid $light_slate;
+}

@@ -1,7 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {UserInit} from "../../interface/interface.ts";
-import {User} from "../../component/page/user.tsx";
-
+import {User, UserInit} from "../../interface/interface.ts";
 
 const initialState: UserInit = {
     user: {
@@ -40,6 +38,23 @@ const initialState: UserInit = {
             password: "",
             role: ""
         }
+    }
+}
+const user: User = {
+    userID: 0,
+    firstName: "",
+    lastName: "",
+    phoneNum: "",
+    address: {
+        street: "",
+        city: "",
+        state: "",
+        zipcode: ""
+    },
+    auth: {
+        email: "",
+        password: "",
+        role: ""
     }
 }
 
@@ -88,7 +103,7 @@ const userSlice = createSlice({
             state.error = action.payload.error;
         },
         reSetError(state) {
-            state.error = {}
+            state.error = user
         }
     }
 

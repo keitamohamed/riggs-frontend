@@ -2,6 +2,11 @@
 .login_container, .signup_container {
   width: 100%;
 
+  .error_message {
+    color: $color_red;
+    font-size: 1em;
+  }
+
   .content {
     width: 100%;
     position: absolute;

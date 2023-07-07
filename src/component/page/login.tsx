@@ -10,7 +10,7 @@ export const Login = () => {
                 <div className="content">
                     <form action=""
                           onSubmit={onSubmit}
-                          className="form">
+                          className="form sm:!w-[90%]">
                         <div className="form-group">
                             <input type="email"
                                    name="email"
@@ -29,8 +29,8 @@ export const Login = () => {
                         </div>
                         {error?.message !== '' ? <p className="error_message">{error?.message}</p> : ''}
                         <div className="form_group submit">
-                            <input type="submit"/>
-                            <AiOutlineLogin/>
+                            <p className={`sm:hidden`}><input type="submit"></input></p>
+                            <p className={`sm:block hidden`}><AiOutlineLogin/></p>
                         </div>
                     </form>
                 </div>

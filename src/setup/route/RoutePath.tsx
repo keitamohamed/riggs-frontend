@@ -3,6 +3,7 @@ import {Register} from "../../component/page/register.tsx";
 import {Login} from "../../component/page/login.tsx";
 import {User} from "../../component/page/user.tsx";
 import {Profile} from "../../component/page/profile.tsx";
+import {AdminDashboard} from "../../component/page/admin.tsx";
 
 export const routePath = [
     {
@@ -29,15 +30,23 @@ export const routePath = [
     {
         name: "User",
         path: "/user",
-        protected: false,
+        protected: true,
         showLink: false,
         component: User
     },
     {
         name: "Profile",
         path: "/profile",
-        protected: false,
+        protected: true,
         showLink: false,
         component: Profile
+    },
+    {
+        name: "Admin",
+        path: "/admin",
+        protected: true,
+        adminProtected: true,
+        showLink: false,
+        component: AdminDashboard
     }
 ]

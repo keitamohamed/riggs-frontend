@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {InitRoom, Room} from "../../interface/interface.ts";
+import {InitRoom} from "../../interface/interface.ts";
 
 
 const initialState: InitRoom = {

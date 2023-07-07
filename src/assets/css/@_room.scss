@@ -140,15 +140,49 @@
     }
   }
 
-  .details {
-    padding: 10px;
-    width: min(80% - 2rem);
+  .room-detail {
 
-    li {
-      display: grid;
-      list-style: none;
-      width: fit-content;
-      justify-items: center;
+    .info {
+      border: 1px solid $light_slate;
+      border-left: none;
+
+      .info-room-title {
+        text-align: left;
+        padding: 10px 10px 0 10px;
+        display: flex;
+        justify-items: center;
+        font-size: 1.3em;
+        width: fit-content;
+        height: 10px;
+      }
+      .disc {
+        h2 {
+          font-weight: bold;
+          font-size: 1.3em;
+          text-align: right;
+
+          p {
+            width: 90%;
+            font-size: .5em;
+            text-align: right;
+          }
+        }
+      }
+    }
+
+    .details {
+      padding: 0 10px 10px;
+      width: min(80% - 2rem);
+      place-items: center;
+
+      li {
+        display: flex;
+        list-style: none;
+        width: fit-content;
+        align-items: center;
+        gap: .5em;
+        flex-direction: column;
+      }
     }
   }
 }
