@@ -1,7 +1,9 @@
+import {useContext} from "react";
+import {BsArrowRightSquare} from 'react-icons/bs'
 import {useUser} from "../../custom-hook/useUser.ts";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
-import {useContext} from "react";
 import {UIActionContext} from "../../setup/context/context.ts";
+
 
 
 export const Register = () => {
@@ -12,9 +14,12 @@ export const Register = () => {
     return (
         <>
             <div className="signup_container">
-                <div className="content">
-                    <div className={`form ${ctx.getShowAuth() ? 'hidden' : 'block'}`}>
-                        <h3>Registration Details</h3>
+                <div className="content sm:!w-[90%]">
+                    <div className="title-container sm:!w-[100%]">
+                         <h1>Sign up</h1>
+                        <p>It's quick and easy.</p>
+                    </div>
+                    <div className={`form sm:!w-[100%] ${ctx.getShowAuth() ? 'hidden' : 'block'}`}>
                         <div className="form-group">
                             <input type="text"
                                    className={error.firstName ? 'invalid-input' : ''}
@@ -78,13 +83,13 @@ export const Register = () => {
                                    placeholder={address?.zipcode ? address?.zipcode : 'Enter zipcode'}
                             />
                         </div>
-                        <div className="form_group next" onClick={addNewUser}>
-                            <p>Next</p>
+                        <div className="form_group next">
+                            <p className='sm:hidden block' onClick={addNewUser}>Next</p>
+                            <p className='sm:block hidden' onClick={addNewUser}><BsArrowRightSquare/></p>
                         </div>
                     </div>
                     <form onSubmit={addNewUser}
-                          className={`form ${ctx.getShowAuth() ? 'block' : 'hidden'}`}>
-                        <h3>Registration Login Details</h3>
+                          className={`form sm:!w-[100%] ${ctx.getShowAuth() ? 'block' : 'hidden'}`}>
                         <div className="form-group">
                             <input type="email"
                                    name="email"

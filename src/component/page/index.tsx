@@ -6,7 +6,7 @@ import {Carousel} from "../reusable/swiper.tsx";
 import {Rooms} from "./rooms.tsx";
 import {useRoom} from "../../custom-hook/useRoom.ts";
 import {Header} from "../reusable/header.tsx";
-import {Footer} from "../reusable/footer.tsx";
+import {EmailSection} from "../reusable/emailSection.tsx";
 
 import atelier from '../../assets/img/atelier-side-table-detail_high-res.jpg'
 import cafeRiggs from '../../assets/img/cafe-riggs-220422-420-credit-caitlin-isola.jpg'
@@ -25,14 +25,23 @@ export const Index = () => {
         const header = document.querySelector('.header')
         if (window.scrollY > 100 && header != null) {
             header.classList.remove('header-transparent')
-            console.log(window.scrollY, header)
         } else if (window.scrollY < 100 && header != null) {
             header.classList.add('header-transparent')
         }
     }
 
+    const listenScrollClickEvent = () => {
+        const clickElement = document.querySelector('.icon-container')
+        clickElement?.addEventListener('click', () => {
+            const element = document.querySelector(".intro.intro--no-ctas")
+            const position = element!.getBoundingClientRect().top + window.scrollY
+            window.scrollTo({top: position - 205, behavior: 'smooth'})
+        })
+    }
+
     useEffect(() => {
         window.addEventListener('scroll', listenScrollEvent)
+        listenScrollClickEvent()
         loadRoom().then(r => r)
         return () => window.addEventListener('scroll', listenScrollEvent)
     }, [])
@@ -46,7 +55,7 @@ export const Index = () => {
                 </div>
             </main>
             <div className="intro intro--no-ctas">
-                <div className="intro-inner">
+                <div className="intro-inner no-ctas">
                     <h1 className='sm:!text-[50px]'>riggs washington DC</h1>
                 </div>
             </div>
@@ -148,7 +157,7 @@ export const Index = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <EmailSection/>
             {/*<Rooms/>*/}
         </div>
     )

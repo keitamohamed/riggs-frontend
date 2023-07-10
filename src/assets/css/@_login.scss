@@ -1,3 +1,24 @@
+.login_container {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  background: #000;
+}
+
+.login_container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.50;
+
+  background: $login_bg_image;
+  background-size: cover;
+}
 
 .login_container, .signup_container {
   width: 100%;
@@ -30,7 +51,7 @@
 
     .form-group {
       width: 100%;
-      border-bottom: 1px solid $light_slate;
+      border-bottom: 1px solid $color_white;
       margin-bottom: 1em;
       padding: 5px;
 
@@ -42,20 +63,27 @@
         text-align: left;
         width: 100%;
         padding-left: 10px;
+        background: transparent;
+        color: $color_white;
+      }
+
+      input::placeholder {
+        color: $color_white;
       }
     }
 
     .submit, .next {
-      display: flex;
+      display: grid;
       margin-top: 2em;
       padding: 2px 0;
       justify-content: flex-end;
+      color: $color_white;
 
       svg {
         cursor: pointer;
       }
 
-      p {
+      .pointer {
         border: 1px solid $light_slate;
         padding: 2px 15px;
         cursor: pointer;
@@ -63,7 +91,79 @@
 
       input {
         cursor: pointer;
+        letter-spacing: .1em;
+        text-transform: uppercase;
       }
+
+      .no-account {
+        display: flex;
+        margin-top: 2em;
+        border: none;
+
+        p {
+          border: none;
+          padding-right: 10px;
+
+          &:last-child {
+            cursor: pointer;
+            color: $color_blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+.signup_container {
+  display: flex;
+  background: rgba(0, 0, 0, .25%);
+  height: 100vh;
+  width: 100vh;
+  place-items: center;
+  justify-content: center;
+
+  .content {
+    margin: 0 auto;
+  }
+
+  .title-container {
+    width: 40%;
+    display: grid;
+    place-items: start;
+    margin: 0 auto;
+    padding: 20px 0;
+
+    h1 {
+      font-family: $font_family_bacasime;
+      text-transform: capitalize;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+    p {
+      font-size: 15px;
+      color: #4C4646
+    }
+  }
+
+   input {
+     color: $dark !important;
+     border-bottom: 1px solid $dark;
+   }
+
+  input::placeholder {
+    color: $dark !important;
+  }
+
+  .form_group {
+    p {
+      cursor: pointer;
+      color: $dark;
+    }
+
+    svg {
+      color: $dark;
+      font-size: 1.5em;
+      isolation: isolate;
     }
   }
 }

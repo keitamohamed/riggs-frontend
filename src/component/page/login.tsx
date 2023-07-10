@@ -1,7 +1,9 @@
 import {AiOutlineLogin} from "react-icons/ai";
 import {useLogin} from "../../custom-hook/useLogin.ts";
+import {useNavigate} from "react-router-dom";
 
 export const Login = () => {
+    const nav = useNavigate()
     const {error, onChange, onSubmit} = useLogin()
 
     return (
@@ -29,8 +31,12 @@ export const Login = () => {
                         </div>
                         {error?.message !== '' ? <p className="error_message">{error?.message}</p> : ''}
                         <div className="form_group submit">
-                            <p className={`sm:hidden`}><input type="submit"></input></p>
-                            <p className={`sm:block hidden`}><AiOutlineLogin/></p>
+                            <p className={`pointer sm:hidden`}><input type="submit"></input></p>
+                            <p className={`pointer sm:block hidden`}><AiOutlineLogin/></p>
+                            <div className="no-account">
+                                <p>Don't have an account?</p>
+                                <p onClick={() => nav("/register")}>Sign up</p>
+                            </div>
                         </div>
                     </form>
                 </div>

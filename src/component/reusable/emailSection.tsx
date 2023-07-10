@@ -1,7 +1,5 @@
 
-export const Footer = () => {
-
-
+export const EmailSection = () => {
     return (
         <div className='new-letter'>
             <div className="text-container">
