@@ -13,8 +13,6 @@ body {
 
 h1, h2 {
   font-weight: 400;
-  transition-duration: 1.5s;
-  transition-delay: .5s;
 }
 
 * {
@@ -28,6 +26,8 @@ h1, h2 {
   transition: all .02s ease;
   font-size: 18px;
   font-family: $font_family_lato;
+  transition-duration: 1.5s;
+  transition-delay: .5s;
 }
 
 input:-webkit-autofill,
@@ -60,6 +60,10 @@ svg {
   * {
     color: $dark;
   }
+
+  .book h5 {
+    color: $dark !important;
+  }
 }
 
 .header-transparent {
@@ -67,15 +71,15 @@ svg {
   min-height: unset;
 
   * {
-    color: #FFF;
     background: 0 0;
+    color: $color_white
   }
 
   .action-btn {
     background: none;
 
-    * {
-      color: $dark;
+    h5 {
+      color: $color_white !important;
     }
   }
 }
@@ -236,6 +240,58 @@ main {
           text-transform: uppercase;
           font-weight: normal;
         }
+      }
+    }
+  }
+}
+
+.header_cta {
+  position: fixed;
+  z-index: 20;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 17px 0;
+  text-align: center;
+  background: $dark_white;
+  overflow: hidden;
+  min-height: 40px;
+
+  .action_container {
+    display: flex;
+    justify-content: center;
+  }
+
+
+  p {
+    position: relative;
+    border: 1px solid $border_color;
+    padding: 8px 20px;
+    text-transform: uppercase;
+    font-family: $font_family_bacasime;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    clip-path: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-100%);
+      background: url("../public/header-cta-pattern.svg") center center rgba(18, 22, 40, .75);
+      z-index: -1;
+      transition: all .4s ease-in-out;
+    }
+
+    &:hover {
+      color: $color_white;
+      &::after {
+        transform: translateY(0);
       }
     }
   }

@@ -1,5 +1,4 @@
 import {useNavigate} from "react-router-dom";
-
 import {AiOutlineMenu} from "react-icons/ai";
 
 export const Header = () => {
@@ -9,7 +8,7 @@ export const Header = () => {
     }
 
     return (
-        <div className='header riggs-header header-transparent'>
+        <div className='header riggs-header'>
             <div className="context-container grid grid-cols-10">
                 <div className="nav col-span-1">
                     <AiOutlineMenu/>
@@ -20,7 +19,7 @@ export const Header = () => {
                     <p>Washington d.c</p>
                 </div>
                 <div className="action-btn grid grid-cols-2 sm:grid-cols-1 sm:col-span-2 col-span-3">
-                    <div className="book sm:hidden"><h3>Book Room</h3></div>
+                    <div className="book sm:hidden"><h3 onClick={() => nav('/booking')}>Book Room</h3></div>
                     <div className="book login-signup">
                         <h5 onClick={toLogin}>Login</h5>
                     </div>

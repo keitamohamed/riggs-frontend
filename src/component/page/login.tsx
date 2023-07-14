@@ -9,6 +9,13 @@ export const Login = () => {
     return (
         <>
             <div className="login_container">
+                <div className="header">
+                    <div className="title-container md:ml-28 lg:ml-28 xl:ml-28 col-start-2 col-end-8 sm:col-end-9">
+                        <p>8080 F st nw</p>
+                        <h1 onClick={() => nav('/')}>Riggs</h1>
+                        <p>Washington d.c</p>
+                    </div>
+                </div>
                 <div className="content">
                     <form action=""
                           onSubmit={onSubmit}

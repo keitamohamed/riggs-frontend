@@ -4,6 +4,7 @@ import {Login} from "../../component/page/login.tsx";
 import {User} from "../../component/page/user.tsx";
 import {Profile} from "../../component/page/profile.tsx";
 import {AdminDashboard} from "../../component/page/admin.tsx";
+import {Booking} from "../../component/page/booking.tsx";
 
 export const routePath = [
     {
@@ -26,6 +27,13 @@ export const routePath = [
         protected: false,
         showLink: false,
         component: Login
+    },
+    {
+        name: "Booking",
+        path: "/booking",
+        protected: false,
+        showLink: false,
+        component: Booking
     },
     {
         name: "User",

@@ -7,18 +7,33 @@
   justify-content: center;
   isolation: isolate;
   background: #000;
+
+  .header {
+    background: transparent;
+
+    * {
+      color: $color_white;
+    }
+
+    .title-container {
+      h1 {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.50;
+
+    background: $login_bg_image;
+    background-size: cover;
+  }
 }
 
-.login_container::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  opacity: 0.50;
-
-  background: $login_bg_image;
-  background-size: cover;
-}
 
 .login_container, .signup_container {
   width: 100%;

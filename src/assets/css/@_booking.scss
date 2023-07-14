@@ -1,0 +1,174 @@
+
+.booking {
+
+  .header {
+    border-bottom: 1px solid $dark_white;
+     * {
+       color: $dark;
+     }
+    z-index: 1000;
+  }
+
+  .context-container {
+    vertical-align: baseline;
+    padding: 15% 5% 3.5%;
+  }
+
+  .drop-down-menu {
+
+    .room-container {
+      display: grid;
+      border: 1px solid $dark;
+      margin-top: 1em;
+      padding: 20px 10px;
+      gap: 1em;
+      place-items: start;
+    }
+
+    .room-container {
+
+      select {
+        width: 100%;
+        font-family: $font_family_bacasime;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding-right: 10px;
+        background: transparent;
+
+        option {
+          text-align: left;
+          background-color: transparent;
+        }
+      }
+    }
+
+    .action-container {
+      margin-top: 1em;
+      background: $color_orange;
+      padding: 10px 10px;
+      border: 1px solid $border_color;
+
+      text-transform: uppercase;
+      cursor: pointer;
+
+      span {
+        color: $color_white;
+        font-size: 20px;
+        font-family: $font_family_bacasime;
+      }
+    }
+  }
+
+  .select-date-container {
+    border: 1px solid $border_color;
+
+    .text-container {
+      border-bottom: 1px solid $dark;
+      padding: 20px;
+
+      .text {
+        text-transform: uppercase;
+        font-size: 1.1em;
+        font-family: $font_family_bacasime;
+        letter-spacing: .1em;
+      }
+    }
+  }
+
+  .context {
+
+    .date-container {
+
+       div {
+         border: 1px solid $dark;
+         position: relative;
+         padding: 15px 15px 36px;
+
+         &::before {
+           content: 'Arrivial';
+           position: absolute;
+           text-transform: uppercase;
+           color: $color_white;
+           background: #FF9B00;
+           min-height: 36px;
+           padding: 6px 10px;
+           width: 100%;
+           z-index: 1;
+           top: 0;
+           left: 0;
+           right: 0;
+         }
+
+         &:last-child::before {
+           content: 'departure';
+         }
+
+         h1 {
+           font-size: 75px;
+           font-family: $font_family_bacasime;
+           font-variant-numeric: lining-nums;
+           padding-top: 38px;
+         }
+         p {
+           font-family: $font_family_bacasime;
+           font-size: 16px;
+           text-transform: uppercase;
+         }
+       }
+    }
+  }
+
+  .react-datepicker {
+    border: none;
+    width: 100%;
+    display: flex;
+    padding-top: 0;
+    padding-left: 0;
+
+    .react-datepicker__aria-live {
+      border: 1px solid red;
+    }
+
+    .react-datepicker__navigation {
+      border-color: $dark;
+      border-right: 1px solid;
+      border-bottom: 1px solid;
+      padding: 10px 30px 0;
+      top: 0;
+
+      span {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+    }
+
+    .react-datepicker__navigation--next {
+      border-right: none;
+      border-left: 1px solid;
+    }
+  }
+
+
+  .react-datepicker__month-container:last-child {
+    border-left: 1px solid $dark;
+  }
+
+  .react-datepicker__month-container {
+    height: 35vh;
+    width: 100%;
+
+    .react-datepicker__current-month {
+      text-transform: uppercase;
+      font-weight: normal;
+      letter-spacing: .1em;
+    }
+
+    .react-datepicker__day-name {
+      color: $border_color;
+    }
+
+    * {
+      font-family: $font_family_bacasime;
+    }
+  }
+}
