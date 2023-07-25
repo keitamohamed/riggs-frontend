@@ -39,7 +39,7 @@
   width: 100%;
 
   .error_message {
-    color: $color_red;
+    color: $color_white;
     font-size: 1em;
   }
 
@@ -91,7 +91,7 @@
       display: grid;
       margin-top: 2em;
       padding: 2px 0;
-      justify-content: flex-end;
+      place-items: end;
       color: $color_white;
 
       svg {
@@ -112,7 +112,7 @@
 
       .no-account {
         display: flex;
-        margin-top: 2em;
+        margin-top: 1em;
         border: none;
 
         p {

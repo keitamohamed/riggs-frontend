@@ -68,7 +68,7 @@
 .new-letter {
   width: 100%;
   background-size: cover;
-  background: #121628 url("../../../public/background-pattern.svg") ;
+  background: #121628 url("/background-pattern.svg") ;
   color: #FFF;
   text-align: center;
   padding: 60px 4.15%;
@@ -111,5 +111,37 @@
   cursor: pointer;
   svg {
     color: $dark_white;
+  }
+}
+
+
+.swiper-pagination {
+  padding-top: 2em;
+}
+
+.swiper {
+
+  .swiper-button-next, .swiper-button-prev {
+    top: 8em;
+
+    &::after {
+      font-size: 30px;
+      color: $color_white;
+    }
+  }
+  .swiper-pagination-bullet {
+    margin-top: 3em;
+    color: $dark;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: $dark;
+  }
+}
+.swiper-custom-css {
+  margin: 2em 0 1em;
+
+  .booking-list {
+    padding-bottom: 2em;
   }
 }

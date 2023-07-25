@@ -7,9 +7,10 @@ const AuthProvider = ({children}: Props) => {
 
     const [cookie, setCookie, removeCookie] = useCookies(
         [
-            'accessToken',
+            'token',
             'refreshToken',
-            'Role'
+            'Role',
+            ''
         ]
     )
 
@@ -18,7 +19,7 @@ const AuthProvider = ({children}: Props) => {
     }
 
     const setCredentials = (credentials: Credentials) => {
-        setCookie('accessToken', credentials.accessToken)
+        setCookie('token', credentials.accessToken)
         setCookie('refreshToken', credentials.refreshToken)
         setRole(credentials)
     }
@@ -29,7 +30,8 @@ const AuthProvider = ({children}: Props) => {
     }
     
     const isAuthenticated = () => {
-      return !!(cookie.accessToken && cookie.Role);
+        // console.log("Print this", cookie.accessToken, '\n', cookie.Role, !!(cookie.accessToken && cookie.Role))
+      return !!(cookie.token && cookie.Role);
     }
 
     const isAdmin = () => {
@@ -37,7 +39,7 @@ const AuthProvider = ({children}: Props) => {
     }
     
     const logout = () => {
-        const removeCredential = ['accessToken', 'refreshToken']
+        const removeCredential = ['token', 'refreshToken', 'Role']
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         removeCredential.forEach(name => removeCookie(name))

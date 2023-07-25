@@ -10,6 +10,8 @@ import {
 const uiDefaultProps = {
     getShowAuth: () => false,
     setShowAuth: () => '',
+    setShowRooms: () =>'',
+    getShowRooms: () => false,
 }
 
 const roomDetail = {

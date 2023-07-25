@@ -38,26 +38,32 @@ export const Rooms = () => {
                     rooms.map((room) => {
                         return (
                             <>
-                                <div className={`room grid grid-cols-10`} key={room.roomID}>
-                                    <div className="image-container col-span-3">
-                                        <img src={roomImg} alt="" className={``} />
+                                <div className={`room grid grid-cols-10 sm:pb-2`} key={room.roomID}>
+                                    <div className="image-container col-span-4 sm:col-span-10 sm:w-[100vw] sm:h-[40vh]">
+                                        <img src={roomImg} alt="" className='sm:!object-fill sm:w-[100vw] sm:h-[40vh]' />
                                     </div>
-                                    <div className="room-action grid grid-cols-2 col-span-7">
-                                        <h1>{room.roomName}</h1>
-                                        <h3 onClick={() => action(room.roomID)}>{actionButton.h3}</h3>
+                                    <div className="room-action grid grid-cols-2 sm:grid-cols-1 sm:col-span-10 sm:mt-6 col-span-6">
+                                        <h1 className='sm:!w-full sm:!text-center md:!w-full'>{room.roomName}</h1>
+                                        <h3 className='sm:!w-[50%] sm:mt-10' onClick={() => action(room.roomID)}>{actionButton.h3}</h3>
                                     </div>
                                 </div>
-                                <div className={`room-detail gap-2 ${ctx.getShowDetail() ? 'grid grid-cols-2' : 'hidden'} `}>
+                                <div className={`room-detail gap-2 sm:grid-cols-1 md:grid-cols-1 ${ctx.getShowDetail() ? 'grid grid-cols-2' : 'hidden'} `}>
                                     <div className="image-container w-full">
                                         <img src={roomImg} alt="" />
                                     </div>
-                                    <div className="info grid gap-1">
+                                    <div className="info grid gap-1 md:grid-cols-1 sm:p-2">
                                         <h2 className='info-room-title'>{room.roomName}</h2>
-                                        <div className="disc grid grid-cols-8 gap-3">
-                                            <p className={`col-span-6 mr-1`}>{room.description}</p>
-                                            <h2 className={`col-span-2 flex flex-col w-fit`}>{`$${245} / NIGHT `}<p>EXCLUDING TAXES & FEED</p></h2>
+                                        <div className="disc grid grid-cols-8 gap-3 md:grid-cols-1 sm:grid-cols-1">
+                                            <p className={`col-start-1 col-end-7 md:col-span-1 mr-1 sm:grid-cols-1`}>{room.description}</p>
+                                            <div className="grid grid-cols-1 col-start-7 col-end-9 sm:grid-cols-2 sm:col-span-8">
+                                                <h2 className={`flex flex-col w-fit md:grid-cols-1 sm:grid-cols-1 sm:w-full md:w-full sm:!text-left md:!text-left`}>{`$${245} / NIGHT `}
+                                                    <p className='sm:!text-left md:!text-left'>EXCLUDING TAXES & FEED</p>
+                                                </h2>
+                                                <h2 className='sm:absolute sm:!right-1 sm:!bottom-auto ml-10 sm:ml-0 xl:ml-[2em]'>Reserve</h2>
+                                            </div>
+
                                         </div>
-                                        <div className="details grid grid-cols-4">
+                                        <div className="details grid grid-cols-4 sm:!w-full sm:mt-10 md:mt-10">
                                             <li>
                                                 <div className="img-wrap amenity-icon">
                                                     <AiOutlineCoffee/>

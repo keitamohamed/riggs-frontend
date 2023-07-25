@@ -39,7 +39,7 @@ export const Login = () => {
                         {error?.message !== '' ? <p className="error_message">{error?.message}</p> : ''}
                         <div className="form_group submit">
                             <p className={`pointer sm:hidden`}><input type="submit"></input></p>
-                            <p className={`pointer sm:block hidden`}><AiOutlineLogin/></p>
+                            <p className={`pointer sm:block sm:w-fit sm:!border-0 hidden`}><AiOutlineLogin/></p>
                             <div className="no-account">
                                 <p>Don't have an account?</p>
                                 <p onClick={() => nav("/register")}>Sign up</p>

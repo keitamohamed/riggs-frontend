@@ -1,14 +1,26 @@
 import {useNavigate} from "react-router-dom";
 import {AiOutlineMenu} from "react-icons/ai";
+import {useContext} from "react";
+import {AuthContext} from "../../setup/context/context.ts";
+import {useAppDispatch} from "../../setup/redux/reduxHook.ts";
+import {authAction} from "../../setup/redux/authenticate.ts";
 
 export const Header = () => {
     const nav = useNavigate()
+    const authCtx = useContext(AuthContext)
+    const dispatch = useAppDispatch()
+
     const toLogin = () => {
         nav("/login")
     }
+    const setLogout = () => {
+        authCtx.logout()
+        dispatch(authAction.setLogout())
+        nav('/')
+    }
 
     return (
-        <div className='header riggs-header'>
+        <div className='header riggs-header header-transparent'>
             <div className="context-container grid grid-cols-10">
                 <div className="nav col-span-1">
                     <AiOutlineMenu/>
@@ -21,7 +33,8 @@ export const Header = () => {
                 <div className="action-btn grid grid-cols-2 sm:grid-cols-1 sm:col-span-2 col-span-3">
                     <div className="book sm:hidden"><h3 onClick={() => nav('/booking')}>Book Room</h3></div>
                     <div className="book login-signup">
-                        <h5 onClick={toLogin}>Login</h5>
+                        <h5 className={`${authCtx.isAuthenticated() ? 'hidden' : 'block'}`} onClick={toLogin}>Login</h5>
+                        <h5 className={`${authCtx.isAuthenticated() ? 'block' : 'hidden'}`} onClick={setLogout}>Logout</h5>
                     </div>
                 </div>
             </div>

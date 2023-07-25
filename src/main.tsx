@@ -6,10 +6,12 @@ import store from "./setup/redux/store.ts";
 import App from './App.tsx'
 import UIContextProvider from "./setup/context/UIProvider.tsx";
 import {RoomContextProvider} from "./setup/context/RoomProvider.tsx";
-
-
-import "./index.scss"
 import AuthProvider from "./setup/context/AuthProvider.tsx";
+
+import 'swiper/css'
+import 'swiper/css/navigation';
+import "swiper/css/pagination";
+import "./index.scss"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 

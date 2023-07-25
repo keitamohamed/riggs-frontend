@@ -19,7 +19,9 @@ export interface AuthContextProperty {
 
 export interface UIHideShowContextProvider {
     getShowAuth: () => boolean,
-    setShowAuth: (value: boolean) => void
+    setShowAuth: (value: boolean) => void,
+    setShowRooms: (value: boolean) => void,
+    getShowRooms: () => boolean,
 }
 
 export type LoginCredential = {
@@ -48,6 +50,36 @@ export interface UserInit {
     booking: any[]
     message: any,
     error: User
+}
+
+
+export interface BookingInit {
+    booking: Booking,
+    bookingList: Booking[]
+}
+
+export interface Booking {
+    bookingID: number
+    bookDate: Date,
+    arrDate: Date,
+    depDate: Date,
+    numRoom: number,
+    numAdult: number,
+    numChildren: number
+    user: User,
+    rooms: Room[]
+}
+
+export type booking = {
+    bookingID: number
+    bookDate: Date,
+    arriDate: Date,
+    depDate: Date,
+    numRoom: number,
+    numAdult: number,
+    numChildren: number
+    user: User,
+    rooms: Room[]
 }
 
 interface UserAddress {

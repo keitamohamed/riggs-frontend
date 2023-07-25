@@ -109,8 +109,28 @@
   }
 }
 
-.room-list {
+.room-available {
+    overflow: scroll;
 
+  .action-container {
+    display: grid;
+    place-items: end;
+    gap: 2em;
+    padding: 15px 10px;
+
+    svg {
+      font-size: 2em;
+      transition: all .1s ease;
+    }
+
+    svg:hover {
+      fill: $color_red;
+      font-family: $font_family_bacasime;
+    }
+  }
+}
+
+.room-list {
   .room {
     justify-content: center;
     place-items: center;
@@ -145,6 +165,7 @@
     .info {
       border: 1px solid $light_slate;
       border-left: none;
+      padding-right: 15px;
 
       .info-room-title {
         text-align: left;
@@ -153,18 +174,37 @@
         justify-items: center;
         font-size: 1.3em;
         width: fit-content;
-        height: 10px;
       }
       .disc {
+
         h2 {
           font-weight: bold;
           font-size: 1.3em;
           text-align: right;
+          padding-bottom: 0;
+          bottom: 0;
+          margin-bottom: 0;
 
           p {
             width: 90%;
             font-size: .5em;
             text-align: right;
+            color: $dark_55;
+          }
+
+          &:last-child {
+            width: fit-content;
+            padding: 5px 15px;
+            border: 1px solid $dark_55;
+            text-align: center;
+            display: inline-block;
+            float: right;
+            align-self: center;
+            right: 15px;
+            text-transform: uppercase;
+            font-weight: normal;
+            font-size: 20px;
+            cursor: pointer;
           }
         }
       }

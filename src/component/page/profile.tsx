@@ -1,16 +1,21 @@
 import {AiFillEdit} from "react-icons/ai";
 import {LuEdit2} from "react-icons/lu";
 
-import {Booking} from "../sub-page/booking.tsx";
 import img from "../../assets/img/profile-img.jpg"
 import {useUser} from "../../custom-hook/useUser.ts";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
+import {useEffect} from "react";
+import {SwiperImage} from "../reusable/swiper-image.tsx";
 
 
 export const Profile = () => {
     const {user} = useAppSelector((state) => state.user)
     const {credentials} = useAppSelector((state) => state.auth)
     const {findUserByEmail} = useUser()
+
+    useEffect(() => {
+        findUserByEmail(credentials.email)
+    }, [])
 
     return (
         <>
@@ -65,7 +70,7 @@ export const Profile = () => {
                                 </div>
                             </div>
                         </div>
-                        <Booking/>
+                        <SwiperImage/>
                     </div>
                 </div>
             </div>
