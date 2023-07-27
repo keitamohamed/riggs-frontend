@@ -56,6 +56,8 @@ export interface UserInit {
 export interface BookingInit {
     booking: Booking,
     bookingList: Booking[]
+    message: any,
+    error: any
 }
 
 export interface Booking {

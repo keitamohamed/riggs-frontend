@@ -8,8 +8,10 @@ import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 import roomImg from "../../assets/img/room-1.jpg"
 import {useContext, useEffect, useState} from "react";
 import {RoomActionContext} from "../../setup/context/context.ts";
+import {useBooking} from "../../custom-hook/useBooking.ts";
 export const Rooms = () => {
     const ctx = useContext(RoomActionContext)
+    const {setReserveRoom} = useBooking()
     const {rooms} = useAppSelector((state) => state.room)
     const [actionButton, setActionButton] = useState({
         h3: 'View Room'
@@ -59,7 +61,12 @@ export const Rooms = () => {
                                                 <h2 className={`flex flex-col w-fit md:grid-cols-1 sm:grid-cols-1 sm:w-full md:w-full sm:!text-left md:!text-left`}>{`$${245} / NIGHT `}
                                                     <p className='sm:!text-left md:!text-left'>EXCLUDING TAXES & FEED</p>
                                                 </h2>
-                                                <h2 className='sm:absolute sm:!right-1 sm:!bottom-auto ml-10 sm:ml-0 xl:ml-[2em]'>Reserve</h2>
+                                                <h2
+                                                    className='sm:absolute sm:!right-1 sm:!bottom-auto sm:ml-0 lg:ml-6 xl:ml-12'
+                                                    onClick={() => setReserveRoom(room.roomID)}
+                                                >
+                                                    Reserve
+                                                </h2>
                                             </div>
 
                                         </div>

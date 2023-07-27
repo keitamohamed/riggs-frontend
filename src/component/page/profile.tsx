@@ -11,7 +11,7 @@ import {SwiperImage} from "../reusable/swiper-image.tsx";
 export const Profile = () => {
     const {user} = useAppSelector((state) => state.user)
     const {credentials} = useAppSelector((state) => state.auth)
-    const {findUserByEmail} = useUser()
+    const {findUserByEmail, userTotalBooking} = useUser()
 
     useEffect(() => {
         findUserByEmail(credentials.email)
@@ -50,10 +50,10 @@ export const Profile = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="booking-detail grid grid-cols-3 mt-1 w-full sm:grid-cols-1">
+                        <div className="booking-detail grid grid-cols-2 mt-1 w-full sm:grid-cols-1">
                             <div className="room-book ">
                                 <div className="num-room">
-                                    <h1>6</h1>
+                                    <h1>{userTotalBooking()}</h1>
                                     <p>Booking i've made</p>
                                 </div>
                             </div>
@@ -61,12 +61,6 @@ export const Profile = () => {
                                 <div className="num-room">
                                     <h1>$189</h1>
                                     <p>Average cost for each room</p>
-                                </div>
-                            </div>
-                            <div className="room-book">
-                                <div className="num-room">
-                                    <h1>$6123</h1>
-                                    <p>Total amount spent</p>
                                 </div>
                             </div>
                         </div>

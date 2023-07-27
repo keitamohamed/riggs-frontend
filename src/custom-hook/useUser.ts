@@ -9,7 +9,7 @@ export const useUser = () => {
     const ctx = useContext(UIActionContext)
     const dispatch = useAppDispatch()
     const {credentials} = useAppSelector((state) => state.auth)
-    const {user, error, error: {address}} = useAppSelector((state) => state.user)
+    const {user, error, error: {address}, booking} = useAppSelector((state) => state.user)
 
     const setUser = (user: object) => {
         dispatch(userAction.setUser(user))
@@ -53,6 +53,10 @@ export const useUser = () => {
         // @ts-ignore
         await dispatch(POST_REQUEST(APIPath.ADD_NEW_USER, user, setValidInputMessage, setInvalidInputError, null))
     }
+
+    const userTotalBooking = () => {
+        return booking.length
+    }
     const setMessage = async (message: object) => {
         dispatch(userAction.setMessage(message))
     }
@@ -82,6 +86,7 @@ export const useUser = () => {
         onChangeSetNewUser,
         onChangeSetNewUserAddress,
         onChangeSetNewUserAuth,
-        addNewUser
+        addNewUser,
+        userTotalBooking
     }
 }

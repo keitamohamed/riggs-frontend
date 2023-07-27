@@ -31,7 +31,9 @@ const initialState: BookingInit = {
         user,
         rooms: []
     },
-    bookingList: []
+    bookingList: [],
+    message: {},
+    error: {}
 }
 
 const bookingSlice = createSlice({
@@ -53,7 +55,17 @@ const bookingSlice = createSlice({
                 } else if (startDate){
                     state.booking.arrDate = new Date(endDate)
                 }
+        },
+        setMessage(state, action) {
+            state.message = action.payload
+        },
+        setError(state, action) {
+            state.error = action.payload
+        },
+        setReserveRoom(state, action) {
+            state.booking.rooms.push(action.payload)
         }
+
     },
 })
 

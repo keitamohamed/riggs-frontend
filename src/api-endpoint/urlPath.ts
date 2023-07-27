@@ -5,5 +5,8 @@ export const APIPath =  {
     FIND_USER_BY_ID: (userID: number) => `user/find-by-id/${userID}`,
     FIND_USER_BY_EMAIL: (email: string) => `user/find-by-email/${email}`,
     ADD_NEW_USER: ('user/add'),
-    ROOM_LIST: ("room/list")
+    ROOM_LIST: ("room/list"),
+
+    // Booking
+    NEW_BOOKING: (userID: number) => `booking/add/${userID}`
 }
