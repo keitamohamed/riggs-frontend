@@ -1,5 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {AiOutlineMenu} from "react-icons/ai";
+import {CiMenuFries} from 'react-icons/ci'
 import {useContext} from "react";
 import {AuthContext} from "../../setup/context/context.ts";
 import {useAppDispatch} from "../../setup/redux/reduxHook.ts";
@@ -19,11 +20,22 @@ export const Header = () => {
         nav('/')
     }
 
+    const showSidebar = () => {
+        const el = document.querySelector(".side-nav")
+        const index = document.querySelector(".index") as HTMLElement
+        if (el && index) {
+            index.style.display = 'none'
+            el.classList.remove('slide-out')
+            el.classList.add('slide-in')
+        }
+
+    }
+
     return (
         <div className='header riggs-header header-transparent'>
             <div className="context-container grid grid-cols-10">
                 <div className="nav col-span-1">
-                    <AiOutlineMenu/>
+                    <li onClick={showSidebar}><CiMenuFries/></li>
                 </div>
                 <div className="title-container md:ml-28 lg:ml-28 xl:ml-28 col-start-2 col-end-8 sm:col-end-9">
                     <p>8080 F st nw</p>

@@ -1,25 +1,39 @@
 import {AiFillEdit} from "react-icons/ai";
 import {LuEdit2} from "react-icons/lu";
 
+import {TransparentHeader} from "../reusable/header-trans.tsx";
 import img from "../../assets/img/profile-img.jpg"
 import {useUser} from "../../custom-hook/useUser.ts";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
 import {SwiperImage} from "../reusable/swiper-image.tsx";
+import {AuthContext} from "../../setup/context/context.ts";
+import {useGlobal} from "../../custom-hook/useGlobal.ts";
 
 
 export const Profile = () => {
+    const authCtx = useContext(AuthContext)
     const {user} = useAppSelector((state) => state.user)
     const {credentials} = useAppSelector((state) => state.auth)
     const {findUserByEmail, userTotalBooking} = useUser()
+    const {reload} = useGlobal()
+
+    const getUserEmail = () => {
+        findUserByEmail(authCtx.getCookie().email)
+    }
+    
+    const getUserEmailFromRedux = () => {
+        findUserByEmail(credentials.email)
+    }
 
     useEffect(() => {
-        findUserByEmail(credentials.email)
+        reload(getUserEmail, getUserEmailFromRedux)
     }, [])
 
     return (
         <>
             <div className="profile_profile">
+                <TransparentHeader custClass={'transparent-bg'}/>
                 <div className="main sm:p-0">
                     <div className="content">
                         <div className="user_info flex items-center

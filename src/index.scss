@@ -87,8 +87,12 @@ svg {
   }
 }
 
+.index {
+  inset: 0;
+}
 
-main {
+
+.index-main {
   position: relative;
 
   .slide {

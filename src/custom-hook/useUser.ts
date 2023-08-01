@@ -3,9 +3,10 @@ import {userAction} from "../setup/redux/user.tsx";
 import {GET_REQUEST, POST_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
 import {useContext} from "react";
-import {UIActionContext} from "../setup/context/context.ts";
+import {AuthContext, UIActionContext} from "../setup/context/context.ts";
 
 export const useUser = () => {
+    const authCtx = useContext(AuthContext)
     const ctx = useContext(UIActionContext)
     const dispatch = useAppDispatch()
     const {credentials} = useAppSelector((state) => state.auth)
@@ -32,13 +33,13 @@ export const useUser = () => {
     const findUserByID = (userID: number) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-        dispatch(GET_REQUEST(token, APIPath.FIND_USER_BY_ID(userID), setUser, setError))
+        dispatch(GET_REQUEST(null, APIPath.FIND_USER_BY_ID(userID), setUser, setError))
     }
 
     const findUserByEmail = (email: string) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        dispatch(GET_REQUEST(credentials.accessToken, APIPath.FIND_USER_BY_EMAIL(email), setUser, setError))
+        dispatch(GET_REQUEST(authCtx.getCookie().aToken, APIPath.FIND_USER_BY_EMAIL(email), setUser, setError))
     }
     
     const userList = () => {

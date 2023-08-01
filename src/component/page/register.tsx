@@ -125,7 +125,7 @@ export const Register = () => {
                                    placeholder={"Conform password"}
                             />
                         </div>
-                        {/*{error?.message !== '' ? <p className="error_message">{error?.message}</p> : ''}*/}
+                        {error?.message !== '' ? <p className="error_message">{error?.message}</p> : ''}
                         <div className="form_group next">
                             <input type="submit" value="Submit"/>
                         </div>

@@ -23,11 +23,11 @@ const authSlice = createSlice({
 
         setCookie(state, action) {
             const {refreshToken, expirationDate} = action.payload
-            document.cookie = `token=${refreshToken}; Secure; Expires/Max-Age: ${expirationDate}; Expires = ${expirationDate}`
+            document.cookie = `accessToken=${refreshToken}; Secure; Expires/Max-Age: ${expirationDate}; Expires = ${expirationDate}`
         },
         setCredentials(state, action) {
             const {accessToken, email} = action.payload
-            const role = Object.keys(action.payload).filter(key => key.includes("Role"))
+            const role = Object.keys(action.payload).filter(key => key.includes("ROLE"))
             state.credentials.accessToken = accessToken
             state.credentials.email = email
             state.credentials.role = role[0]

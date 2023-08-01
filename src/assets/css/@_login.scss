@@ -1,3 +1,4 @@
+
 .login_container {
   display: flex;
   position: relative;
@@ -66,8 +67,7 @@
 
     .form-group {
       width: 100%;
-      border-bottom: 1px solid $color_white;
-      margin-bottom: 1em;
+      margin-bottom: .5em;
       padding: 5px;
 
       &:last-child {
@@ -79,7 +79,6 @@
         width: 100%;
         padding-left: 10px;
         background: transparent;
-        color: $color_white;
       }
 
       input::placeholder {
@@ -129,6 +128,13 @@
   }
 }
 
+.login_container {
+   input {
+     border-bottom: 1px solid $color_white;
+     color: $color_white;
+   }
+}
+
 .signup_container {
   display: flex;
   background: rgba(0, 0, 0, .25%);
@@ -161,8 +167,8 @@
   }
 
    input {
-     color: $dark !important;
-     border-bottom: 1px solid $dark;
+     color: $dark;
+     border-bottom: .01px solid $border_color;
    }
 
   input::placeholder {
@@ -179,6 +185,16 @@
       color: $dark;
       font-size: 1.5em;
       isolation: isolate;
+    }
+  }
+
+  .invalid-input {
+
+    &::placeholder {
+      color: #FE0000 !important;
+    }
+    :-ms-input-placeholder {
+      color: #FE0000 !important;
     }
   }
 }

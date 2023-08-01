@@ -1,8 +1,9 @@
 import {useContext, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import DatePicker from 'react-datepicker'
-import {AiOutlineClose} from "react-icons/ai";
 
+import {TransparentHeader} from "../reusable/header-trans.tsx";
 import {Rooms} from "./rooms.tsx";
 import {useRoom} from "../../custom-hook/useRoom.ts";
 import {UIActionContext} from "../../setup/context/context.ts";
@@ -10,7 +11,6 @@ import {useBooking} from "../../custom-hook/useBooking.ts";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 
 export const Booking = () => {
-    const nav = useNavigate()
     const uiCtx = useContext(UIActionContext)
     const {booking} = useAppSelector((state) => state.booking)
     const {onChangeRoom, onChange, dateRange, setDateRange} = useBooking()
@@ -26,23 +26,7 @@ export const Booking = () => {
 
     return (
         <div className='booking'>
-            <div className="header">
-                <div className={`title-container ${uiCtx.getShowRooms() ? 'grid grid-cols-6' : ''} md:ml-28 lg:ml-28 xl:ml-28 col-start-2 col-end-8 sm:col-end-9`}>
-                    <div className={`context ${uiCtx.getShowRooms() ? 'col-start-1 col-end-6 text-transform' : ''}`}>
-                        <p>8080 F st nw</p>
-                        <h1 onClick={() => nav('/')}>Riggs</h1>
-                        <p>Washington d.c</p>
-                    </div>
-                    {
-                        uiCtx.getShowRooms() ?(
-                            <div className="action-container">
-                                <AiOutlineClose onClick={() => uiCtx.setShowRooms(false)}/>
-                            </div>
-                        ) : ''
-                    }
-
-                </div>
-            </div>
+            <TransparentHeader custClass={''}/>
             {
                 uiCtx.getShowRooms() ? (
                     <div className="room-available sm:!pl-0 sm:!pr-0">
