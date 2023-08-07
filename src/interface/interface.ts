@@ -5,13 +5,19 @@ export interface Credentials  {
     refreshToken: string;
     email: string,
     role: string,
-    error: any;
-    code: string
+    error: unknown
+}
+
+export interface CredentialsReset {
+    accessToken: string,
+    email: string,
+    role: string,
 }
 
 export interface AuthContextProperty {
-    getCookie: () => any
+    getCookie: () => any,
     setCredentials: (useCredential: Credentials) => void,
+    setExpiredToken: (useCredential: CredentialsReset) => void,
     isAuthenticated: () => boolean,
     isAdmin: () => boolean,
     logout: () => void,
@@ -46,8 +52,9 @@ export interface User {
 
 export interface UserInit {
     user: User
+    update: User,
     userList: never[],
-    booking: any[]
+    booking: unknown[]
     message: any,
     error: User
 }
@@ -56,8 +63,8 @@ export interface UserInit {
 export interface BookingInit {
     booking: Booking,
     bookingList: Booking[]
-    message: any,
-    error: any
+    message: unknown,
+    error: unknown
 }
 
 export interface Booking {
@@ -114,9 +121,9 @@ export interface Room {
 
 export interface InitRoom {
     room: Room,
-    rooms: any[],
-    message: any,
-    error: any
+    rooms: unknown[],
+    message: unknown,
+    error: unknown
 }
 
 export interface ShowRoomDetail {

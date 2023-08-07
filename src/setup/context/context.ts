@@ -1,7 +1,7 @@
 import {createContext} from "react";
 import {
     AuthContextProperty,
-    Credentials,
+    Credentials, CredentialsReset,
     ShowRoomDetail,
     UIHideShowContextProvider
 } from "../../interface/interface.ts";
@@ -23,6 +23,7 @@ const auth = {
     getCookie: ()  => '',
     logout: () => null,
     setCredentials: (useCredential: Credentials) => useCredential,
+    setExpiredToken: (resetCredential: CredentialsReset) => resetCredential
 }
 
 export const AuthContext = createContext<AuthContextProperty>(auth)

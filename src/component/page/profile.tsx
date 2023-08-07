@@ -4,34 +4,41 @@ import {LuEdit2} from "react-icons/lu";
 import {TransparentHeader} from "../reusable/header-trans.tsx";
 import img from "../../assets/img/profile-img.jpg"
 import {useUser} from "../../custom-hook/useUser.ts";
-import {useAppSelector} from "../../setup/redux/reduxHook.ts";
+import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {useContext, useEffect} from "react";
 import {SwiperImage} from "../reusable/swiper-image.tsx";
 import {AuthContext} from "../../setup/context/context.ts";
 import {useGlobal} from "../../custom-hook/useGlobal.ts";
-
+import {Model} from "../model/Model.tsx";
+import {userAction} from "../../setup/redux/user.tsx";
 
 export const Profile = () => {
     const authCtx = useContext(AuthContext)
-    const {user} = useAppSelector((state) => state.user)
-    const {credentials} = useAppSelector((state) => state.auth)
-    const {findUserByEmail, userTotalBooking} = useUser()
-    const {reload} = useGlobal()
-
-    const getUserEmail = () => {
-        findUserByEmail(authCtx.getCookie().email)
-    }
+    const dispatch = useAppDispatch()
+    const {user, update, booking} = useAppSelector((state) => state.user)
+    // const {findUserByEmail, userTotalBooking} = useUser()
     
-    const getUserEmailFromRedux = () => {
-        findUserByEmail(credentials.email)
+    
+    const userTotalBooking = () => {
+      return booking.length
+    }
+
+    const onClickShowModel = () => {
+        const el = document.querySelector('.model') as HTMLElement
+        if (el) {
+            el.classList.remove('model-close')
+            el.classList.add('model-open')
+            dispatch(userAction.setSelectedUserToBeUpdate(user))
+        }
     }
 
     useEffect(() => {
-        reload(getUserEmail, getUserEmailFromRedux)
-    }, [])
+
+    }, [user])
 
     return (
         <>
+            <Model show={'user-update'} />
             <div className="profile_profile">
                 <TransparentHeader custClass={'transparent-bg'}/>
                 <div className="main sm:p-0">
@@ -42,14 +49,19 @@ export const Profile = () => {
                             <div className="info-container infocol-span-6
                             flex items-center space-x-4 w-full sm:mb-5">
                                 <div className="info grow sm:p-2">
-                                    <h2>{`${user.firstName + " " + user.lastName}`}</h2>
-                                    <div className="user-detail">
-                                        <p>{user.auth.email}</p>
-                                        <p>{user.address.street + '\n' +
-                                            user.address.city + ", " + user.address.state +
-                                            " " + user.address.zipcode}</p>
-                                    </div>
-
+                                    {
+                                        user.firstName ? (
+                                            <>
+                                                <h2>{`${user.firstName + " " + user.lastName}`}</h2>
+                                                <div className="user-detail">
+                                                    <p>{user.auth.email}</p>
+                                                    <p>{user.address.street + '\n' +
+                                                        user.address.city + ", " + user.address.state +
+                                                        " " + user.address.zipcode}</p>
+                                                </div>
+                                            </>
+                                        ) : <p>Loading data....</p>
+                                    }
                                 </div>
                                 <div className="action_btn flex-none w-fit
                                 grid grid-cols-2 justify-center
@@ -58,8 +70,15 @@ export const Profile = () => {
                                 top-0 right-2
                                 sm:-top-5
                                 sm:bg-[#ED2B2A] sm:p-4">
-                                    <LuEdit2 className="text-1xl hidden sm:block sm:text-white text-[#19A7CE]"/>
-                                    <AiFillEdit className="text-1xl block sm:hidden sm:text-white text-[#19A7CE]"/>
+                                    <li className='list-none'
+                                        onClick={onClickShowModel}>
+                                        <LuEdit2 className="text-1xl hidden sm:block sm:text-white text-[#19A7CE]"/>
+                                    </li>
+                                    <li
+                                        className='list-none'
+                                        onClick={onClickShowModel}>
+                                        <AiFillEdit className="text-1xl block sm:hidden sm:text-white text-[#19A7CE]"/>
+                                    </li>
                                     <p className="sm:hidden text-[#19A7CE]">Edit</p>
                                 </div>
                             </div>

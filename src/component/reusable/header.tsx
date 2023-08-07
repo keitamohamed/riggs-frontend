@@ -1,5 +1,4 @@
 import {useNavigate} from "react-router-dom";
-import {AiOutlineMenu} from "react-icons/ai";
 import {CiMenuFries} from 'react-icons/ci'
 import {useContext} from "react";
 import {AuthContext} from "../../setup/context/context.ts";

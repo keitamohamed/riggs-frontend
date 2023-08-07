@@ -108,12 +108,13 @@ export const GET_REQUEST = (
             const response = await fetch();
             action(response.data)
         } catch (error) {
-            setError(error.response.data)
+            setError(error.response)
         }
     }
 }
 
-export const UPDATE_REQUEST = (
+export const PUT_REQUEST = (
+    token: string,
     url: string,
     data: object,
     action: (data: object) => void,
@@ -123,11 +124,11 @@ export const UPDATE_REQUEST = (
         const send = async () => {
             return axios({
                 method: "PUT",
-                url: `task/${url}`,
+                url: `riggs/${url}`,
                 data: data,
                 headers: {
-                    Authorization: 'Bearer',
-                    'Content-Type': 'application/json'
+                    Authorization: token ? `Bearer ${token}` : 'Bearer',
+                    'Content-Type': 'application/json;charset=UTF-8'
                 }
             })
         }

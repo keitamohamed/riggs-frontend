@@ -7,6 +7,9 @@ export const APIPath =  {
     ADD_NEW_USER: ('user/add'),
     ROOM_LIST: ("room/list"),
 
+    // User api
+    UPDATE_USER_INFO: (id: number) => `user/update/${id}`,
+
     // Booking
     NEW_BOOKING: (userID: number) => `booking/add/${userID}`
 }

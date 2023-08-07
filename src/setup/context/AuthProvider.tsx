@@ -1,10 +1,12 @@
 import {useCookies} from "react-cookie";
-import {Credentials, Props} from "../../interface/interface.ts";
+import {Credentials, CredentialsReset, Props} from "../../interface/interface.ts";
 import {AuthContext} from "./context.ts";
-import {useAppSelector} from "../redux/reduxHook.ts";
+import {useAppDispatch, useAppSelector} from "../redux/reduxHook.ts";
+import {authAction} from "../redux/authenticate.ts";
 
 const {Provider} = AuthContext
 const AuthProvider = ({children}: Props) => {
+    const dispatch = useAppDispatch()
     const [cookie, setCookie, removeCookie] = useCookies(
         [
             'aToken',
@@ -19,12 +21,10 @@ const AuthProvider = ({children}: Props) => {
     }
 
     const setCredentials = (credentials: Credentials) => {
-        console.log(credentials)
         setCookie('aToken', credentials.accessToken)
         setCookie('refreshToken', credentials.refreshToken)
         setCookie('email', credentials.email)
         setRole(credentials)
-        console.log('Email', credentials.email)
     }
 
     const setRole = (credentials: Credentials) => {
@@ -33,11 +33,18 @@ const AuthProvider = ({children}: Props) => {
     }
     
     const isAuthenticated = () => {
-      return !!(cookie.aToken && cookie.Role);
+        return (cookie.aToken != undefined && cookie.Role != undefined);
     }
 
     const isAdmin = () => {
         return cookie.Role === 'ROLE_ADMIN';
+    }
+
+    const setExpiredToken = (credentials: CredentialsReset) => {
+        setCookie('aToken', credentials.accessToken)
+        setCookie('email', credentials.email)
+        setCookie('Role', credentials.role)
+        dispatch(authAction.setLogout())
     }
     
     const logout = () => {
@@ -51,6 +58,7 @@ const AuthProvider = ({children}: Props) => {
         <Provider value={{
             getCookie,
             setCredentials,
+            setExpiredToken,
             isAuthenticated,
             isAdmin,
             logout

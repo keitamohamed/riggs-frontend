@@ -1,16 +1,15 @@
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {userAction} from "../setup/redux/user.tsx";
-import {GET_REQUEST, POST_REQUEST} from "../api-endpoint/Request.ts";
+import {GET_REQUEST, POST_REQUEST, PUT_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
-import {useContext} from "react";
+import {FormEvent, useContext} from "react";
 import {AuthContext, UIActionContext} from "../setup/context/context.ts";
 
 export const useUser = () => {
     const authCtx = useContext(AuthContext)
     const ctx = useContext(UIActionContext)
     const dispatch = useAppDispatch()
-    const {credentials} = useAppSelector((state) => state.auth)
-    const {user, error, error: {address}, booking} = useAppSelector((state) => state.user)
+    const {user, update, booking} = useAppSelector((state) => state.user)
 
     const setUser = (user: object) => {
         dispatch(userAction.setUser(user))
@@ -28,18 +27,29 @@ export const useUser = () => {
     const onChangeSetNewUserAuth = (event: any) => {
         dispatch(userAction.setUserAuth(event.target))
     }
+    const onChangeSetUpdate = (event: any) => {
+        dispatch(userAction.setUpdate(event.target))
+    }
+    const onChangeSetUpdateAddress = (event: any) => {
+        dispatch(userAction.setUpdateAddress(event.target))
+    }
+    const onChangeSetUpdateAuth = (event: any) => {
+        dispatch(userAction.setUpdateAuth(event.target))
+    }
 
     
     const findUserByID = (userID: number) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+        // @ts-ignore
         dispatch(GET_REQUEST(null, APIPath.FIND_USER_BY_ID(userID), setUser, setError))
     }
 
     const findUserByEmail = (email: string) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        dispatch(GET_REQUEST(authCtx.getCookie().aToken, APIPath.FIND_USER_BY_EMAIL(email), setUser, setError))
+        if (email && authCtx.getCookie().aToken) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            dispatch(GET_REQUEST(authCtx.getCookie().aToken, APIPath.FIND_USER_BY_EMAIL(email), setUser, setError))
+        }
     }
     
     const userList = () => {
@@ -48,11 +58,27 @@ export const useUser = () => {
         dispatch(GET_REQUEST(token, APIPath.LOAD_USERS, loadUsers, setError))
     }
 
-    const addNewUser = async (event: any) => {
+    const onSubmitAddNewUser = async (event: any) => {
         event.preventDefault()
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        await dispatch(POST_REQUEST(APIPath.ADD_NEW_USER, user, setValidInputMessage, setInvalidInputError, null))
+        await dispatch(POST_REQUEST(APIPath.ADD_NEW_USER, user, setMessage, setInvalidInputError, null))
+    }
+    const onSubmitSendUpdate = async () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        await dispatch(PUT_REQUEST(authCtx.getCookie().aToken, APIPath.UPDATE_USER_INFO(user.userID), update, setMessage, setInvalidInputError))
+        findUserByEmail(authCtx.getCookie().email)
+        dispatch(userAction.reSetForm())
+    }
+
+    const onSubmitSendUpdateAuth = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        await dispatch(PUT_REQUEST(authCtx.getCookie().aToken, APIPath.UPDATE_USER_INFO(user.userID), update.auth, setMessage, setInvalidInputError))
+        findUserByEmail(authCtx.getCookie().email)
+        dispatch(userAction.reSetForm())
     }
 
     const userTotalBooking = () => {
@@ -61,12 +87,13 @@ export const useUser = () => {
     const setMessage = async (message: object) => {
         dispatch(userAction.setMessage(message))
     }
-    const setValidInputMessage = async (message: object) => {
-        await dispatch(userAction.setMessage(message))
-    }
 
-    const setError = (error: object) => {
-        dispatch(userAction.setError(error))
+    const setError = (error: any) => {
+        if (error?.status == 403 || error?.data.error?.includes('The token has expired') || (error.statusText === 'Unauthorized')) {
+            authCtx.setExpiredToken({accessToken: '', role: '', email: '', })
+            return
+        }
+        dispatch(userAction.setError(error?.data))
     }
 
     const setInvalidInputError = async (response: any) => {
@@ -87,7 +114,11 @@ export const useUser = () => {
         onChangeSetNewUser,
         onChangeSetNewUserAddress,
         onChangeSetNewUserAuth,
-        addNewUser,
+        onChangeSetUpdate,
+        onChangeSetUpdateAddress,
+        onChangeSetUpdateAuth,
+        addNewUser: onSubmitAddNewUser,
+        onSubmitSendUpdate,
         userTotalBooking
     }
 }

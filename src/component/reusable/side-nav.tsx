@@ -4,10 +4,17 @@ import {useNavigate} from "react-router-dom";
 import logo from '../../assets/img/riggs-logo-navy.svg'
 import {useContext} from "react";
 import {AuthContext} from "../../setup/context/context.ts";
+import {useUser} from "../../custom-hook/useUser.ts";
 
 export const SideNav = () => {
     const authCtx = useContext(AuthContext)
     const nav = useNavigate()
+    const {findUserByEmail} = useUser()
+
+    const setUserProfileInfo = async () => {
+        await findUserByEmail(authCtx.getCookie().email)
+        nav("/profile")
+    }
     
     const sidebarHide = () => {
         const el = document.querySelector(".side-nav")
@@ -39,7 +46,7 @@ export const SideNav = () => {
                         <ul>
                             <nav className="links pl-[7em] sm:pl-[2em]">
                                 {
-                                    authCtx.isAuthenticated() ? <li onClick={() => nav("/profile")}>Account</li> : ''
+                                    authCtx.isAuthenticated() ? <li onClick={setUserProfileInfo}>Account</li> : ''
                                 }
                                 <li>About</li>
                                 <li>Rooms & Suites</li>
