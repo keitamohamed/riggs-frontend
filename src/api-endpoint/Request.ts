@@ -122,6 +122,7 @@ export const PUT_REQUEST = (
 
     return async () => {
         const send = async () => {
+            console.log(url)
             return axios({
                 method: "PUT",
                 url: `riggs/${url}`,

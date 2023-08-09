@@ -35,8 +35,8 @@ export const Index = () => {
     const listenScrollClickEvent = () => {
         const clickElement = document.querySelector('.icon-container')
         clickElement?.addEventListener('click', () => {
-            const element = document.querySelector(".intro.intro--no-ctas")
-            const position = element!.getBoundingClientRect().top + window.scrollY
+            const element = document.querySelector(".intro.intro--no-ctas") as HTMLElement
+            const position = element?.getBoundingClientRect().top + window.scrollY
             window.scrollTo({top: position - 205, behavior: 'smooth'})
         })
     }

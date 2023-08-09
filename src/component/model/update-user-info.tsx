@@ -1,12 +1,41 @@
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
-import {useContext} from "react";
+import {FormEvent, useContext, useEffect, useState} from "react";
 import {UIActionContext} from "../../setup/context/context.ts";
 import {useUser} from "../../custom-hook/useUser.ts";
 
 export const UpdateUserInfo = () => {
     const ctx = useContext(UIActionContext)
-    const {user, message, error, error: {address, auth}} = useAppSelector((state) => state.user)
-    const {onChangeSetUpdate, onChangeSetUpdateAddress, onChangeSetUpdateAuth, onSubmitSendUpdate} = useUser()
+    const {user, update: {auth: update}, message, error, error: {address, auth}} = useAppSelector((state) => state.user)
+    const {onChangeSetUpdate, onChangeSetUpdateAddress,
+        onChangeSetUpdateAuth, onSubmitSendUpdate, onSubmitSendUpdateAuth} = useUser()
+
+    const [conformPassword, setConformPassword] = useState<string>()
+    const [passwordNotMatch, setPasswordNotMatch] = useState<string>()
+
+    const onChange = (event: any) => {
+        setConformPassword(event.target.value)
+    }
+
+    const onSubmitSendAuthUpdate = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        if (isPasswordMatch()) {
+            onSubmitSendUpdateAuth()
+        }
+    }
+
+    const isPasswordMatch =  (): boolean  => {
+        if ((conformPassword) && conformPassword !== update.password) {
+            setPasswordNotMatch('Password do not match')
+        } else {
+            setPasswordNotMatch('')
+            return true
+      }
+      return false;
+    }
+
+    useEffect(() => {
+
+    }, [passwordNotMatch])
 
     return (
         <>
@@ -80,8 +109,8 @@ export const UpdateUserInfo = () => {
                                    placeholder={address?.zipcode ? address?.zipcode : `Enter zipcode ( ${user.address.zipcode} )`}
                             />
                         </div>
-                        <div className="form-group message">
-                            {message !== null ? <p className="message">{message?.message}</p> : <p className="message">Information have been updated</p>}
+                        <div className="form-group">
+                            {message !== null ? <p className="message">{message?.message}</p> : <></>}
                         </div>
                         <div className="form_group next">
                             <p className='sm:block hidden' onClick={onSubmitSendUpdate}>Update</p>
@@ -90,7 +119,7 @@ export const UpdateUserInfo = () => {
                             </p>
                         </div>
                     </div>
-                    <form onSubmit={() => null}
+                    <form onSubmit={onSubmitSendAuthUpdate}
                           className={`form sm:!w-[100%] ${ctx.getShowAuth() ? 'block' : 'hidden'}`}>
                         <div className="form-group">
                             <input type="email"
@@ -126,10 +155,13 @@ export const UpdateUserInfo = () => {
                         <div className="form-group">
                             <input type="password"
                                    name="conform-password"
-                                   onChange={() => null}
+                                   onChange={onChange}
                                    autoComplete="off"
                                    placeholder={"Conform password"}
                             />
+                        </div>
+                        <div className="form-group message">
+                            {passwordNotMatch ? <p className="message">{passwordNotMatch}</p> : <></>}
                         </div>
                         <div className="form-group message">
                             {message !== null ? <p className="message">{message?.message}</p> : <p className="message">Information have been updated</p>}

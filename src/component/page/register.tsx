@@ -8,7 +8,7 @@ import {UIActionContext} from "../../setup/context/context.ts";
 
 export const Register = () => {
     const ctx = useContext(UIActionContext)
-    const {error, error: {address, auth}} = useAppSelector((state) => state.user)
+    const {error, message, error: {address, auth}} = useAppSelector((state) => state.user)
     const {onChangeSetNewUser, onChangeSetNewUserAddress, onChangeSetNewUserAuth, addNewUser} = useUser()
 
     return (
@@ -125,7 +125,7 @@ export const Register = () => {
                                    placeholder={"Conform password"}
                             />
                         </div>
-                        {error?.message !== '' ? <p className="error_message">{error?.message}</p> : ''}
+                        {message !== '' ? <p className="error_message">{message?.message}</p> : ''}
                         <div className="form_group next">
                             <input type="submit" value="Submit"/>
                         </div>

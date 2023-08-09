@@ -23,7 +23,9 @@ const auth = {
     getCookie: ()  => '',
     logout: () => null,
     setCredentials: (useCredential: Credentials) => useCredential,
-    setExpiredToken: (resetCredential: CredentialsReset) => resetCredential
+    setExpiredToken: (resetCredential: CredentialsReset) => resetCredential,
+    isAuthenticated:() => false,
+    isAdmin: () => false
 }
 
 export const AuthContext = createContext<AuthContextProperty>(auth)

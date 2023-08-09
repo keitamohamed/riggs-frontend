@@ -9,6 +9,7 @@ export const APIPath =  {
 
     // User api
     UPDATE_USER_INFO: (id: number) => `user/update/${id}`,
+    UPDATE_USER_AUTH: (id: number) => `user/update-auth/${id}`,
 
     // Booking
     NEW_BOOKING: (userID: number) => `booking/add/${userID}`

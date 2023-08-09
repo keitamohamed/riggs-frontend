@@ -72,11 +72,11 @@ export const useUser = () => {
         dispatch(userAction.reSetForm())
     }
 
-    const onSubmitSendUpdateAuth = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+    const onSubmitSendUpdateAuth = () => {
+        console.log(update.auth)
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        await dispatch(PUT_REQUEST(authCtx.getCookie().aToken, APIPath.UPDATE_USER_INFO(user.userID), update.auth, setMessage, setInvalidInputError))
+        dispatch(PUT_REQUEST(authCtx.getCookie().aToken, APIPath.UPDATE_USER_AUTH(update.auth.authID), update.auth, setMessage, setInvalidInputError))
         findUserByEmail(authCtx.getCookie().email)
         dispatch(userAction.reSetForm())
     }
@@ -97,6 +97,7 @@ export const useUser = () => {
     }
 
     const setInvalidInputError = async (response: any) => {
+        console.log(response)
         dispatch(userAction.setError(response))
         const {error: {address, firstName, lastName, phoneNum}} = response
         if (!address && !firstName && !lastName && !phoneNum) {
@@ -119,6 +120,7 @@ export const useUser = () => {
         onChangeSetUpdateAuth,
         addNewUser: onSubmitAddNewUser,
         onSubmitSendUpdate,
+        onSubmitSendUpdateAuth,
         userTotalBooking
     }
 }

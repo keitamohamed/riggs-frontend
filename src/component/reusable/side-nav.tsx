@@ -26,6 +26,16 @@ export const SideNav = () => {
         }
     }
 
+    const handleClick = (target: string) => {
+        const clickElement = document.querySelector(`.side-nav-link`)
+        clickElement?.addEventListener('click', () => {
+            const element = document.querySelector(`.${target}`) as HTMLElement
+            const position = element?.getBoundingClientRect().top + window.scrollY
+            sidebarHide()
+            window.scrollTo({top: position - 205, behavior: 'smooth'})
+        })
+    }
+
     return (
         <div className={`side-nav slide-out`}>
             <div className="off-canvas">
@@ -55,12 +65,12 @@ export const SideNav = () => {
                         </ul>
                         <ul className={`canvas-l-ul grid pl-[7em] sm:pl-[2em]`}>
                             <nav className={`nav grid grid-cols-2 gap-2 w-[90%] sm:grid-cols-1`}>
-                                <li>Contact</li>
-                                <li>Gallery</li>
-                                <li>Press room</li>
-                                <li>Careers</li>
-                                <li>Our Hotels</li>
-                                <li>Terms & Conditions</li>
+                                <li className='side-nav-link' onClick={() => handleClick('new-letter')}>Contact</li>
+                                <li className='side-nav-link'>Gallery</li>
+                                <li className='side-nav-link'>Press room</li>
+                                <li className='side-nav-link'>Careers</li>
+                                <li className='side-nav-link'>Our Hotels</li>
+                                <li className='side-nav-link'>Terms & Conditions</li>
                             </nav>
                         </ul>
                     </div>

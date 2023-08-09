@@ -322,11 +322,17 @@
 
   .email-container {
     padding: 2em 1em 1em;
-    input {
+
+    input, textarea {
       background: transparent;
       border-bottom: 1px solid $dark_white;
       text-align: left;
       padding: 5px 10px;
+    }
+
+    textarea {
+      border: 1px solid;
+      padding: 15px;
     }
   }
 

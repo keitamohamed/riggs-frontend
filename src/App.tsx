@@ -11,7 +11,7 @@ function App() {
 
     useEffect(() => {
         if (authCtx.isAuthenticated()) {
-            setInterval(() => findUserByEmail(authCtx.getCookie().email), 3000)
+            setInterval(() => findUserByEmail(authCtx.getCookie().email), (60 * 2000))
         }
     }, [authCtx])
 

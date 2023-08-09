@@ -163,6 +163,9 @@ const userSlice = createSlice({
         },
         reSetError(state) {
             state.error = user
+        },
+        reSetMessage(state) {
+            state.message = {}
         }
     }
 

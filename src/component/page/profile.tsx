@@ -5,18 +5,17 @@ import {TransparentHeader} from "../reusable/header-trans.tsx";
 import img from "../../assets/img/profile-img.jpg"
 import {useUser} from "../../custom-hook/useUser.ts";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
-import {useContext, useEffect} from "react";
+import {useCallback, useContext, useEffect} from "react";
 import {SwiperImage} from "../reusable/swiper-image.tsx";
 import {AuthContext} from "../../setup/context/context.ts";
-import {useGlobal} from "../../custom-hook/useGlobal.ts";
 import {Model} from "../model/Model.tsx";
 import {userAction} from "../../setup/redux/user.tsx";
 
 export const Profile = () => {
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
-    const {user, update, booking} = useAppSelector((state) => state.user)
-    // const {findUserByEmail, userTotalBooking} = useUser()
+    const {user, booking} = useAppSelector((state) => state.user)
+    const {findUserByEmail} = useUser()
     
     
     const userTotalBooking = () => {
@@ -29,12 +28,17 @@ export const Profile = () => {
             el.classList.remove('model-close')
             el.classList.add('model-open')
             dispatch(userAction.setSelectedUserToBeUpdate(user))
+            dispatch(userAction.reSetMessage())
         }
     }
 
-    useEffect(() => {
+    const fetchUserDate = useCallback(() => {
+        return findUserByEmail(authCtx.getCookie().email)
+    }, [authCtx, findUserByEmail])
 
-    }, [user])
+    useEffect( () => {
+        fetchUserDate()
+    }, [])
 
     return (
         <>
