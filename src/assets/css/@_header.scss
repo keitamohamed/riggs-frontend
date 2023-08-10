@@ -1,0 +1,300 @@
+
+.header {
+  z-index: 3;
+  padding: 10px;
+
+  .context-container {
+    justify-items: right;
+    place-items: center;
+  }
+
+  .nav {
+    color: $dark_white;
+    font-size: 1.5em;
+
+    li {
+      list-style: none;
+
+      svg {
+        font-size: 2em;
+      }
+    }
+  }
+
+  .title-container {
+    display: grid;
+    place-items: center;
+    color: $dark_white;
+    text-transform: uppercase;
+    padding: 10px;
+
+    p {
+      font-size: 11px;
+      letter-spacing: .1em;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: bolder;
+      letter-spacing: .2em;
+      font-family: $font_family_domine;
+      cursor: pointer;
+    }
+
+    svg {
+      font-size: 2em;
+    }
+
+    .reserve-btn {
+      width: fit-content;
+      position: relative;
+
+      span {
+        position: absolute;
+        color: $color_red;
+        top: -1em;
+        text-align: right;
+        right: 0;
+        font-size: 1.3em;
+        font-family: $font_family_hurricane;
+      }
+    }
+  }
+
+  .action-btn {
+    justify-items: right;
+    place-items: end;
+
+    .book {
+      width: fit-content;
+      color: $dark;
+      font-size: .7em;
+      border: 1px solid $dark_white;
+      padding:5px 15px;
+      background: #FFF;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      cursor: pointer;
+    }
+
+    .login-signup {
+      background: none;
+      color: $dark_white;
+      font-weight: bold;
+      border: none;
+
+      h5 {
+        color: #FFF;
+      }
+    }
+  }
+
+  .context-canvas {
+    display: grid;
+    place-items: start;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+
+    img {
+      max-width: 100%;
+      max-height: 60px;
+      cursor: pointer;
+    }
+  }
+}
+
+.side-nav {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  display: none;
+
+  .off-canvas {
+    z-index: 1000 !important;
+    height: 100vh;
+    overflow-y: hidden;
+
+    .canvas {
+      height: 100vh;
+
+      .nav-container {
+        width: 100%;
+        padding: 0 1em;
+
+        .canvas_inner {
+          padding: 15px;
+          width: 100%;
+
+          .context {
+            justify-items: center;
+            text-align: center;
+            place-items: center;
+            gap: 3em;
+            margin-bottom: 1.6em;
+
+            li {
+              list-style: none;
+            }
+
+            svg {
+              font-size: 1.5em;
+            }
+
+            .context-canvas {
+              display: grid;
+              place-items: start;
+              width: 100%;
+              padding-top: 10px;
+
+              img {
+                max-height: 63px;
+                cursor: pointer;
+              }
+            }
+
+          }
+        }
+
+        ul {
+          padding-top: 15px;
+          padding-bottom: 15px;
+          text-align: left;
+
+          * {
+            text-align: left;
+          }
+
+          .links {
+
+            li {
+              font-size: 40px;
+              line-height: 1.3em;
+              font-family: $font_family_domine;
+              font-weight: normal;
+              transition: none;
+
+              &:hover {
+                color: $color_orange;
+                cursor: pointer;
+                transition: $color_orange .3s ease-in-out;
+              }
+            }
+
+          }
+        }
+
+        .canvas-l-ul {
+          margin-top: 2em;
+
+          li {
+            text-transform: uppercase;
+            font-size: 16px;
+            cursor: pointer;
+            transition: none;
+            width: fit-content;
+            padding: 0 5px;
+
+            &:hover {
+              border-bottom: 1px solid $dark;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .off-canvas_sidebar {
+    background: #121628;
+  }
+}
+
+.slide-out {
+  animation: slide-out 0.5s forwards;
+  -webkit-animation: slide-out 0.5s forwards;
+}
+
+.slide-in {
+  display: grid;
+  animation: slide-in 0.5s forwards;
+  -webkit-animation: slide-in 0.5s forwards;
+}
+
+.model {
+  display: none;
+  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2000;
+  width: 100%;
+  height: 100%;
+
+  .model-context-container {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%;
+  }
+
+  .action-btn {
+    display: grid;
+    place-items: end;
+    padding: 0 20px;
+
+    li {
+      list-style: none;
+    }
+
+    svg {
+      font-size: 2em;
+    }
+  }
+
+  .signup_container {
+    position: relative;
+    width: 100%;
+
+    .content {
+      width: 100% !important;
+    }
+
+    .next {
+      p {
+        background: $dark;
+        width: 30vw;
+        color: $color_white;
+        padding: 3px 0;
+        border-radius: 5px;
+
+        &:last-child {
+          margin-top: .5rem;
+          background: none;
+          color: $color_blue;
+        }
+      }
+
+      input {
+        text-transform: capitalize;
+      }
+    }
+
+    .message {
+      p {
+        color: $dark;
+      }
+    }
+  }
+}
+
+.model-close {
+  animation: model-close 0.5s forwards;
+  -webkit-animation: model-close 0.5s forwards;
+}
+
+.model-open {
+  position: fixed;
+  display: grid;
+  animation: slide-in 0.5s forwards;
+  -webkit-animation: slide-in 0.5s forwards;
+}

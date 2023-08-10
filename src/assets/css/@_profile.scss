@@ -1,4 +1,13 @@
 
+.profile_profile {
+
+  .context-canvas {
+
+    img {
+      filter: brightness(0) invert(1);
+    }
+  }
+}
 .main {
   padding: 10px;
 
@@ -55,3 +64,4 @@
   }
 
 }
+
