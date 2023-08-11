@@ -41,6 +41,10 @@
       cursor: pointer;
     }
 
+    h5 {
+      cursor: pointer;
+    }
+
     svg {
       font-size: 2em;
     }
@@ -55,7 +59,7 @@
         top: -1em;
         text-align: right;
         right: 0;
-        font-size: 1.3em;
+        font-size: 1.1em;
         font-family: $font_family_hurricane;
       }
     }

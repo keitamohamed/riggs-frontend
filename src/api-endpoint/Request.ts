@@ -1,5 +1,5 @@
 import axios from "axios";
-import {LoginCredential, UserInit} from "../interface/interface.ts";
+import {LoginCredential} from "../interface/interface.ts";
 
 
 export const POST_AUTHENTICATE_REQUEST = (
@@ -58,11 +58,12 @@ export const LOGIN_REQUEST = (
 }
 
 export const POST_REQUEST = (
+    token: string,
     url: string,
-    data: UserInit['user'],
+    data: object,
     action: (response: object) => void,
-    setError: (error: object) => void,
-    token: string) => {
+    setError: (error: object) => void
+    ) => {
     return async () => {
         const send = async () => {
             return axios({
@@ -122,7 +123,6 @@ export const PUT_REQUEST = (
 
     return async () => {
         const send = async () => {
-            console.log(url)
             return axios({
                 method: "PUT",
                 url: `riggs/${url}`,

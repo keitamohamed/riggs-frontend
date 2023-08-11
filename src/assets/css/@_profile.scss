@@ -2,12 +2,40 @@
 .profile_profile {
 
   .context-canvas {
-
     img {
       filter: brightness(0) invert(1);
     }
   }
+
+  .transparent-bg {
+    background: $dark;
+
+    * {
+      background: transparent !important;
+      color: $color_white;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      text-align: end;
+      padding-right: 1em;
+    }
+
+    p {
+      display: none;
+    }
+
+    .login-signup {
+
+      h5 {
+        color: $color_white !important;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+  }
 }
+
 .main {
   padding: 10px;
 

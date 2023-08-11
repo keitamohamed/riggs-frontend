@@ -6,7 +6,7 @@ import {GrPersonalComputer} from "react-icons/gr";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 
 import roomImg from "../../assets/img/room-1.jpg"
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {RoomActionContext} from "../../setup/context/context.ts";
 import {useBooking} from "../../custom-hook/useBooking.ts";
 export const Rooms = () => {
@@ -28,10 +28,6 @@ export const Rooms = () => {
             h3: actionButton.h3 == 'View Room' ? 'Hide Room' : 'View Room'
         })
     }
-
-    useEffect(() => {
-
-    }, [])
 
     return (
         <div className='room-list'>

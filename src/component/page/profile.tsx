@@ -44,7 +44,7 @@ export const Profile = () => {
         <>
             <Model show={'user-update'} />
             <div className="profile_profile">
-                <TransparentHeader custClass={'transparent-bg'}/>
+                <TransparentHeader custom_class={'transparent-bg'}/>
                 <div className="main sm:p-0">
                     <div className="content">
                         <div className="user_info flex items-center

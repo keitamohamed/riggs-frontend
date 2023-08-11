@@ -121,7 +121,7 @@ export interface Room {
 
 export interface InitRoom {
     room: Room,
-    rooms: unknown[],
+    rooms: any[],
     message: unknown,
     error: unknown
 }

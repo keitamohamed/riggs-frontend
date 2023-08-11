@@ -26,7 +26,7 @@ export const Booking = () => {
 
     return (
         <div className='booking'>
-            <TransparentHeader custClass={''}/>
+            <TransparentHeader custom_class={''}/>
             {
                 uiCtx.getShowRooms() ? (
                     <div className="room-available sm:!pl-0 sm:!pr-0">

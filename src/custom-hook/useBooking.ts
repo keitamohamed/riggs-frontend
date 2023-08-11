@@ -1,13 +1,29 @@
+import React, {useContext, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {bookingAction} from "../setup/redux/booking.ts";
-import {useState} from "react";
 import {POST_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
+import {AuthContext} from "../setup/context/context.ts";
+import {useUser} from "./useUser.ts";
 
 export const useBooking = () => {
+    const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
-    const {booking, bookingList} = useAppSelector((state) => state.booking)
+    const {booking} = useAppSelector((state) => state.booking)
     const {user} = useAppSelector((state) => state.user)
+
+    const [book, setBook] = useState({
+        bookingID: 0,
+        bookDate: new Date(),
+        arrDate: new Date(),
+        depDate: new Date(),
+        numRoom: 0,
+        numAdult: 0,
+        numChildren: 0,
+        user,
+        rooms: [567271, 1537181
+        ]
+    })
 
     const [dateRange, setDateRange] = useState([null, null])
 
@@ -20,13 +36,14 @@ export const useBooking = () => {
     }
 
     const setReserveRoom = (id: number) => {
-        dispatch(bookingAction.setReserveRoom(id))
+        dispatch(bookingAction.setReserveRoom({roomID: id}))
     }
 
-    const bookRoom = (di: number) => {
+    const bookRoom = () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        dispatch(POST_REQUEST(APIPath.NEW_BOOKING(user.userID), booking, setMessage, setError, null))
+        dispatch(POST_REQUEST(authCtx.getCookie().aToken, APIPath.NEW_BOOKING(user.userID), booking, setMessage, setError))
+        dispatch(bookingAction.reSetBooking())
     }
 
     const setError = (error: object) => {
@@ -42,6 +59,7 @@ export const useBooking = () => {
         onChange,
         setDateRange,
         dateRange,
-        setReserveRoom
+        setReserveRoom,
+        bookRoom
     }
 }

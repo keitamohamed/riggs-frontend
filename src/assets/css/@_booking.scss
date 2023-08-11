@@ -21,6 +21,23 @@
         font-size: 1.5em;
       }
     }
+
+    .title-container {
+      text-transform: capitalize;
+
+      h5 {
+        font-size: 22px !important;
+      }
+    }
+
+  }
+
+  .header-transparent {
+    .book {
+      h5 {
+        color: $dark !important;
+      }
+    }
   }
 
   .context-container {
