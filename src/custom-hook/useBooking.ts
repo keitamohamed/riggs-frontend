@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {bookingAction} from "../setup/redux/booking.ts";
-import {POST_REQUEST} from "../api-endpoint/Request.ts";
+import {DELETE_REQUEST, POST_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
 import {AuthContext} from "../setup/context/context.ts";
 import {useUser} from "./useUser.ts";
@@ -9,6 +9,7 @@ import {useUser} from "./useUser.ts";
 export const useBooking = () => {
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
+    const {findUserByEmail} = useUser()
     const {booking} = useAppSelector((state) => state.booking)
     const {user} = useAppSelector((state) => state.user)
 
@@ -40,18 +41,27 @@ export const useBooking = () => {
     }
 
     const bookRoom = () => {
+        dispatch(bookingAction.setMessage({}))
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         dispatch(POST_REQUEST(authCtx.getCookie().aToken, APIPath.NEW_BOOKING(user.userID), booking, setMessage, setError))
-        dispatch(bookingAction.reSetBooking())
+    }
+
+    const deleteBooking = (id: number) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        dispatch(DELETE_REQUEST(authCtx.getCookie().aToken, APIPath.DELETE_BOOKING(id), setMessage, setError))
+        dispatch(bookingAction.setMessage({}))
+        findUserByEmail(user.auth.email)
     }
 
     const setError = (error: object) => {
         dispatch(bookingAction.setError(error))
     }
 
-    const setMessage = (message: object) => {
+    const setMessage = (message: any) => {
         dispatch(bookingAction.setMessage(message))
+        dispatch(bookingAction.reSetBooking())
     }
 
     return {
@@ -60,6 +70,7 @@ export const useBooking = () => {
         setDateRange,
         dateRange,
         setReserveRoom,
-        bookRoom
+        bookRoom,
+        deleteBooking
     }
 }

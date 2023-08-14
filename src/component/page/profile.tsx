@@ -11,12 +11,14 @@ import {AuthContext} from "../../setup/context/context.ts";
 import {Model} from "../model/Model.tsx";
 import {userAction} from "../../setup/redux/user.tsx";
 
+import {Alert} from "../reusable/alert.tsx";
+
 export const Profile = () => {
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
     const {user, booking} = useAppSelector((state) => state.user)
+    const {message, error} = useAppSelector((state) => state.booking)
     const {findUserByEmail} = useUser()
-    
     
     const userTotalBooking = () => {
       return booking.length
@@ -32,13 +34,26 @@ export const Profile = () => {
         }
     }
 
+    const listenScrollEvent = () => {
+        const header = document.querySelector('.header')
+        if (window.scrollY > 200 && header != null) {
+            header.classList.add('transparent')
+        } else if (window.scrollY < 100 && header != null) {
+            header.classList.remove('transparent')
+        }
+    }
+
     const fetchUserDate = useCallback(() => {
-        return findUserByEmail(authCtx.getCookie().email)
+        if (!user.userID) {
+            return findUserByEmail(authCtx.getCookie().email)
+        }
     }, [authCtx, findUserByEmail])
 
     useEffect( () => {
+        window.addEventListener('scroll', listenScrollEvent)
         fetchUserDate()
-    }, [])
+        return () => window.addEventListener('scroll', listenScrollEvent)
+    }, [booking, message])
 
     return (
         <>
@@ -102,6 +117,9 @@ export const Profile = () => {
                             </div>
                         </div>
                         <SwiperImage/>
+                        <Alert
+                            message={`${message ? message.message : null}`}
+                            error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : null}`}/>
                     </div>
                 </div>
             </div>

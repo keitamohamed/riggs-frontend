@@ -1,13 +1,17 @@
 import {Swiper, SwiperSlide} from "swiper/react";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import {Navigation, Pagination, Mousewheel, Keyboard} from "swiper";
 
 import photo from '../../assets/img/dc-street.jpg'
 import {RiDeleteBinLine} from "react-icons/ri";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
+import {useBooking} from "../../custom-hook/useBooking.ts";
 
 
 export const SwiperImage = () => {
     const {booking} = useAppSelector((state) => state.user)
+    const {deleteBooking} = useBooking()
 
     return (
         <>
@@ -25,8 +29,11 @@ export const SwiperImage = () => {
 
                         {
                             booking.map((book, index) => {
+
                                 return (
-                                    book.rooms.map(room => {
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    // @ts-ignore
+                                    book.rooms.map((room) => {
                                         return (
                                             <SwiperSlide>
                                                 <div className="booking-list mt-2">
@@ -46,19 +53,23 @@ export const SwiperImage = () => {
                                                                         <li>Check-in:<i> {book.arrDate}</i></li>
                                                                         <li>Check-out:<i> {book.depDate}</i></li>
                                                                     </div>
+                                                                    <div className="check flex-row">
+                                                                        <li>Price:<i>$162</i></li>
+                                                                        <li>Date Book:<i> {book.bookDate}</i></li>
+                                                                    </div>
                                                                 </div>
                                                                 <div className="action-btn">
-                                                                    <button className="">
-                                                                        <p>Total paid</p>
-                                                                        $134
-                                                                    </button>
-                                                                    <button className="">
+                                                                    <li className=''
+                                                                        onClick={() => null}
+                                                                    >
                                                                         Book Again
-                                                                    </button>
-                                                                    <button className="" name={book.bookingID}>
-                                                                        <RiDeleteBinLine/>
-                                                                        <li>Remove <i className="sm:hidden">from list</i></li>
-                                                                    </button>
+                                                                    </li>
+                                                                    <li className=''
+                                                                        onClick={() => deleteBooking(book.bookingID)}
+                                                                    >
+                                                                        <RiDeleteBinLine className='hidden sm:block'/>
+                                                                        <span className="sm:!hidden block">Remove</span>
+                                                                    </li>
                                                                 </div>
                                                             </div>
                                                         </div>

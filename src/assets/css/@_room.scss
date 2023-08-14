@@ -49,63 +49,90 @@
     }
   }
 
-
   .action-btn {
-    grid-template-columns: repeat(3, 1fr);
+    --_gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    width: fit-content;
+    align-self: center;
+    right: 0;
+    position: absolute;
 
-    button {
-      display: grid;
-      justify-content: center;
-      place-content: center;
-      background: $color_b;
-      height: 100%;
-      padding: 0 10px;
+    li {
+      display: flex;
+      padding: calc(var(--_gap) / 3);;
+      cursor: pointer;
       width: 100%;
-      border-right: 1px solid $color_light_blue;
-      font-size: 16px;
-      font-weight: bold;
-      color: $text_color;
+      position: relative;
+      overflow: hidden;
+      justify-content: center;
+      margin-right: .5em;
+      opacity: .7;
 
-      &:first-child {
-        p {
-          font-size: 12px;
-        }
+      transition: color .01s ease;
+      * {
+        transition: color .01s ease;
       }
 
-      &:last-child {
+      &:first-child{
         display: flex;
-        width: fit-content;
-        grid-template-columns: repeat(2, 1fr);
-        place-items: center;
-        border: 1px solid $light_slate;
-        background: #F5F5F5;
-        row-gap: .3em;
-        color: $color_blue;
-
-        * {
-          list-style: none;
-          width: fit-content;
-        }
-
-        svg {
-          font-size: 1.2em;
-          margin-right: .2em;
-        }
-
-        li {
-          text-align: left;
-
-          i {
-            font-style: normal;
-          }
-        }
-
-        &:hover {
-          svg {
-            color: $color_red;
-          }
-        }
+        gap: .5em;
       }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: .5em;
+        width: 90%;
+        height: 2px;
+        background: orangered;
+
+        translate: var(--_translate, 0);
+        scale: var(--_width, 0) 1;
+
+        transition:
+                color .01s ease,
+                scale 300ms var(--_scale-delay, 0ms),
+                 translate 500ms var(--_translate-delay, 0ms);
+
+
+      }
+
+      &:hover {
+        color: $color_blue;
+        transition: color .01s ease;
+        --_width: 1;
+        opacity: 1;
+
+       * {
+         color: $color_blue;
+         transition: color .01s ease;
+         --_width: 1;
+         opacity: 1;
+       }
+      }
+
+    }
+
+    @supports selector(:has(h1)) {
+      li:hover + li {
+        --_translate: -100%;
+        --_scale-delay: 300ms;
+        --_translate-delay: 200ms;
+      }
+
+      li:has(+ :hover) {
+        --_translate: 100%;
+        --_scale-delay: 300ms;
+        --_translate-delay: 200ms;
+      }
+    }
+
+    .pointer {
+      ::-webkit-scrollbar {
+        display: grid;
+      }
+      cursor: pointer;
     }
   }
 }

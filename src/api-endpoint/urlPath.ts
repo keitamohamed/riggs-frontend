@@ -12,5 +12,6 @@ export const APIPath =  {
     UPDATE_USER_AUTH: (id: number) => `user/update-auth/${id}`,
 
     // Booking
-    NEW_BOOKING: (userID: number) => `booking/add/${userID}`
+    NEW_BOOKING: (userID: number) => `booking/add/${userID}`,
+    DELETE_BOOKING: (id: number) => `booking/delete-booking/${id}`
 }

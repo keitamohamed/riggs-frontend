@@ -54,7 +54,7 @@ export interface UserInit {
     user: User
     update: User,
     userList: never[],
-    booking: unknown[]
+    booking: any[]
     message: any,
     error: User
 }
@@ -63,8 +63,8 @@ export interface UserInit {
 export interface BookingInit {
     booking: Booking,
     bookingList: Booking[]
-    message: unknown,
-    error: unknown
+    message: any,
+    error: any
 }
 
 export interface Booking {

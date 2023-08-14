@@ -47,7 +47,7 @@
 
   .drop-down-menu {
 
-    .room-container {
+    .room-container, .num-person-container, .num-child-container {
       display: grid;
       border: 1px solid $dark;
       margin-top: 1em;
@@ -56,7 +56,7 @@
       place-items: start;
     }
 
-    .room-container {
+    .room-container, .num-person-container, .num-child-container {
 
       select {
         width: 100%;
@@ -87,6 +87,10 @@
         font-size: 20px;
         font-family: $font_family_bacasime;
       }
+    }
+
+    .room-not-selected, .num-person-not-selected {
+      border: .09em solid red;
     }
   }
 

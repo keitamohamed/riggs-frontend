@@ -1,6 +1,14 @@
 
 .profile_profile {
 
+  .header {
+    background: transparent;
+  }
+
+  .content {
+    margin-bottom: 2em;
+  }
+
   .context-canvas {
     img {
       filter: brightness(0) invert(1);
@@ -8,8 +16,6 @@
   }
 
   .transparent-bg {
-    background: $dark;
-
     * {
       background: transparent !important;
       color: $color_white;
@@ -34,6 +40,17 @@
       }
     }
   }
+
+  .transparent {
+    background: rgba(0, 0, 0, 1) !important;
+    opacity: .8;
+    .book {
+      h5 {
+        color: $color_white !important;
+      }
+    }
+  }
+
 }
 
 .main {

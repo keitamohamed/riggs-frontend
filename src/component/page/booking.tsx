@@ -9,13 +9,42 @@ import {useRoom} from "../../custom-hook/useRoom.ts";
 import {UIActionContext} from "../../setup/context/context.ts";
 import {useBooking} from "../../custom-hook/useBooking.ts";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
+import {Alert} from "../reusable/alert.tsx";
+
 
 export const Booking = () => {
     const uiCtx = useContext(UIActionContext)
-    const {booking} = useAppSelector((state) => state.booking)
+    const {booking, message,error} = useAppSelector((state) => state.booking)
     const {onChangeRoom, onChange, dateRange, setDateRange} = useBooking()
     const {loadRoom} = useRoom()
     const [startDate, endDate] = dateRange
+
+    const onClickCheckValidation = () => {
+        let isFieldsValid = true;
+
+        const room = document.querySelector('.room-container') as HTMLElement;
+        const adultElement = document.querySelector('.num-person-container') as HTMLElement
+
+        if (booking.numRoom === 0) {
+            room.classList.add('room-not-selected')
+            isFieldsValid = false;
+        }
+        else {
+            room.classList.remove('room-not-selected')
+        }
+
+        if (booking.numAdult === 0) {
+            adultElement.classList.add('num-person-not-selected')
+            isFieldsValid = false;
+        }
+        else {
+            adultElement.classList.remove('num-person-not-selected')
+        }
+
+        if (isFieldsValid) {
+            uiCtx.setShowRooms(true)
+        }
+    }
 
     useEffect(() => {
         onChange()
@@ -26,6 +55,9 @@ export const Booking = () => {
 
     return (
         <div className='booking'>
+            <Alert
+                message={`${message ? message.message : null}`}
+                error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : null}`}/>
             <TransparentHeader custom_class={''}/>
             {
                 uiCtx.getShowRooms() ? (
@@ -72,31 +104,33 @@ export const Booking = () => {
                                                 name="numRoom"
                                                 id="room"
                                                 onChange={onChangeRoom}>
-                                                <option selected value={1}>1 Room</option>
+                                                <option value={0}>Select Num Room</option>
+                                                <option value={1}>1 Room</option>
                                                 <option value={2}>2 Room</option>
                                                 <option value={3}>3 Room</option>
                                                 <option value={4}>4 Room</option>
                                                 <option value={5}>5 Room</option>
                                             </select>
                                         </div>
-                                        <div className="room-container grid grid-cols-1">
+                                        <div className="num-person-container grid grid-cols-1">
                                             <select
                                                 name="numAdult"
                                                 id="adult"
                                                 onChange={onChangeRoom}>
-                                                <option selected={true} value={1}>1 Adult</option>
+                                                <option value={0}>Select Num Adult</option>
+                                                <option value={1}>1 Adult</option>
                                                 <option value={2}>2 Adults</option>
                                                 <option value={3}>3 Adults</option>
                                                 <option value={4}>4 Adults</option>
                                                 <option value={5}>5 Adults</option>
                                             </select>
                                         </div>
-                                        <div className="room-container grid grid-cols-1">
+                                        <div className="num-child-container grid grid-cols-1">
                                             <select
                                                 name="numChildren"
                                                 id="adult"
                                                 onChange={onChangeRoom}>
-                                                <option selected={true} value={0}>0 Children</option>
+                                                <option value={0}>0 Children</option>
                                                 <option value={1}>1 Children</option>
                                                 <option value={2}>2 Children</option>
                                                 <option value={3}>3 Children</option>
@@ -107,7 +141,7 @@ export const Booking = () => {
                                     </div>
                                     <div className="action-container">
                                         <div className="check-available">
-                                        <span onClick={() => uiCtx.setShowRooms(true)}>
+                                        <span onClick={onClickCheckValidation}>
                                             Check Available
                                         </span>
                                         </div>
