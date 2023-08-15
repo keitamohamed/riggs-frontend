@@ -98,20 +98,20 @@ svg {
 
   .slide {
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     margin: 0 auto;
     position: relative;
 
     .slider_inner {
       position: relative;
       width: 100%;
-      height: 100vh;
+      height: 100dvh;
       opacity: 0;
 
       .slide_slide {
         position: absolute;
         width: 100%;
-        height: 100vh;
+        height: 100dvh;
 
         video {
           display: flex;

@@ -5,7 +5,7 @@ import {TransparentHeader} from "../reusable/header-trans.tsx";
 import img from "../../assets/img/profile-img.jpg"
 import {useUser} from "../../custom-hook/useUser.ts";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
-import {useCallback, useContext, useEffect} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import {SwiperImage} from "../reusable/swiper-image.tsx";
 import {AuthContext} from "../../setup/context/context.ts";
 import {Model} from "../model/Model.tsx";
@@ -19,6 +19,7 @@ export const Profile = () => {
     const {user, booking} = useAppSelector((state) => state.user)
     const {message, error} = useAppSelector((state) => state.booking)
     const {findUserByEmail} = useUser()
+    const [loadUserDate, setLoadUserData] = useState<boolean>(false)
     
     const userTotalBooking = () => {
       return booking.length
@@ -50,10 +51,13 @@ export const Profile = () => {
     }, [authCtx, findUserByEmail])
 
     useEffect( () => {
+        if (!loadUserDate) {
+            fetchUserDate()
+            setLoadUserData(true)
+        }
         window.addEventListener('scroll', listenScrollEvent)
-        fetchUserDate()
         return () => window.addEventListener('scroll', listenScrollEvent)
-    }, [booking, message])
+    }, [booking, message, error])
 
     return (
         <>

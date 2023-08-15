@@ -6,6 +6,7 @@ export interface Credentials  {
     email: string,
     role: string,
     error: unknown
+    code: string
 }
 
 export interface CredentialsReset {
@@ -128,7 +129,7 @@ export interface InitRoom {
 
 export interface ShowRoomDetail {
     setShowDetail: (id: number, value: boolean) => void
-    getShowDetail: () => boolean
+    showDetail: () => number
 }
 
 export interface Props {

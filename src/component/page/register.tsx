@@ -1,15 +1,36 @@
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {BsArrowRightSquare} from 'react-icons/bs'
 import {useUser} from "../../custom-hook/useUser.ts";
-import {useAppSelector} from "../../setup/redux/reduxHook.ts";
+import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {UIActionContext} from "../../setup/context/context.ts";
+import {userAction} from "../../setup/redux/user.tsx";
 
 
 
 export const Register = () => {
     const ctx = useContext(UIActionContext)
-    const {error, message, error: {address, auth}} = useAppSelector((state) => state.user)
-    const {onChangeSetNewUser, onChangeSetNewUserAddress, onChangeSetNewUserAuth, addNewUser} = useUser()
+    const dispatch = useAppDispatch()
+    const {user, error, message, error: {address, auth}} = useAppSelector((state) => state.user)
+    const {onChangeSetNewUser, onChangeSetNewUserAddress, onChangeSetNewUserAuth, onSubmitAddNewUser} = useUser()
+
+    const setRole = () => {
+      if (user.auth.role == '') {
+          dispatch(userAction.setRole({name: 'role', value: 'USER'}))
+      }
+    }
+
+    const onClickCheckValidation = async (event: any) => {
+        if (user.firstName == '' || user.lastName == '' || user.phoneNum == '') {
+            await onSubmitAddNewUser(event)
+        } else if (user.address.street == '' || user.address.city == '' ||
+            user.address.state == '' || user.address.zipcode == '') {
+            await onSubmitAddNewUser(event)
+        } else {
+            dispatch(userAction.reSetError())
+            ctx.setShowAuth(true)
+            setRole()
+        }
+    }
 
     return (
         <>
@@ -84,11 +105,11 @@ export const Register = () => {
                             />
                         </div>
                         <div className="form_group next">
-                            <p className='sm:hidden block' onClick={addNewUser}>Next</p>
-                            <p className='sm:block hidden' onClick={addNewUser}><BsArrowRightSquare/></p>
+                            <p className='sm:hidden block' onClick={onClickCheckValidation}>Next</p>
+                            <p className='sm:block hidden' onClick={onClickCheckValidation}><BsArrowRightSquare/></p>
                         </div>
                     </div>
-                    <form onSubmit={addNewUser}
+                    <form onSubmit={onSubmitAddNewUser}
                           className={`form sm:!w-[100%] ${ctx.getShowAuth() ? 'block' : 'hidden'}`}>
                         <div className="form-group">
                             <input type="email"
@@ -99,15 +120,19 @@ export const Register = () => {
                                    placeholder={auth?.email ? auth?.email : 'Enter email'}
                             />
                         </div>
-                        <div className="form-group">
-                            <input type="text"
-                                   name="role"
-                                   className={auth?.role ? 'invalid-input' : ''}
-                                   autoComplete="off"
-                                   onChange={onChangeSetNewUserAuth}
-                                   placeholder={auth?.role ? auth?.role : 'Enter role (ex: Admin or User)'}
-                            />
-                        </div>
+                        {
+                            auth.role == 'ROLE_ADMIN' ? (
+                                <div className="form-group">
+                                    <input type="text"
+                                           name="role"
+                                           className={auth?.role ? 'invalid-input' : ''}
+                                           autoComplete="off"
+                                           onChange={onChangeSetNewUserAuth}
+                                           placeholder={auth?.role ? auth?.role : 'Enter role (ex: Admin or User)'}
+                                    />
+                                </div>
+                            ) : ''
+                        }
                         <div className="form-group">
                             <input type="password"
                                    name="password"

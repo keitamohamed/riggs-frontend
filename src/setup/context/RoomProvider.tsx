@@ -18,17 +18,16 @@ export const RoomContextProvider = ({children}: Props) => {
         })
     }
 
-    const getShowDetail = () => {
-        if (roomDetail.id != 0 && roomDetail.showRoomDetail) {
-            return true;
-        }
-        return false
+    const showDetail = () => {
+        if (roomDetail.showRoomDetail && roomDetail.id !== 0)
+            return roomDetail.id
+        return 0
     }
 
     return (
         <Provider value={{
             setShowDetail,
-            getShowDetail
+            showDetail
         }}>
             {children}
         </Provider>

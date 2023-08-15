@@ -24,9 +24,8 @@ export const SwiperImage = () => {
                         mousewheel={true}
                         keyboard={true}
                         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-                        className='swiper-custom-css'
+                        className={`swiper-custom-css`}
                     >
-
                         {
                             booking.map((book, index) => {
 

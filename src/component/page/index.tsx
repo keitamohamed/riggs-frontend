@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
 import {FiArrowDownCircle} from 'react-icons/fi'
 
 import {Carousel} from "../reusable/swiper.tsx";
@@ -18,9 +18,11 @@ import img1 from '../../assets/img/5f114359c91bb.jpg'
 import img3 from '../../assets/img/60643d4c99091.jpg'
 import img2 from '../../assets/img/riggshotel_large.jpg'
 import {useNavigate} from "react-router-dom";
+import {AuthContext} from "../../setup/context/context.ts";
 
 export const Index = () => {
     const nav = useNavigate()
+    const authCtx = useContext(AuthContext)
     const {loadRoom} = useRoom()
 
     const listenScrollEvent = () => {
@@ -162,7 +164,7 @@ export const Index = () => {
                     </div>
                 </div>
                 <EmailSection/>
-                <div className="header_cta sm:block hidden">
+                <div className={`${authCtx.isAuthenticated() ? 'header_cta sm:block' : 'hidden'}`}>
                     <div className="action_container">
                         <p className="action_btn" onClick={() => nav("/booking")}>
                             Book a room

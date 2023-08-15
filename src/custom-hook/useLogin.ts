@@ -33,7 +33,7 @@ export const useLogin = () => {
             authCtx.setCredentials(credentials)
             dispatch(authAction.setCredentials(credentials))
             dispatch(authAction.setCookie(credentials))
-            nav("/profile")
+            nav("/")
         }
     }
     const onSubmit =  async (e: React.SyntheticEvent) => {

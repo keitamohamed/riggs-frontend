@@ -13,18 +13,6 @@ export const useBooking = () => {
     const {booking} = useAppSelector((state) => state.booking)
     const {user} = useAppSelector((state) => state.user)
 
-    const [book, setBook] = useState({
-        bookingID: 0,
-        bookDate: new Date(),
-        arrDate: new Date(),
-        depDate: new Date(),
-        numRoom: 0,
-        numAdult: 0,
-        numChildren: 0,
-        user,
-        rooms: [567271, 1537181
-        ]
-    })
 
     const [dateRange, setDateRange] = useState([null, null])
 
@@ -47,12 +35,11 @@ export const useBooking = () => {
         dispatch(POST_REQUEST(authCtx.getCookie().aToken, APIPath.NEW_BOOKING(user.userID), booking, setMessage, setError))
     }
 
-    const deleteBooking = (id: number) => {
+    const deleteBooking = async (id: number) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        dispatch(DELETE_REQUEST(authCtx.getCookie().aToken, APIPath.DELETE_BOOKING(id), setMessage, setError))
-        dispatch(bookingAction.setMessage({}))
-        findUserByEmail(user.auth.email)
+        await dispatch(DELETE_REQUEST(authCtx.getCookie().aToken, APIPath.DELETE_BOOKING(id), setMessage, setError))
+        await findUserByEmail(user.auth.email)
     }
 
     const setError = (error: object) => {

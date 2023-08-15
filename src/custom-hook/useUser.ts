@@ -62,7 +62,7 @@ export const useUser = () => {
         event.preventDefault()
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        await dispatch(POST_REQUEST(APIPath.ADD_NEW_USER, user, setMessage, setInvalidInputError, null))
+        await dispatch(POST_REQUEST(null, APIPath.ADD_NEW_USER, user, setMessage, setInvalidInputError))
     }
     const onSubmitSendUpdate = async () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -73,7 +73,6 @@ export const useUser = () => {
     }
 
     const onSubmitSendUpdateAuth = () => {
-        console.log(update.auth)
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         dispatch(PUT_REQUEST(authCtx.getCookie().aToken, APIPath.UPDATE_USER_AUTH(update.auth.authID), update.auth, setMessage, setInvalidInputError))
@@ -97,7 +96,6 @@ export const useUser = () => {
     }
 
     const setInvalidInputError = async (response: any) => {
-        console.log(response)
         dispatch(userAction.setError(response))
         const {error: {address, firstName, lastName, phoneNum}} = response
         if (!address && !firstName && !lastName && !phoneNum) {
@@ -118,7 +116,7 @@ export const useUser = () => {
         onChangeSetUpdate,
         onChangeSetUpdateAddress,
         onChangeSetUpdateAuth,
-        addNewUser: onSubmitAddNewUser,
+        onSubmitAddNewUser,
         onSubmitSendUpdate,
         onSubmitSendUpdateAuth,
         userTotalBooking

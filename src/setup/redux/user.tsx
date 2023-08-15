@@ -137,6 +137,10 @@ const userSlice = createSlice({
             // @ts-ignore
             state.user[user.name as keyof object] = user.value
         },
+        setRole(state, action) {
+            const auth = action.payload
+            state.user.auth['role'] = auth.value
+        },
         setNewUserAddress(state, action) {
             const address = action.payload
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment

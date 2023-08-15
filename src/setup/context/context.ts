@@ -16,7 +16,7 @@ const uiDefaultProps = {
 
 const roomDetail = {
     setShowDetail: () => false,
-    getShowDetail: () => false
+    showDetail: () => 0
 }
 
 const auth = {

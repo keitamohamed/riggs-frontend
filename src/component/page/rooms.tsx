@@ -6,27 +6,22 @@ import {GrPersonalComputer} from "react-icons/gr";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 
 import roomImg from "../../assets/img/room-1.jpg"
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {RoomActionContext} from "../../setup/context/context.ts";
 import {useBooking} from "../../custom-hook/useBooking.ts";
 export const Rooms = () => {
     const ctx = useContext(RoomActionContext)
     const {setReserveRoom} = useBooking()
     const {rooms} = useAppSelector((state) => state.room)
-    const [actionButton, setActionButton] = useState({
-        h3: 'View Room'
-    })
-    
-    const action = (id: number) => {
-        if (actionButton.h3 == 'View Room') {
+
+    const action = (event: any) => {
+        const id = event.target.getAttribute('id') as number
+        if (event.target.innerHTML == 'View Room') {
             ctx.setShowDetail(id, true)
         }else {
             ctx.setShowDetail(0, false)
         }
-        setActionButton({
-            ...actionButton,
-            h3: actionButton.h3 == 'View Room' ? 'Hide Room' : 'View Room'
-        })
+        event.target.innerHTML === 'View Room' ? (event.target.innerHTML = 'Hide Room' ) : (event.target.innerHTML = 'View Room' )
     }
 
     return (
@@ -42,10 +37,12 @@ export const Rooms = () => {
                                     </div>
                                     <div className="room-action grid grid-cols-2 sm:grid-cols-1 sm:col-span-10 sm:mt-6 col-span-6">
                                         <h1 className='sm:!w-full sm:!text-center md:!w-full'>{room.roomName}</h1>
-                                        <h3 className='sm:!w-[50%] sm:mt-10' onClick={() => action(room.roomID)}>{actionButton.h3}</h3>
+                                        <h3 className='room-Namsm:!w-[50%] sm:mt-10' onClick={action}
+                                            id={room.roomID}
+                                        >View Room</h3>
                                     </div>
                                 </div>
-                                <div className={`room-detail gap-2 sm:grid-cols-1 md:grid-cols-1 ${ctx.getShowDetail() ? 'grid grid-cols-2' : 'hidden'} `}>
+                                <div className={`room-detail gap-2 sm:grid-cols-1 md:grid-cols-1 ${ctx.showDetail() == room.roomID ? 'grid grid-cols-2' : 'hidden'} `}>
                                     <div className="image-container w-full">
                                         <img src={roomImg} alt="" />
                                     </div>
@@ -67,7 +64,7 @@ export const Rooms = () => {
 
                                         </div>
                                         <div className="details grid grid-cols-4 sm:!w-full sm:mt-10 md:mt-10">
-                                            <li>
+                                            <li key={`${room.roomID}_animal`}>
                                                 <div className="img-wrap amenity-icon">
                                                     <AiOutlineCoffee/>
                                                 </div>
@@ -75,7 +72,7 @@ export const Rooms = () => {
                                                     Coffee
                                                 </span>
                                             </li>
-                                            <li>
+                                            <li key={`${room.roomID}_beer`}>
                                                 <div className="img-wrap amenity-icon">
                                                     <GiBeerBottle/>
                                                 </div>
@@ -83,7 +80,7 @@ export const Rooms = () => {
                                                     Beer
                                                 </span>
                                             </li>
-                                            <li>
+                                            <li key={`${room.roomID}_pet`}>
                                                 <div className="img-wrap amenity-icon">
                                                     <MdPets/>
                                                 </div>
@@ -91,7 +88,7 @@ export const Rooms = () => {
                                                     Pet Friendly
                                                 </span>
                                             </li>
-                                            <li>
+                                            <li key={`${room.roomID}_comp`}>
                                                 <div className="img-wrap amenity-icon">
                                                     <GrPersonalComputer/>
                                                 </div>

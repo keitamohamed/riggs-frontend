@@ -111,16 +111,16 @@
 .side-nav {
   position: relative;
   overflow: hidden;
-  height: 100vh;
+  height: 100dvh;
   display: none;
 
   .off-canvas {
     z-index: 1000 !important;
-    height: 100vh;
+    height: 100dvh;
     overflow-y: hidden;
 
     .canvas {
-      height: 100vh;
+      height: 100dvh;
 
       .nav-container {
         width: 100%;
