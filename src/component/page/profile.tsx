@@ -1,7 +1,7 @@
 import {AiFillEdit} from "react-icons/ai";
 import {LuEdit2} from "react-icons/lu";
 
-import {TransparentHeader} from "../reusable/header-trans.tsx";
+import {TransparentHeader} from "../header-sidenav/header-trans.tsx";
 import img from "../../assets/img/profile-img.jpg"
 import {useUser} from "../../custom-hook/useUser.ts";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
@@ -9,9 +9,10 @@ import {useCallback, useContext, useEffect, useState} from "react";
 import {SwiperImage} from "../reusable/swiper-image.tsx";
 import {AuthContext} from "../../setup/context/context.ts";
 import {Model} from "../model/Model.tsx";
-import {userAction} from "../../setup/redux/user.tsx";
 
 import {Alert} from "../reusable/alert.tsx";
+import {formAction} from "../../setup/redux/form.ts";
+import {bookingAction} from "../../setup/redux/booking.ts";
 
 export const Profile = () => {
     const authCtx = useContext(AuthContext)
@@ -30,8 +31,8 @@ export const Profile = () => {
         if (el) {
             el.classList.remove('model-close')
             el.classList.add('model-open')
-            dispatch(userAction.setSelectedUserToBeUpdate(user))
-            dispatch(userAction.reSetMessage())
+            dispatch(formAction.setSelectedUserToBeUpdate(user))
+            dispatch(formAction.reSetMessage())
         }
     }
 
@@ -49,6 +50,11 @@ export const Profile = () => {
             return findUserByEmail(authCtx.getCookie().email)
         }
     }, [authCtx, findUserByEmail])
+
+    const reSetMessageNError = () => {
+        dispatch(formAction.reSetMessage())
+        dispatch(formAction.reSetError())
+    }
 
     useEffect( () => {
         if (!loadUserDate) {
@@ -121,9 +127,14 @@ export const Profile = () => {
                             </div>
                         </div>
                         <SwiperImage/>
-                        <Alert
-                            message={`${message ? message.message : null}`}
-                            error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : null}`}/>
+                        {
+                            (message || error) && Object.keys(message).length > 0 || Object.keys(error).length > 0  ?
+                                <Alert
+                                    function={reSetMessageNError}
+                                    message={message.message}
+                                    error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : ''}`}
+                                /> : <></>
+                        }
                     </div>
                 </div>
             </div>

@@ -3,17 +3,19 @@ import {useContext, useEffect} from "react";
 // @ts-ignore
 import DatePicker from 'react-datepicker'
 
-import {TransparentHeader} from "../reusable/header-trans.tsx";
+import {TransparentHeader} from "../header-sidenav/header-trans.tsx";
 import {Rooms} from "./rooms.tsx";
 import {useRoom} from "../../custom-hook/useRoom.ts";
 import {UIActionContext} from "../../setup/context/context.ts";
 import {useBooking} from "../../custom-hook/useBooking.ts";
-import {useAppSelector} from "../../setup/redux/reduxHook.ts";
+import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {Alert} from "../reusable/alert.tsx";
+import {bookingAction} from "../../setup/redux/booking.ts";
 
 
 export const Booking = () => {
     const uiCtx = useContext(UIActionContext)
+    const dispatch = useAppDispatch()
     const {booking, message,error} = useAppSelector((state) => state.booking)
     const {onChangeRoom, onChange, dateRange, setDateRange} = useBooking()
     const {loadRoom} = useRoom()
@@ -46,6 +48,11 @@ export const Booking = () => {
         }
     }
 
+    const reSetMessageNError = () => {
+        dispatch(bookingAction.reSetMessage())
+        dispatch(bookingAction.reSetError())
+    }
+
     useEffect(() => {
         onChange()
         loadRoom()
@@ -56,6 +63,7 @@ export const Booking = () => {
     return (
         <div className='booking'>
             <Alert
+                function={reSetMessageNError}
                 message={`${message ? message.message : null}`}
                 error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : null}`}/>
             <TransparentHeader custom_class={''}/>

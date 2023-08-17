@@ -4,8 +4,8 @@ import {FiArrowDownCircle} from 'react-icons/fi'
 import {Carousel} from "../reusable/swiper.tsx";
 
 import {useRoom} from "../../custom-hook/useRoom.ts";
-import {Header} from "../reusable/header.tsx";
-import {SideNav} from "../reusable/side-nav.tsx";
+import {Header} from "../header-sidenav/header.tsx";
+import {SideNav} from "../header-sidenav/side-nav.tsx";
 import {EmailSection} from "../reusable/emailSection.tsx";
 
 import atelier from '../../assets/img/atelier-side-table-detail_high-res.jpg'

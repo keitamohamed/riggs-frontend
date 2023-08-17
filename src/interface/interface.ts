@@ -51,13 +51,18 @@ export interface User {
     auth: UserAuth
 }
 
+export interface FormInit {
+    userForm: User
+    message: any,
+    error: any
+}
+
 export interface UserInit {
     user: User
-    update: User,
     userList: never[],
     booking: any[]
     message: any,
-    error: User
+    error: any
 }
 
 

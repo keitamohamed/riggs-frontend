@@ -74,8 +74,14 @@ const bookingSlice = createSlice({
         setMessage(state, action) {
             state.message = action.payload
         },
+        reSetMessage(state) {
+            state.message = {}
+        },
         setError(state, action) {
             state.error = action.payload
+        },
+        reSetError(state) {
+            state.error = {}
         },
         setReserveRoom(state, action) {
             state.booking.rooms.push(action.payload)

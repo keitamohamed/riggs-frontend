@@ -1,15 +1,14 @@
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {userAction} from "../setup/redux/user.tsx";
-import {GET_REQUEST, POST_REQUEST, PUT_REQUEST} from "../api-endpoint/Request.ts";
+import {GET_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
 import {useContext} from "react";
-import {AuthContext, UIActionContext} from "../setup/context/context.ts";
+import {AuthContext} from "../setup/context/context.ts";
 
 export const useUser = () => {
     const authCtx = useContext(AuthContext)
-    const ctx = useContext(UIActionContext)
     const dispatch = useAppDispatch()
-    const {user, update, booking} = useAppSelector((state) => state.user)
+    const {booking} = useAppSelector((state) => state.user)
 
     const setUser = (user: object) => {
         dispatch(userAction.setUser(user))
@@ -17,24 +16,6 @@ export const useUser = () => {
     }
     const loadUsers = (data: any[]) => {
         dispatch(userAction.userList(data))
-    }
-    const onChangeSetNewUser = (event: any) => {
-        dispatch(userAction.setNewUserInput(event.target))
-    }
-    const onChangeSetNewUserAddress = (event: any) => {
-        dispatch(userAction.setNewUserAddress(event.target))
-    }
-    const onChangeSetNewUserAuth = (event: any) => {
-        dispatch(userAction.setUserAuth(event.target))
-    }
-    const onChangeSetUpdate = (event: any) => {
-        dispatch(userAction.setUpdate(event.target))
-    }
-    const onChangeSetUpdateAddress = (event: any) => {
-        dispatch(userAction.setUpdateAddress(event.target))
-    }
-    const onChangeSetUpdateAuth = (event: any) => {
-        dispatch(userAction.setUpdateAuth(event.target))
     }
 
     
@@ -58,33 +39,8 @@ export const useUser = () => {
         dispatch(GET_REQUEST(token, APIPath.LOAD_USERS, loadUsers, setError))
     }
 
-    const onSubmitAddNewUser = async (event: any) => {
-        event.preventDefault()
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        await dispatch(POST_REQUEST(null, APIPath.ADD_NEW_USER, user, setMessage, setInvalidInputError))
-    }
-    const onSubmitSendUpdate = async () => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        await dispatch(PUT_REQUEST(authCtx.getCookie().aToken, APIPath.UPDATE_USER_INFO(user.userID), update, setMessage, setInvalidInputError))
-        findUserByEmail(authCtx.getCookie().email)
-        dispatch(userAction.reSetForm())
-    }
-
-    const onSubmitSendUpdateAuth = () => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        dispatch(PUT_REQUEST(authCtx.getCookie().aToken, APIPath.UPDATE_USER_AUTH(update.auth.authID), update.auth, setMessage, setInvalidInputError))
-        findUserByEmail(authCtx.getCookie().email)
-        dispatch(userAction.reSetForm())
-    }
-
     const userTotalBooking = () => {
         return booking.length
-    }
-    const setMessage = async (message: object) => {
-        dispatch(userAction.setMessage(message))
     }
 
     const setError = (error: any) => {
@@ -95,30 +51,10 @@ export const useUser = () => {
         dispatch(userAction.setError(error?.data))
     }
 
-    const setInvalidInputError = async (response: any) => {
-        dispatch(userAction.setError(response))
-        const {error: {address, firstName, lastName, phoneNum}} = response
-        if (!address && !firstName && !lastName && !phoneNum) {
-            if (!ctx.getShowAuth()) {
-                dispatch(userAction.reSetError())
-            }
-            ctx.setShowAuth(true)
-        }
-    }
-
     return {
         userList,
         findUserByID,
         findUserByEmail,
-        onChangeSetNewUser,
-        onChangeSetNewUserAddress,
-        onChangeSetNewUserAuth,
-        onChangeSetUpdate,
-        onChangeSetUpdateAddress,
-        onChangeSetUpdateAuth,
-        onSubmitAddNewUser,
-        onSubmitSendUpdate,
-        onSubmitSendUpdateAuth,
         userTotalBooking
     }
 }

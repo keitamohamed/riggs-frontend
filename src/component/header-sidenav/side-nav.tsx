@@ -58,6 +58,16 @@ export const SideNav = () => {
                                 {
                                     authCtx.isAuthenticated() ? <li onClick={setUserProfileInfo}>Account</li> : ''
                                 }
+                                {
+                                    authCtx.isAuthenticated() &&
+                                    authCtx.getCookie().Role == "ROLE_ADMIN" ?
+                                        <li onClick={setUserProfileInfo}>Dashboard</li> : ''
+                                }
+                                {
+                                    authCtx.isAuthenticated() && authCtx.getCookie().Role == "ROLE_ADMIN" ?
+                                        <li className='side-nav-link' onClick={() => nav('/register')}>
+                                            Register User</li> : ''
+                                }
                                 <li>About</li>
                                 <li>Rooms & Suites</li>
                                 <li>Experiences</li>
