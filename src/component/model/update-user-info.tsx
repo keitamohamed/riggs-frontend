@@ -4,7 +4,6 @@ import {UserAuth} from "../form/user-auth.tsx";
 import {UserDetail} from "../form/user-detail.tsx";
 import {Alert} from "../reusable/alert.tsx";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
-import {bookingAction} from "../../setup/redux/booking.ts";
 import {formAction} from "../../setup/redux/form.ts";
 
 export const UpdateUserInfo = () => {

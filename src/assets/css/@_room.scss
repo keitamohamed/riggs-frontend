@@ -1,4 +1,14 @@
 
+.room-ad {
+  width: 100%;
+  height: 100dvh;
+
+  .header {
+    * {
+      color: $dark !important;
+    }
+  }
+}
 
 .booking-list {
 
@@ -160,6 +170,7 @@
 }
 
 .room-list {
+
   .room {
     justify-content: center;
     place-items: center;
@@ -194,7 +205,6 @@
     .info {
       border: 1px solid $light_slate;
       border-left: none;
-      padding-right: 15px;
 
       .info-room-title {
         text-align: left;
@@ -215,14 +225,11 @@
           margin-bottom: 0;
 
           p {
-            width: 90%;
             font-size: .5em;
-            text-align: right;
             color: $dark_55;
           }
 
           &:last-child {
-            width: fit-content;
             padding: 5px 15px;
             border: 1px solid $dark_55;
             text-align: center;
@@ -241,7 +248,7 @@
 
     .details {
       padding: 0 10px 10px;
-      width: min(80% - 2rem);
+      width: min(100% - 50%);
       place-items: center;
 
       li {
@@ -252,6 +259,52 @@
         gap: .5em;
         flex-direction: column;
       }
+    }
+  }
+
+  .show-room-detail-lg-device {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    width: min(100%);
+    height: min(100%);
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    align-self: center;
+    margin: auto;
+    background: rgba(0, 0, 0, .98);
+
+    .btn-container {
+      display: grid;
+      place-items: end;
+      padding: 0 15px;
+
+      li {
+        list-style: none;
+      }
+
+      svg {
+        color: $light_slate;
+        font-size: 1.6em;
+
+        &:hover {
+          color: $color_red;
+        }
+      }
+    }
+
+    .room-detail {
+      display: grid;
+      width: min(100% - 20%);
+      height: min(100% - 5%);
+      background: white;
+      margin: auto;
+      overflow: scroll;
+    }
+
+    .info {
+      border: none;
     }
   }
 }

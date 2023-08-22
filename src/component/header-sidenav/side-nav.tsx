@@ -69,7 +69,7 @@ export const SideNav = () => {
                                             Register User</li> : ''
                                 }
                                 <li>About</li>
-                                <li>Rooms & Suites</li>
+                                <li onClick={() => nav('/room')}>Rooms & Suites</li>
                                 <li>Experiences</li>
                             </nav>
                         </ul>

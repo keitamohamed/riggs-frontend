@@ -4,7 +4,7 @@ import {useContext, useEffect} from "react";
 import DatePicker from 'react-datepicker'
 
 import {TransparentHeader} from "../header-sidenav/header-trans.tsx";
-import {Rooms} from "./rooms.tsx";
+import {RoomList} from "./room-list.tsx";
 import {useRoom} from "../../custom-hook/useRoom.ts";
 import {UIActionContext} from "../../setup/context/context.ts";
 import {useBooking} from "../../custom-hook/useBooking.ts";
@@ -62,16 +62,20 @@ export const Booking = () => {
 
     return (
         <div className='booking'>
-            <Alert
-                function={reSetMessageNError}
-                message={`${message ? message.message : null}`}
-                error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : null}`}/>
+            {
+                Object.keys(message).length !== 0 ||  Object.keys(error).length !== 0  ?
+                    <Alert
+                        function={reSetMessageNError}
+                        message={message.message}
+                        error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : ''}`}
+                    /> : <></>
+            }
             <TransparentHeader custom_class={''}/>
             {
                 uiCtx.getShowRooms() ? (
                     <div className="room-available sm:!pl-0 sm:!pr-0">
                         <div className="room-container">
-                            <Rooms/>
+                            <RoomList/>
                         </div>
                     </div>
                 ) : <div className="context-container sm:mt-12">

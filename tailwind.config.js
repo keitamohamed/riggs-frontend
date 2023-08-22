@@ -9,6 +9,9 @@ export default {
       'sm': {'min': '300px', 'max': '768px'},
       // => @media (min--width: 300px and max-width: 570px) { ... }
 
+      'cm': {'min': '768px'},
+      // => @media (min-width: 768px) { ... }
+
       'md': {'min': '768px', 'max': '960px'},
       // => @media (min--width: 570px and max-width: 960px) { ... }
 
@@ -17,6 +20,7 @@ export default {
 
       'xl': {'min': '1440px'},
       // => @media (min-width: 1440px) { ... }
+
     },
     extend: {},
   },
