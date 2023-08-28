@@ -1,7 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import {Navigation, Pagination, Mousewheel, Keyboard} from "swiper";
+
+import {Navigation, Pagination, Mousewheel, Keyboard} from "swiper/modules";
 
 import photo from '../../assets/img/dc-street.jpg'
 import {RiDeleteBinLine} from "react-icons/ri";

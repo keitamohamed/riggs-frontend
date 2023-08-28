@@ -1,7 +1,7 @@
 import {useContext, useEffect} from "react";
 import {FiArrowDownCircle} from 'react-icons/fi'
 
-import {Carousel} from "../reusable/swiper.tsx";
+import {Carousel} from "../swiper/index-slider.tsx";
 
 import {useRoom} from "../../custom-hook/useRoom.ts";
 import {Header} from "../header-sidenav/header.tsx";

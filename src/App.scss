@@ -17,4 +17,9 @@
 
 .swiper {
   border: 1px solid $light_slate;
+
+  .custom-swiper-wrapper {
+    flex-direction: unset;
+    flex-wrap: wrap;
+  }
 }

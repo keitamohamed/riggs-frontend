@@ -6,7 +6,7 @@ import img from "../../assets/img/profile-img.jpg"
 import {useUser} from "../../custom-hook/useUser.ts";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {useCallback, useContext, useEffect, useState} from "react";
-import {SwiperImage} from "../reusable/swiper-image.tsx";
+import {SwiperImage} from "../swiper/swiper-image.tsx";
 import {AuthContext} from "../../setup/context/context.ts";
 import {Model} from "../model/Model.tsx";
 
