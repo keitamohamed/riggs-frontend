@@ -36,7 +36,7 @@
 }
 
 
-.login_container, .signup_container {
+.login_container, .signup_container, .room-ad {
   width: 100%;
 
   .error_message {
@@ -205,4 +205,45 @@
       text-align: left;
     }
   }
+}
+
+.room-ad {
+
+  .form-group {
+    border-bottom: 1px solid $dark;
+    margin-bottom: .8em !important;
+
+    input[type='text']::placeholder, select {
+      color: $dark;
+    }
+
+    input[type='submit'], select {
+      color: $dark;
+    }
+
+    select {
+      display: grid;
+      width: 100%;
+      gap: 2em;
+
+      option {
+        text-align: left;
+      }
+    }
+  }
+
+  .btn {
+    text-align: right;
+    margin-top: 2em;
+
+    input[type='submit'] {
+      color: $color_white;
+      width: 60%;
+      border: 1px solid $dark;
+      padding: 5px 20px;
+      background: $dark;
+      cursor: pointer;
+    }
+  }
+
 }

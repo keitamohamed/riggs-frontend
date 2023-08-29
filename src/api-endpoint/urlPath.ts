@@ -5,11 +5,15 @@ export const APIPath =  {
     FIND_USER_BY_ID: (userID: number) => `user/find-by-id/${userID}`,
     FIND_USER_BY_EMAIL: (email: string) => `user/find-by-email/${email}`,
     ADD_NEW_USER: ('user/add'),
-    ROOM_LIST: ("room/list"),
 
     // User api
     UPDATE_USER_INFO: (id: number) => `user/update/${id}`,
     UPDATE_USER_AUTH: (id: number) => `user/update-auth/${id}`,
+
+    // Room
+    ROOM_LIST: ("room/list"),
+    ADD_ROOM: ("room/add"),
+
 
     // Booking
     NEW_BOOKING: (userID: number) => `booking/add/${userID}`,

@@ -33,6 +33,12 @@ const roomSlice = createSlice({
             // @ts-ignore
             state.room[room.name as keyof object] = room.value
         },
+        setRoomDetail(state, action) {
+            const room = action.payload
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            state.room.detail[room.name as keyof object] = room.value
+        },
         setRoom(state, action) {
             state.room = action.payload
         },

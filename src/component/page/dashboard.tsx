@@ -2,10 +2,18 @@ import {SwiperCarousel} from "../swiper/swiper.tsx";
 
 import {BiHotel} from "react-icons/bi"
 import {AiOutlineUsergroupAdd} from 'react-icons/ai'
+import {MdDashboard} from 'react-icons/md'
 import {FaHotel} from 'react-icons/fa'
 import {Header} from "../header-sidenav/header.tsx";
+import {Room_Form} from "../form/room-detail.tsx";
+import {useEffect, useState} from "react";
 
-export const Room = () => {
+export const Dashboard = () => {
+    const [show, setShow] = useState<string>('dash')
+    const [props, setProps] = useState<{title: string ,btn: string}>({
+        title: '',
+        btn: ''
+    })
 
     return (
         <div className='room-ad'>
@@ -31,14 +39,26 @@ export const Room = () => {
                                 <option value='accessible'>Accessible room</option>
                             </select>
                         </div>
-                        <div className="new-room grid grid-cols-3 gap-3">
+                        <div className="new-room grid grid-cols-4 gap-3">
+                            <li onClick={() => setShow('dash')}><MdDashboard/></li>
                             <li><AiOutlineUsergroupAdd/></li>
-                            <li><FaHotel/></li>
+                            <li id='room' onClick={() =>
+                            {setShow('add-room'),
+                                setProps({
+                                    ...props,
+                                    title: 'New Room',
+                                    btn: 'Submit'
+                                })}}><FaHotel/></li>
                             <li><BiHotel/></li>
                         </div>
                     </div>
                 </div>
-                <SwiperCarousel/>
+                {
+                    show == 'dash' ?
+                        <SwiperCarousel/>
+                        : show == 'add-room' ?
+                            <Room_Form title={props.title} btn={props.btn}/> : ''
+                }
             </div>
         </div>
     )
