@@ -34,6 +34,9 @@ export const Room_Form = (prop: props) => {
                         <input type="text" name='description' onChange={onChange} placeholder={`Description`}/>
                     </div>
                     <div className="form-group">
+                        <input type="text" name='size' onChange={onChange} placeholder={`Room size`}/>
+                    </div>
+                    <div className="form-group">
                         <input type="text" name='bed' onChange={onChangeSetRoomDetail} placeholder={`Bed type`}/>
                     </div>
                     <div className="form-group">
@@ -48,11 +51,21 @@ export const Room_Form = (prop: props) => {
                     <div className="form-group">
                         <select
                             data-selected={1}
+                            name="tv"
+                            onChange={onChangeSetRoomDetail}
+                            id="tv">
+                            <option value='No tv'>No tv</option>
+                            <option value='Yes, tv'>Yes, there is tv</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <select
+                            data-selected={1}
                             name="smoking"
                             onChange={onChangeSetRoomDetail}
                             id="smoking">
-                            <option value='Pet friendly amenities'>Smoking not allow</option>
-                            <option value='Animal not allow'>Smoking allow</option>
+                            <option value='Animal not allow'>Smoking not allow</option>
+                            <option value='Smoking not allow'>Smoking allow</option>
                         </select>
                     </div>
                     <div className="form-group">
@@ -60,7 +73,7 @@ export const Room_Form = (prop: props) => {
                             data-selected={2}
                             name="animal"
                             onChange={onChangeSetRoomDetail}
-                            id="room">
+                            id="animal">
                             <option value='Animal not allow'>Animal not allow</option>
                             <option value='Pet friendly amenities'>Pet friendly Amenities</option>
                         </select>

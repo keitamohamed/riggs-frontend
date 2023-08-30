@@ -5,7 +5,7 @@ import {InitRoom} from "../../interface/interface.ts";
 
 const initialState: InitRoom = {
     room: {
-        nameName: '',
+        roomName: '',
         description: '',
         size: '',
         detail: {
@@ -15,7 +15,7 @@ const initialState: InitRoom = {
             smoking: '',
             bathroom: '',
             tv: '',
-            numOfBed: 0
+            numberOfBed: 0
         }
     },
     rooms: [],
