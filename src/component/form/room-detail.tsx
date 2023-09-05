@@ -26,9 +26,9 @@ export const Room_Form = (prop: props) => {
                 <form
                     onSubmit={onSubmit}
                     action=""
-                    className="form !w-[60%] sm:!w-[100%] block">
+                    className="form !w-[60%] sm:!w-[90%] block">
                     <div className="form-group">
-                        <input type="text" name='roomName' onChange={onChange} placeholder={`Name`}/>
+                        <input  type="text" name='roomName' onChange={onChange} placeholder={`Name`}/>
                     </div>
                     <div className="form-group">
                         <input type="text" name='description' onChange={onChange} placeholder={`Description`}/>
@@ -78,8 +78,8 @@ export const Room_Form = (prop: props) => {
                             <option value='Pet friendly amenities'>Pet friendly Amenities</option>
                         </select>
                     </div>
-                    <div className="form_group btn">
-                        <input type="submit" value={prop.btn == 'Update' ? prop.btn : 'Submit'}/>
+                    <div className="form_group btn sm:pl-[.6em] sm:pr-[.6em]">
+                        <input className={`sm:!w-full`} type="submit" value={prop.btn == 'Update' ? prop.btn : 'Submit'}/>
                     </div>
                 </form>
             </div>

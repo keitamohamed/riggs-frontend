@@ -33,7 +33,7 @@ const AuthProvider = ({children}: Props) => {
     }
     
     const isAuthenticated = () => {
-        return (cookie.aToken != undefined && cookie.Role != undefined);
+        return (cookie.aToken?.length > 0 && cookie.Role?.length > 0);
     }
 
     const isAdmin = () => {
@@ -44,6 +44,7 @@ const AuthProvider = ({children}: Props) => {
         setCookie('aToken', credentials.accessToken)
         setCookie('email', credentials.email)
         setCookie('Role', credentials.role)
+        // logout()
         dispatch(authAction.setLogout())
     }
     

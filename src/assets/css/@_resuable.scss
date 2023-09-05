@@ -91,36 +91,3 @@
     color: $dark_white;
   }
 }
-
-.swiper-pagination {
-  position: static;
-}
-
-.swiper {
-
-  .swiper-button-next, .swiper-button-prev {
-    display: grid;
-    top: 8em;
-
-    &::after {
-      font-size: 30px;
-      color: $color_white;
-    }
-  }
-  .swiper-pagination-bullet {
-    margin-top: 3em;
-    color: $dark;
-  }
-
-  .swiper-pagination-bullet-active {
-    background: $dark;
-  }
-}
-.swiper-custom-css {
-  margin: 1em 0 1em;
-  padding-bottom: 20px;
-
-  .booking-list {
-    padding-bottom: 2em;
-  }
-}

@@ -111,6 +111,7 @@ interface UserAuth {
 }
 
 export interface Room {
+    roomID: number,
     roomName: string,
     description: string,
     size: string,

@@ -9,7 +9,7 @@ import {AuthContext} from "../setup/context/context.ts";
 export const useRoom = () => {
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
-    const {room} = useAppSelector((state) => state.room)
+    const {room, rooms} = useAppSelector((state) => state.room)
 
     const setRooms = (rooms: Room) => {
       dispatch(roomAction.setRooms(rooms))
@@ -23,6 +23,14 @@ export const useRoom = () => {
         dispatch(roomAction.setError(error))
     }
 
+    const getRoomByName = (strValue: string) : Room[] => {
+        return (rooms.filter(room => room.roomName.toLowerCase().includes(strValue.toLowerCase())))
+    }
+
+    const getRoomByID = (id: number) : Room[] => {
+        return rooms.filter(room => room.roomID === id)
+    }
+
     const loadRoom = async () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -34,10 +42,13 @@ export const useRoom = () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         await dispatch(POST_REQUEST(authCtx.getCookie().aToken, APIPath.ADD_ROOM, room, setMessage, setError))
+        await loadRoom()
     }
 
     return {
         loadRoom,
-        onSubmit
+        onSubmit,
+        getRoomByName,
+        getRoomByID
     }
 }

@@ -30,6 +30,7 @@ export const useLogin = () => {
         if (credentials.code === "401" || credentials.code === "400") {
             setError(credentials)
         } else {
+            console.log(credentials)
             authCtx.setCredentials(credentials)
             dispatch(authAction.setCredentials(credentials))
             dispatch(authAction.setCookie(credentials))

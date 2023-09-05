@@ -33,101 +33,56 @@ export const SwiperCarousel = () => {
 
     return (
         <>
-            <Swiper
-                slidesPerView={breakPoint.width < 768 ? 1 : breakPoint.width >= 1440 ? 4 : 3}
-                grid={{
-                    rows: breakPoint.width <= 768 ? 1 : 2,
-                    fill: 'row'
-                }}
-                spaceBetween={5}
-                pagination={{clickable: true}}
-                mousewheel={true}
-                keyboard={true}
-                navigation={true}
-                modules={[Grid, Pagination, Keyboard, Navigation, Mousewheel]}
-                className='mySwiper'
-            >
-                {
-                    rooms.map(room => {
-                        return (
-                            <SwiperSlide key={room.roomID}>
-                                <div className="booking-list mt-2">
-                                    <div className="images-container" key={`${room.roomID}`}>
-                                        <div className="image grid grid-cols-1 sm:flex sm:flex-col sm:mb-2">
-                                            <div className="hotel-image col-span-2">
-                                                <img className="h-auto max-w-full" src={photo} alt=""/>
-                                            </div>
-                                            <div className="room-detail col-span-4 w-full sm:mt-1">
-                                                <h3 className='title-id grid grid-cols-1'>
-                                                    {`${room.roomName}`}
-                                                    <span className={`w-fit`}>{room.roomID}</span>
-                                                </h3>
-                                                <div className="detail">
-                                                    <div className="check">
-                                                        <li>Room Size:<i>{room.size}</i></li>
+            {
+                rooms.length > 0 ?
+                    <Swiper
+                        slidesPerView={breakPoint.width < 768 ? 1 : breakPoint.width >= 1440 ? 3 : 2}
+                        grid={{
+                            rows: breakPoint.width <= 768 ? 1 : 2,
+                            fill: 'row'
+                        }}
+                        spaceBetween={5}
+                        pagination={{clickable: true}}
+                        mousewheel={true}
+                        keyboard={true}
+                        navigation={true}
+                        modules={[Grid, Pagination, Keyboard, Navigation, Mousewheel]}
+                        className='mySwiper swiper-dashboard !border-0 !border-y-[1px] sm:border-0'
+                    >
+                        {
+                            rooms.map(room => {
+                                return (
+                                    <SwiperSlide key={room.roomID}>
+                                        <div className="room-available mt-2"
+                                             onClick={() => console.log('Was click', room.roomID)}
+                                        >
+                                            <div className="images-container" key={`${room.roomID}`}>
+                                                <div className="image grid grid-cols-1 sm:flex sm:flex-col sm:mb-2">
+                                                    <div className="hotel-image col-span-2">
+                                                        <img className="h-auto max-w-full" src={photo} alt=""/>
                                                     </div>
-                                                    {/*<div className="check flex-row">*/}
-                                                    {/*    <li>Check-in:<i> {book.arrDate}</i></li>*/}
-                                                    {/*    <li>Check-out:<i> {book.depDate}</i></li>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="check flex-row">*/}
-                                                    {/*    <li>Price:<i>$162</i></li>*/}
-                                                    {/*    <li>Date Book:<i> {book.bookDate}</i></li>*/}
-                                                    {/*</div>*/}
+                                                    <div className="room-detail col-span-4 w-full sm:mt-1">
+                                                        <h3 className='title-id grid grid-cols-12 px-1'>
+                                                            <p className='col-start-1 col-end-8 text-left'>{`${room.roomName}`}</p>
+                                                            <span className={`w-full col-start-8 col-end-13 text-right`}>{room.roomID}</span>
+                                                        </h3>
+                                                        <div className="detail text-left px-1 pt-[.5em]">
+                                                            <div className="check text-left sm:!grid-cols-1 md:!grid-cols-2 lg:!grid-cols-2">
+                                                                <li>Size:<i>{room.size}</i></li>
+                                                                <li>View:<i>{room?.detail.view}</i></li>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                {/*<div className="action-btn">*/}
-                                                {/*    <li className=''*/}
-                                                {/*        onClick={() => null}*/}
-                                                {/*    >*/}
-                                                {/*        Book Again*/}
-                                                {/*    </li>*/}
-                                                {/*    <li className=''*/}
-                                                {/*        onClick={() => deleteBooking(book.bookingID)}*/}
-                                                {/*    >*/}
-                                                {/*        <RiDeleteBinLine className='hidden sm:block'/>*/}
-                                                {/*        <span className="sm:!hidden block">Remove</span>*/}
-                                                {/*    </li>*/}
-                                                {/*</div>*/}
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </SwiperSlide>
-                        )
-                    })
-                }
-                <SwiperSlide>
-                    <div className="hotel-image col-span-2">
-                        <img className="h-auto max-w-full" src={photo} alt=""/>
-                    </div>
-                    Slide 7
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="hotel-image col-span-2">
-                    <img className="h-auto max-w-full" src={photo} alt=""/>
-                </div>
-                    Slide 8
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="hotel-image col-span-2">
-                        <img className="h-auto max-w-full" src={photo} alt=""/>
-                    </div>
-                    Slide 9
-                </SwiperSlide>
+                                    </SwiperSlide>
+                                )
+                            })
+                        }
+                    </Swiper> : ''
+            }
 
-                <SwiperSlide>
-                    <div className="hotel-image col-span-2">
-                        <img className="h-auto max-w-full" src={photo} alt=""/>
-                    </div>
-                    Slide 10
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="hotel-image col-span-2">
-                        <img className="h-auto max-w-full" src={photo} alt=""/>
-                    </div>
-                    Slide 11
-                </SwiperSlide>
-            </Swiper>
         </>
     )
 }
