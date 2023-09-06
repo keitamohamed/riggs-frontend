@@ -338,6 +338,11 @@
 
   .filter-container {
     padding: 15px 10px;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: fit-content;
+    position: relative;
 
     .context-container {
       padding-bottom: .4em;

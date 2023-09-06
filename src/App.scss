@@ -31,9 +31,6 @@
     display: flex;
     align-items: center;
     justify-items: center;
-    //display: grid;
-    //width: 100%;
-    //position: relative;
   }
 
   .custom-swiper-wrapper {
@@ -45,6 +42,9 @@
     cursor: pointer;
 
     .room-detail {
+      display: grid;
+      height: 100%;
+      margin-bottom: 2em;
 
       .detail {
         width: 100%;
@@ -73,7 +73,6 @@
   }
 }
 
-
 .swiper-nested {
   width: 100%;
   height: 100dvh;
@@ -93,7 +92,7 @@
     overflow: hidden;
 
     .swiper-pagination {
-      top: 30%;
+      top: 50%;
       position: absolute;
       right: 2em;
 
@@ -144,11 +143,13 @@
     }
 
     .room-available {
+      width: min(100% - 2%);
       height: 100%;
 
       .image-fit-screen {
-        width: 100dvw;
-        height: 500px;
+        width: 100%;
+        height: 100%;
+        margin: auto;
 
         img {
           width: 100%;
@@ -162,186 +163,35 @@
   }
 }
 
+.swiper-dashboard-sm {
 
+}
 
-//.swiper-pagination {
-//  position: static;
-//}
-//
-//.swiper {
-//  width: min(100% - 5%);
-//  height: 100%;
-//  overflow: scroll;
-//  position: relative;
-//
-//  .room-available {
-//    cursor: pointer;
-//    margin-top: 1em;
-//
-//    .detail {
-//
-//      * {
-//        text-align: left;
-//      }
-//
-//      .check {
-//        grid-template-columns: repeat(1, 1fr);
-//
-//        li {
-//          font-size: 14px;
-//
-//          i {
-//            padding-left: 10px;
-//            font-size: 16px;
-//            font-weight: bold;
-//          }
-//        }
-//      }
-//    }
-//
-//    .room-detail {
-//
-//      .title-id {
-//
-//        span {
-//          padding-left: 10px;
-//          font-size: 16px;
-//          color: #61677A;
-//          letter-spacing: .1em;
-//        }
-//      }
-//    }
-//  }
-//
-//  .swiper-button-next, .swiper-button-prev {
-//    display: grid;
-//    top: 8em;
-//
-//    &::after {
-//      font-size: 30px;
-//      color: $color_white;
-//    }
-//  }
-//  .swiper-pagination-bullet {
-//    margin-top: 3em;
-//    color: $dark;
-//  }
-//
-//  .swiper-pagination-bullet-active {
-//    background: $dark;
-//  }
-//}
-//
-//.swiper-custom-css {
-//  margin: 1em 0 1em;
-//  padding-bottom: 20px;
-//
-//  .booking-list {
-//    padding-bottom: 2em;
-//  }
-//}
-//
-//.swiper {
-//  border: 1px solid $light_slate;
-//
-//  .custom-swiper-wrapper {
-//    flex-direction: unset;
-//    flex-wrap: wrap;
-//  }
-//}
-//
-//.swiper-dashboard {
-//
-//  .swiper-button-next, .swiper-button-prev {
-//    display: none;
-//  }
-//}
-//
-//.swiper-nested {
-//  border: none;
-//  width: 100%;
-//  height: 100%;
-//  position: absolute;
-//  display: grid;
-//  grid-template-columns: repeat(1, 1fr);
-//
-//  .room-available {
-//    width: 100%;
-//    height: 100%;
-//    position: absolute;
-//    overflow: scroll;
-//
-//    .images-container {
-//      display: grid;
-//      width: 100%;
-//      height: 100%;
-//
-//      .image {
-//        flex-wrap: wrap;
-//      }
-//
-//      .image-fit-screen {
-//        flex: 100%;
-//        max-width: 100%;
-//
-//        img {
-//          vertical-align: middle;
-//          width: 100%;
-//          max-height: 100%;
-//          object-fit: cover;
-//          margin: auto;
-//        }
-//      }
-//    }
-//  }
-//
-//  .swiper-pagination {
-//    position: absolute;
-//  }
-//
-//  .swiper {
-//    display: flex;
-//    border: none;
-//    position: absolute;
-//
-//    .swiper-slide {
-//      display: flex;
-//      flex-shrink: 0;
-//    }
-//
-//    .swiper-pagination {
-//      position: absolute;
-//      text-align: center;
-//      transition: 300ms opacity;
-//      transform: translate3d(0, 0, 0);
-//      z-index: 10;
-//      background: $dark;
-//      right: 1em;
-//    }
-//
-//    .swiper-pagination-bullet {
-//      background: $color_white;
-//      right: .5em;
-//
-//      span {
-//        font-size: 2em;
-//      }
-//    }
-//  }
-//
-//}
-//
-//.swiper-nested-sm {
-//  position: relative;
-//  height: 60dvh;
-//
-//  .swiper {
-//
-//    .swiper-pagination {
-//      top: 20%;
-//    }
-//  }
-//
-//}
+.swiper-nested-sm {
+
+  .swiper-pagination {
+    top: 50%;
+  }
+
+  .mySwiper-two {
+
+    .swiper-slide.swiper-slide-next {
+      display: none !important;
+    }
+
+    .swiper-slide-active {
+      height: 100% !important;
+      margin-bottom: 0 !important;
+    }
+    .swiper-pagination {
+      top: 20%;
+      right: 1em;
+    }
+    .swiper-pagination-lock, .swiper-pagination-bullet {
+      display: block;
+    }
+
+  }
+}
 
 

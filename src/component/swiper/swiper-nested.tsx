@@ -40,7 +40,7 @@ export const SwiperNested = (props: Prop) => {
     return (
         <>
             <Swiper
-                className="swiper-nested sm:!w-[100%]"
+                className="swiper-nested"
                 slidesPerView={1}
                 spaceBetween={50}
                 pagination={{
@@ -103,8 +103,6 @@ export const SwiperNested = (props: Prop) => {
                         )
                     })
                 }
-                <SwiperSlide>Horizontal Slide 3</SwiperSlide>
-                <SwiperSlide>Horizontal Slide 4</SwiperSlide>
             </Swiper>
         </>
     )

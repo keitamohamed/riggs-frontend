@@ -25,10 +25,15 @@ export const SwiperCarousel = () => {
         window.addEventListener('resize', handleResize);
         handleResize()
         const wrapper = document.querySelector('.swiper-wrapper') as HTMLElement
-        if (breakPoint.width >= 768 )
+        const swiper = document.querySelector('.swiper-dashboard') as HTMLElement
+        if (breakPoint.width >= 768 ) {
             wrapper?.classList.add('custom-swiper-wrapper')
-       else
-           wrapper?.classList.remove('custom-swiper-wrapper')
+            swiper.classList.add('swiper-dashboard-sm')
+        }
+       else {
+            wrapper?.classList.remove('custom-swiper-wrapper')
+            swiper.classList.add('swiper-dashboard-sm')
+        }
     }, [breakPoint.width])
 
     return (
