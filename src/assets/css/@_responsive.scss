@@ -18,3 +18,25 @@
     }
   }
 }
+
+@include responsive_max(sm) {
+
+  .swiper-dashboard-sm {
+
+    .room-detail {
+      .detail {
+
+        .check {
+          li {
+            text-align: left;
+            padding-top: 10px;
+          }
+
+          li:nth-child(2) {
+            text-align: left !important;
+          }
+        }
+      }
+    }
+  }
+}

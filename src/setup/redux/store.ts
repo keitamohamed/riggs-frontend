@@ -1,15 +1,15 @@
 import {configureStore, combineReducers, AnyAction} from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 
+import appSlice from "./app.ts";
 import authSlice from "./authenticate.ts";
-import userSlice from "./user.tsx";
+import userSlice from "./user.ts";
 import roomSlice from "./room.ts";
 import bookingSlice from "./booking.ts";
 import formSlice from "./form.ts"
 
-
-
 const reducers = combineReducers({
+    app: appSlice.reducer,
     auth: authSlice.reducer,
     user: userSlice.reducer,
     room: roomSlice.reducer,

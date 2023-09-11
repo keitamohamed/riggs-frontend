@@ -25,14 +25,11 @@ export const SwiperCarousel = () => {
         window.addEventListener('resize', handleResize);
         handleResize()
         const wrapper = document.querySelector('.swiper-wrapper') as HTMLElement
-        const swiper = document.querySelector('.swiper-dashboard') as HTMLElement
         if (breakPoint.width >= 768 ) {
             wrapper?.classList.add('custom-swiper-wrapper')
-            swiper.classList.add('swiper-dashboard-sm')
         }
        else {
             wrapper?.classList.remove('custom-swiper-wrapper')
-            swiper.classList.add('swiper-dashboard-sm')
         }
     }, [breakPoint.width])
 
@@ -52,7 +49,7 @@ export const SwiperCarousel = () => {
                         keyboard={true}
                         navigation={true}
                         modules={[Grid, Pagination, Keyboard, Navigation, Mousewheel]}
-                        className='mySwiper swiper-dashboard !border-0 !border-y-[1px] sm:border-0'
+                        className='mySwiper swiper-dashboard swiper-dashboard-sm !border-0 !border-y-[1px] sm:border-0'
                     >
                         {
                             rooms.map(room => {

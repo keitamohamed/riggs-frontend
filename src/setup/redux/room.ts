@@ -5,6 +5,7 @@ import {InitRoom} from "../../interface/interface.ts";
 
 const initialState: InitRoom = {
     room: {
+        roomID: 0,
         roomName: '',
         description: '',
         size: '',

@@ -9,6 +9,7 @@
 @import "assets/css/@_resuable";
 @import "assets/css/@_booking";
 @import "assets/css/@_header";
+@import "assets/css/@_dashboard";
 @import "assets/css/@_breakpoint";
 @import "assets/css/@_media_breakpoint";
 @import "assets/css/@_responsive";
@@ -43,8 +44,9 @@
 
     .room-detail {
       display: grid;
-      height: 100%;
+      height: fit-content;
       margin-bottom: 2em;
+
 
       .detail {
         width: 100%;
@@ -163,9 +165,6 @@
   }
 }
 
-.swiper-dashboard-sm {
-
-}
 
 .swiper-nested-sm {
 
@@ -191,6 +190,14 @@
       display: block;
     }
 
+  }
+}
+
+.swiper-dashboard {
+
+  .swiper-button-next, .swiper-button-prev {
+    top: 30%;
+    color: $color_light_blue;
   }
 }
 

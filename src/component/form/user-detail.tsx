@@ -2,7 +2,7 @@ import {BsArrowRightSquare} from "react-icons/bs";
 import {useContext} from "react";
 import {UIActionContext} from "../../setup/context/context.ts";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
-import {userAction} from "../../setup/redux/user.tsx";
+import {userAction} from "../../setup/redux/user.ts";
 import {useForm} from "../../custom-hook/useForm.ts";
 import {formAction} from "../../setup/redux/form.ts";
 

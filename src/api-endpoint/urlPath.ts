@@ -17,5 +17,9 @@ export const APIPath =  {
 
     // Booking
     NEW_BOOKING: (userID: number) => `booking/add/${userID}`,
-    DELETE_BOOKING: (id: number) => `booking/delete-booking/${id}`
+    DELETE_BOOKING: (id: number) => `booking/delete-booking/${id}`,
+
+
+    // Admin access point
+    APP_HEALTH: ("health")
 }

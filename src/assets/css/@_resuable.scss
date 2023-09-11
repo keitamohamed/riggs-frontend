@@ -1,3 +1,51 @@
+.card {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  min-height: 15dvh;
+
+  * {
+    color: $color_white;
+  }
+
+  .card-header {
+    display: flex;
+    gap: .5em;
+    place-items: center;
+    justify-content: space-evenly;
+
+    * {
+      font-family: $font_family_hurricane;
+    }
+
+    h5 {
+      text-align: left;
+      padding-left: 5px;
+      width: 100%;
+      font-family: $font_family_domine;
+
+    }
+
+    h1 {
+      text-align: right;
+      font-size: 1.3em;
+      align-self: end;
+      float: right;
+    }
+  }
+
+  .card-context {
+    gap: .5em;
+    justify-items: center;
+    place-items: center;
+    bottom: 0;
+    margin-top: 1em;
+
+    span {
+      font-size: 16px;
+    }
+  }
+}
 .new-letter {
   width: 100%;
   background-size: cover;

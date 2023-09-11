@@ -138,7 +138,6 @@
 
 .room-available {
   overflow: scroll;
-  //margin-top: 2em;
 
   .action-container {
     display: grid;
@@ -305,12 +304,20 @@
   .main {
     padding: 0;
     overflow: scroll;
-    position: relative;
   }
 
   .header {
     * {
       color: $dark !important;
+    }
+  }
+
+  .room-available {
+    .detail {
+      position: relative;
+    }
+    .title-id {
+      height: fit-content;
     }
   }
 

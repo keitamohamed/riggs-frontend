@@ -126,6 +126,15 @@ export interface Room {
     }
 }
 
+export interface InitAppSys {
+    database: {
+        components: any
+        status: string
+    }
+    message: unknown,
+    error: unknown
+}
+
 export interface InitRoom {
     room: Room,
     rooms: any[],

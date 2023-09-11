@@ -1,151 +1,97 @@
 import React, {useEffect, useState} from "react";
 
-import {BiHotel} from "react-icons/bi"
 import {AiOutlineUsergroupAdd} from 'react-icons/ai'
+import {CiMenuBurger, CiHardDrive} from 'react-icons/ci'
+import {BsHddNetwork, BsDatabase} from 'react-icons/bs'
+import {BiTime} from 'react-icons/bi'
+
 import {MdDashboard} from 'react-icons/md'
 import {FaHotel} from 'react-icons/fa'
 
-import {Room_Form} from "../form/room-detail.tsx";
-import {useRoom} from "../../custom-hook/useRoom.ts";
 import {Room} from "../../interface/interface.ts";
 
-import {Header} from "../header-sidenav/header.tsx";
-import {SwiperCarousel} from "../swiper/swiper.tsx";
-import {SwiperNested} from "../swiper/swiper-nested.tsx";
-
-
-type Props = {
-    setProps: React.Dispatch<{title: string, btn:string}>;
-    setShow: React.Dispatch<string>;
-    onChange: (e: any) => void,
-    onSubmit: (e: any) => void
-}
+import {DashboardRoom} from "../reusable/admin-dashboard-room.tsx";
+import {useAppSelector} from "../../setup/redux/reduxHook.ts";
+import {useApp} from "../../custom-hook/useApp.ts";
+import {Dash} from "../reusable/dash.tsx";
 
 export const Dashboard = () => {
-    const {getRoomByName, getRoomByID} = useRoom()
+    const {checkDatabaseHealth} = useApp()
+    const {database: {components, status}} = useAppSelector((state) => state.app)
     const [show, setShow] = useState<string>('dash')
-    const [property, setProperty] = useState<{title: string ,btn: string}>({
-        title: '',
-        btn: ''
-    })
+    const [loaded, setLoad] = useState<boolean>(false)
+
     const [search, setSearch] = useState<string>('')
     const [rooms, setRooms] = useState<Room[]>([])
 
-    const onChange = (event: any) => {
-        setSearch(event.target.value)
-    }
 
-    const onSubmit = (event: any) => {
-        event.preventDefault()
-        if (search.length === 0) {
-            setRooms([])
-            return
+    const storage = () => {
+        let space = components?.diskSpace.details.free as number
+        const unite = ['Bytes','Kb','Mb','Gb','Tb'][Math.floor(Math.log2(components?.diskSpace.details.free)/10)]
+        let l = 0
+        while(space >= 1024 && ++l){
+            space = space/1024;
         }
-        if (Number(search)) {
-            setRooms(getRoomByID(+search))
-            return;
-        }
-        setRooms(getRoomByName(search))
+        return (Math.floor(space) + " " + unite)
+    }
+    
+    const convertSecondToTime = (second: number) => {
+        const date = new Date(0)
+        date.setSeconds(second)
+        return date.toISOString().substring(11, 19)
     }
 
     useEffect(() => {
+        if (!loaded) {
+            checkDatabaseHealth()
+            setLoad(true)
+        }
         if (search.length === 0) {
             setRooms([])
         }
+        setInterval(() => checkDatabaseHealth(), (30000 * 2))
     }, [search])
 
     return (
-        <div className='room-ad'>
-            {/*<Header/>*/}
-            <div className="main">
-                <div className="filter-container">
-                    <NavSmallDevices
-                        setProps={setProperty}
-                        setShow={setShow}
-                        onChange={onChange}
-                        onSubmit={onSubmit} />
-                    <NavLargeDevices
-                        setProps={setProperty}
-                        setShow={setShow}
-                        onChange={onChange}
-                        onSubmit={onSubmit}/>
-                </div>
+        <>
+            <div className="admin-dash-header">
                 {
-                    show == 'dash' && rooms?.length <= 0 ?
-                        <SwiperCarousel />
-                        : rooms?.length > 0 ? <SwiperNested rooms={rooms}/> : show == 'add-room' ?
-                            <Room_Form title={property.title} btn={property.btn}/> : ''
+                    components?.db ? <><div className="system-info-container">
+                        <div className="sys-context grid grid-cols-5 sm:grid-cols-4">
+                            <li className='sm:hidden'>SYS Monitoring</li>
+                            <li className=''>
+                                <BsHddNetwork/>
+                                <i className='sm:hidden'><span>System:</span></i>{status}</li>
+                            <li className=''>
+                                <BsDatabase className='sm:mr-[.2em]'/>
+                                <i className='sm:hidden'><span>DB:</span></i>{components?.db.details.database}</li>
+                            <li className=''>
+                                <CiHardDrive/>
+                                <i className='sm:hidden'><span>Space:</span></i>{storage()}</li>
+                            <li className=''>
+                                <BiTime/>
+                                <i className='sm:hidden'><span>Up Time:</span></i>{convertSecondToTime(components?.healthActuator.details.uptime)}</li>
+                        </div>
+                    </div></> : <></>
                 }
-            </div>
-        </div>
-    )
-}
 
-const NavSmallDevices = (prop: Props) => {
-
-    return (
-        <div className="context-container hidden sm:grid grid-cols-1 place-items-end gap-3 sm:gap-y-[2em]">
-            <div className="new-room w-[70%] grid grid-cols-4 gap-3">
-                <li onClick={() => prop.setShow('dash')}><MdDashboard/></li>
-                <li><AiOutlineUsergroupAdd/></li>
-                <li id='room' onClick={() =>
-                {prop.setShow('add-room'),
-                    prop.setProps({
-                        ...prop,
-                        title: 'New Room',
-                        btn: 'Submit'
-                    })}}><FaHotel/></li>
-                <li><BiHotel/></li>
-            </div>
-            <div className="search-context-container grid grid-cols-1 w-full place-items-center">
-                <div className="search-container sm:!w-[90%] sm:border-[0] sm:!border-b-[1px] border-solid sm:pl-[10px] sm:pb-[5px]">
-                    <form
-                        className='!w-full'
-                        action=""
-                        onSubmit={prop.onSubmit}
-                    >
-                        <li>
-                            <input type="text"
-                                   onChange={prop.onChange}
-                                   className="search sm:text-left"
-                                   placeholder='Enter id or name'/>
-                        </li>
-                    </form>
+                <div className="context-container">
+                    <div className="context-nav grid grid-cols-12 gap-[.5em] px-[15px]">
+                        <div className="search col-span-9">
+                            <CiMenuBurger/>
+                        </div>
+                        <div className="list-container col-start-10 col-end-13 w-full grid grid-cols-3 gap-[1em]">
+                            <li><AiOutlineUsergroupAdd/></li>
+                            <li id='room' onClick={() =>
+                            {setShow('dash-room')}}><FaHotel/></li>
+                            <li onClick={() => setShow('dash')}><MdDashboard/></li>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
-}
-const NavLargeDevices = (prop: Props) => {
-
-    return (
-        <div className="context-container hidden cm:grid grid-cols-12 sm:grid-cols-2 gap-3 sm:gap-y-[2em]">
-            <div className="search-container col-start-1 col-end-9 !w-[90%] border-[0] !border-b-[1px] border-solid pl-[10px] pb-[5px]">
-                <form
-                    className='!w-[80%]'
-                    action=""
-                    onSubmit={prop.onSubmit}
-                >
-                    <li>
-                        <input type="text"
-                               onChange={prop.onChange}
-                               className="search"
-                               placeholder='Enter id or name'/>
-                    </li>
-                </form>
-            </div>
-            <div className="new-room w-full col-start-9 col-end-13 grid grid-cols-4 gap-3">
-                <li onClick={() => prop.setShow('dash')}><MdDashboard/></li>
-                <li><AiOutlineUsergroupAdd/></li>
-                <li id='room' onClick={() =>
-                {prop.setShow('add-room'),
-                    prop.setProps({
-                        ...prop,
-                        title: 'New Room',
-                        btn: 'Submit'
-                    })}}><FaHotel/></li>
-                <li><BiHotel/></li>
-            </div>
-        </div>
+            {
+               show === 'dash-room' ? <DashboardRoom /> : <Dash/>
+            }
+        </>
     )
 }

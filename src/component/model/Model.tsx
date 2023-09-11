@@ -1,7 +1,7 @@
 import {UpdateUserInfo} from "./update-user-info.tsx";
 import {AiOutlineClose} from "react-icons/ai";
 import {useAppDispatch} from "../../setup/redux/reduxHook.ts";
-import {userAction} from "../../setup/redux/user.tsx";
+import {userAction} from "../../setup/redux/user.ts";
 import {useContext, useEffect} from "react";
 import {UIActionContext} from "../../setup/context/context.ts";
 import {formAction} from "../../setup/redux/form.ts";

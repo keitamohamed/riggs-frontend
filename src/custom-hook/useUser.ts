@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
-import {userAction} from "../setup/redux/user.tsx";
+import {userAction} from "../setup/redux/user.ts";
 import {GET_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
 import {useContext} from "react";

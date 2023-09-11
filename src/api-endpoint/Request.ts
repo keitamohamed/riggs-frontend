@@ -30,33 +30,6 @@ export const POST_AUTHENTICATE_REQUEST = (
     }
 }
 
-export const LOGIN_REQUEST = (
-    data: {email: string, password: string},
-    action: (response: object) => void,
-    setError: (error: object) => void,
-) => {
-    return async () => {
-        axios.defaults.url = 'http://localhost:8080'
-        const send = async () => {
-            return axios({
-                method: 'POST',
-                url: `task/login`,
-                data: data,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-        }
-
-        try {
-            const response = await send()
-            action(response.data)
-        }catch (error) {
-            setError(error.response?.data)
-        }
-    }
-}
-
 export const POST_REQUEST = (
     token: string,
     url: string,
@@ -91,12 +64,13 @@ export const GET_REQUEST = (
     url: string,
     action: (data: object) => void,
     setError: (error: any) => void,
+    appInfo: boolean
 ) => {
     return async () => {
         const fetch = async () => {
             return axios({
                 method: "GET",
-                url: `riggs/${url}`,
+                url: `riggs/${appInfo ? 'admin/' + url : url}`,
                 withCredentials: true,
                 headers: {
                     Authorization: token ? `Bearer ${token}` : 'Bearer',
