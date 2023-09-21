@@ -21,7 +21,9 @@ const initialState: InitRoom = {
     },
     rooms: [],
     message: {},
-    error: {}
+    error: {
+        map: {}
+    }
 }
 
 const roomSlice = createSlice({
@@ -36,9 +38,11 @@ const roomSlice = createSlice({
         },
         setRoomDetail(state, action) {
             const room = action.payload
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            state.room.detail[room.name as keyof object] = room.value
+            if (room.value !== 'invalid-value') {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                state.room.detail[room.name as keyof object] = room.value
+            }
         },
         setRoom(state, action) {
             state.room = action.payload
@@ -50,7 +54,12 @@ const roomSlice = createSlice({
             state.message = action.payload
         },
         setError(state, action) {
-            state.error = action.payload.error
+            state.error.map = action.payload.map
+        },
+        reSetError(state)  {
+            state.error = {
+                map: {}
+            }
         }
     }
 })

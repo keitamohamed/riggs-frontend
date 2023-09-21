@@ -24,6 +24,13 @@ export interface AuthContextProperty {
     logout: () => void,
 }
 
+export interface DashboardContextProperty {
+    getDisplayComponent: () => string,
+    setDisplayComponentType: (toDisplay: string) => void,
+    getFormType: () => string,
+    setFormType: (toDisplay: string) => void,
+}
+
 export interface UIHideShowContextProvider {
     getShowAuth: () => boolean,
     setShowAuth: (value: boolean) => void,
@@ -126,11 +133,35 @@ export interface Room {
     }
 }
 
+
+export interface Exchange {
+    timestamp: string,
+    request: {
+        uri: string,
+        method: string,
+    },
+    response: {
+        status: number
+    },
+    timeTaken: string
+}
+
+export interface TrafficData {
+    code: number,
+    recurrent: number
+}
+
 export interface InitAppSys {
     database: {
         components: any
         status: string
     }
+    exchanges: Exchange[]
+    chartData: TrafficData[]
+    exchange200: number,
+    exchange400: number,
+    exchange404: number,
+    exchange500: number,
     message: unknown,
     error: unknown
 }
@@ -139,7 +170,9 @@ export interface InitRoom {
     room: Room,
     rooms: any[],
     message: unknown,
-    error: unknown
+    error: {
+        map: any
+    }
 }
 
 export interface ShowRoomDetail {

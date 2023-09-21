@@ -1,5 +1,5 @@
 import {Index} from "../../component/page";
-import {Register} from "../../component/page/register.tsx";
+import {RegisterNewUser} from "../../component/page/registerNewUser.tsx";
 import {Login} from "../../component/page/login.tsx";
 import {Profile} from "../../component/page/profile.tsx";
 import {AdminDashboard} from "../../component/page/admin.tsx";
@@ -19,7 +19,7 @@ export const routePath = [
         path: "/register",
         protected: false,
         showLink: false,
-        component: Register
+        component: RegisterNewUser
     },
     {
         name: "Login",

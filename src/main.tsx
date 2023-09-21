@@ -7,6 +7,7 @@ import App from './App.tsx'
 import UIContextProvider from "./setup/context/UIProvider.tsx";
 import {RoomContextProvider} from "./setup/context/RoomProvider.tsx";
 import AuthProvider from "./setup/context/AuthProvider.tsx";
+import DashboardProvider from "./setup/context/dashboard-provider.tsx";
 
 import 'swiper/css'
 import 'swiper/css/navigation';
@@ -18,11 +19,13 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
     <Provider store={store}>
         <AuthProvider>
-            <UIContextProvider>
-                <RoomContextProvider>
-                    <App />
-                </RoomContextProvider>
-            </UIContextProvider>
+            <DashboardProvider>
+                <UIContextProvider>
+                    <RoomContextProvider>
+                        <App />
+                    </RoomContextProvider>
+                </UIContextProvider>
+            </DashboardProvider>
         </AuthProvider>
     </Provider>
 )

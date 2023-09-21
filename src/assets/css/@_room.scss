@@ -297,9 +297,8 @@
   }
 }
 
-.room-ad {
+.room-ad, .room-form {
   width: 100%;
-  height: 100dvh;
 
   .main {
     padding: 0;
@@ -347,7 +346,7 @@
     padding: 15px 10px;
     top: 0;
     left: 0;
-    width: 100dvw;
+    width: 100%;
     height: fit-content;
     position: relative;
 

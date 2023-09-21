@@ -12,7 +12,6 @@ import {Model} from "../model/Model.tsx";
 
 import {Alert} from "../reusable/alert.tsx";
 import {formAction} from "../../setup/redux/form.ts";
-import {bookingAction} from "../../setup/redux/booking.ts";
 
 export const Profile = () => {
     const authCtx = useContext(AuthContext)

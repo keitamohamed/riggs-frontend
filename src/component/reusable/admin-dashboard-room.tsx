@@ -80,7 +80,7 @@ export const DashboardRoom = () => {
 const NavSmallDevices = (prop: Props) => {
 
     return (
-        <div className="context-container hidden sm:grid grid-cols-9 place-items-end place-items-center sm:gap-y-[2em]">
+        <div className="context-container hidden sm:grid grid-cols-9 place-items-center sm:gap-y-[2em]">
             <div className="search-context-container grid col-start-1 col-end-8 w-full place-items-center">
                 <div className="search-container sm:!w-[90%] sm:border-[0] sm:!border-b-[1px] border-solid sm:pl-[10px] sm:pb-[5px]">
                     <form

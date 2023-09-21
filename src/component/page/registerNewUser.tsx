@@ -8,7 +8,7 @@ import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {formAction} from "../../setup/redux/form.ts";
 
 
-export const Register = () => {
+export const RegisterNewUser = () => {
     const ctx = useContext(UIActionContext)
     const dispatch = useAppDispatch()
     const {message, error} = useAppSelector((state) => state.form)

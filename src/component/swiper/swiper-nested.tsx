@@ -1,9 +1,9 @@
 
 import {Swiper, SwiperSlide} from "swiper/react";
-import {Pagination, Grid} from "swiper/modules";
+import {Pagination} from "swiper/modules";
 
 import {Room} from "../../interface/interface.ts";
-import photo from "../../assets/img/dc-street.jpg";
+import photo from "../../assets/img/room-ava-t.jpg";
 import {useEffect, useState} from "react";
 
 type Prop = {
@@ -28,7 +28,6 @@ export const SwiperNested = (props: Prop) => {
         window.addEventListener('resize', handleResize);
         handleResize()
         const wrapper = document.querySelector('.swiper-nested') as HTMLElement
-        const image_container = document.querySelector('.image') as HTMLElement
 
         if (breakPoint.width <= 768 ) {
             wrapper?.classList.add('swiper-nested-sm')
@@ -95,9 +94,11 @@ export const SwiperNested = (props: Prop) => {
                                             </div>
                                         </div>
                                     </SwiperSlide>
-                                    <SwiperSlide><div className="hotel-image col-span-2">
+                                    <SwiperSlide>
+                                        <div className="hotel-image col-span-2">
                                         <img className="h-auto max-w-full" src={photo} alt=""/>
-                                    </div></SwiperSlide>
+                                    </div>
+                                    </SwiperSlide>
                                 </Swiper>
                             </SwiperSlide>
                         )

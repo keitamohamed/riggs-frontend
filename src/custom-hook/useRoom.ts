@@ -16,6 +16,7 @@ export const useRoom = () => {
     }
 
     const setMessage = (message: any) => {
+        console.log("Room")
       dispatch(roomAction.setMessage(message))
     }
 

@@ -1,7 +1,7 @@
 import {createContext} from "react";
 import {
     AuthContextProperty,
-    Credentials, CredentialsReset,
+    Credentials, CredentialsReset, DashboardContextProperty,
     ShowRoomDetail,
     UIHideShowContextProvider
 } from "../../interface/interface.ts";
@@ -28,6 +28,14 @@ const auth = {
     isAdmin: () => false
 }
 
+const dashboard: DashboardContextProperty = {
+    getDisplayComponent: () => '',
+    setDisplayComponentType: (toDisplay: string) => toDisplay,
+    getFormType: () => '',
+    setFormType: (toDisplay: string) => toDisplay,
+}
+
 export const AuthContext = createContext<AuthContextProperty>(auth)
+export const DashboardContext = createContext<DashboardContextProperty>(dashboard)
 export const UIActionContext = createContext<UIHideShowContextProvider>(uiDefaultProps)
 export const RoomActionContext = createContext<ShowRoomDetail>(roomDetail)

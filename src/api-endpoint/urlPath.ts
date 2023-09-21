@@ -21,5 +21,7 @@ export const APIPath =  {
 
 
     // Admin access point
-    APP_HEALTH: ("health")
+    APP_HEALTH: ("health"),
+    APP_HTTPEXCHANGES: ("httpexchanges")
+
 }
