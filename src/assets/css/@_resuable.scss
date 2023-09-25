@@ -115,7 +115,7 @@
 
   .chart-context {
     display: grid;
-    height: 40dvh;
+    height: 27dvh;
     place-items: center;
     box-shadow: 4px 4px 4px 4px hsl(90deg 2% 95%);
     padding: 10px;
@@ -179,5 +179,65 @@
 
   svg {
     color: $dark_white;
+  }
+}
+
+.table {
+  margin-top: 1em;
+
+  .table-title-container {
+    display: grid;
+    justify-items: start;
+    padding: 10px 10px 1em;
+
+    h1 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+      font-size: 1em;
+      text-align: left;
+      text-transform: uppercase;
+
+      span {
+        display: flex;
+        gap: .5em;
+        margin-left: auto;
+        background: $color-green;
+        padding: 5px 10px;
+        font-size: 1em;
+        justify-items: center;
+        place-items: center;
+        color: $dark_white;
+        cursor: pointer;
+        border-radius: 5px;
+
+        * {
+          font-size: 1em;
+        }
+
+      }
+    }
+  }
+
+  .request-table {
+
+    thead {
+      border-top: 1px solid $border_color;
+      border-bottom: 1px solid $border_color ;
+      th {
+        padding: 15px 0;
+      }
+    }
+
+    tbody {
+
+      tr {
+        border-bottom: 1px solid $dark_white;
+
+        td {
+          padding: 10px 0;
+        }
+      }
+    }
   }
 }

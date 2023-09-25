@@ -37,8 +37,11 @@ const initialState: FormInit = {
             role: ""
         }
     },
-    message: {},
-    error: {}
+    message: '',
+    error: {
+        errorCode: 0,
+        errors: {}
+    }
 }
 
 const formSlice = createSlice({
@@ -101,16 +104,23 @@ const formSlice = createSlice({
             state.message = action.payload
         },
         setError(state, action) {
-            state.error = action.payload.error;
+            state.error = {
+                errorCode: action.payload.statusCode,
+                errors: action.payload.map.error,
+            }
+            // state.error = action.payload.error;
         },
         reSetForm(state) {
             state.userForm = resetForm
         },
         reSetError(state) {
-            state.error = {}
+            state.error = {
+                errors: {},
+                errorCode: 0,
+            }
         },
         reSetMessage(state) {
-            state.message = {}
+            state.message = ""
         }
     }
 

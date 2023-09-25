@@ -2,7 +2,6 @@ import {Index} from "../../component/page";
 import {RegisterNewUser} from "../../component/page/registerNewUser.tsx";
 import {Login} from "../../component/page/login.tsx";
 import {Profile} from "../../component/page/profile.tsx";
-import {AdminDashboard} from "../../component/page/admin.tsx";
 import {Booking} from "../../component/page/booking.tsx";
 import {Dashboard} from "../../component/page/dashboard.tsx";
 
@@ -49,13 +48,5 @@ export const routePath = [
         protected: true,
         showLink: false,
         component: Profile
-    },
-    {
-        name: "Admin",
-        path: "/admin",
-        protected: true,
-        adminProtected: true,
-        showLink: false,
-        component: AdminDashboard
     }
 ]

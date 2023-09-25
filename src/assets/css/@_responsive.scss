@@ -1,6 +1,28 @@
 
 @include responsive_max(cs) {
 
+  .dashboard-main {
+
+    .sidebar-context {
+      
+      .dash-btn-container, .dash-buttons-container {
+
+        svg {
+          font-size: 1.1em !important;
+        }
+
+        li {
+          background: none !important;
+          width: fit-content !important;
+          grid-template-columns: repeat(1, 1fr);
+        }
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
   .react-datepicker {
     display: grid !important;
 

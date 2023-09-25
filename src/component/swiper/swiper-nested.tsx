@@ -33,7 +33,7 @@ export const SwiperNested = (props: Prop) => {
             wrapper?.classList.add('swiper-nested-sm')
             // wrapper.style.height = `${image_container.clientHeight + 100}px`
         } else
-            wrapper?.classList.remove('swiper-nested-sm')
+        wrapper?.classList.remove('swiper-nested-sm')
     }, [breakPoint.width])
 
     return (
@@ -71,7 +71,7 @@ export const SwiperNested = (props: Prop) => {
                                 >
                                     <SwiperSlide key={room.roomID}>
                                         <div className="room-available mt-2"
-                                             onClick={() => console.log('Was click', room.roomID)}
+                                             onClick={() => null}
                                         >
                                             <div className="images-container sm:!block" key={`${room.roomID}`}>
                                                 <div className="image grid grid-cols-1 sm:flex sm:flex-col sm:mb-2">
@@ -95,9 +95,15 @@ export const SwiperNested = (props: Prop) => {
                                         </div>
                                     </SwiperSlide>
                                     <SwiperSlide>
-                                        <div className="hotel-image col-span-2">
-                                        <img className="h-auto max-w-full" src={photo} alt=""/>
-                                    </div>
+                                        <div className="room-available mt-2">
+                                            <div className="images-container sm:!block">
+                                                <div className="image grid grid-cols-1 sm:flex sm:flex-col sm:mb-2">
+                                                    <div className="image-fit-screen">
+                                                        <img className="h-auto max-w-full" src={photo} alt=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </SwiperSlide>
                                 </Swiper>
                             </SwiperSlide>

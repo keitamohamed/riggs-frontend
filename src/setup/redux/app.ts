@@ -1,7 +1,6 @@
-
 import {createSlice} from "@reduxjs/toolkit";
 
-import {InitAppSys, TrafficData} from "../../interface/interface.ts";
+import {InitAppSys} from "../../interface/interface.ts";
 
 
 const initialState: InitAppSys = {
@@ -9,6 +8,7 @@ const initialState: InitAppSys = {
     exchange400: 0,
     exchange404: 0,
     exchange500: 0,
+    traces: [],
     exchanges: [],
     chartData: [],
     database: {components: undefined, status: ""},
@@ -43,6 +43,13 @@ const appSlice = createSlice({
             state.exchange400 = action.payload?.exchanges.filter((e: any) => e.response.status == 400).length
             state.exchange404 = action.payload?.exchanges.filter((e: any) => e.response.status == 404).length
             state.exchange500 = action.payload?.exchanges.filter((e: any) => e.response.status == 500).length
+        },
+        setTraces(state, action) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            state.traces = action.payload?.exchanges.filter((data: any) =>
+                data.request.uri !== 'http://localhost:8080/riggs/admin/httpexchanges' &&
+                data.request.uri !== 'http://localhost:8080/riggs/admin/health')
         },
         setChartData(state, action) {
             let numTime = action.payload?.exchanges.filter((e: any) => e.response.status == 200).length

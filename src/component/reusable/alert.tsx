@@ -25,20 +25,20 @@ export const Alert = (prop: props) => {
 
     useEffect(() => {
         const el = document.querySelector('.alert-box') as HTMLElement
-        if (Object.keys(prop.message).length > 0) {
+        if (prop.message !== "") {
             openAlert(el, 'alert-message')
             setInterval(function () {
                 closeAlert(el)
             },10000)
             el.classList.remove('alert-close')
         }
-        if (Object.keys(prop.error).length > 0) {
-            openAlert(el, 'alert-error')
-            setInterval(function () {
-                closeAlert(el)
-            },10000)
-            el.classList.remove('alert-close')
-        }
+        // if (Object.keys(prop.error).length > 0) {
+        //     openAlert(el, 'alert-error')
+        //     setInterval(function () {
+        //         closeAlert(el)
+        //     },10000)
+        //     el.classList.remove('alert-close')
+        // }
 
     }, [alertOpen])
 

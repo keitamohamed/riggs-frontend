@@ -2,6 +2,7 @@ import {Card} from "./card.tsx";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {BarChartComp} from "./chartjs.tsx";
 import {DoughnutChartComp} from "../chart/doughnut.tsx";
+import {RequestTable} from "../table/request-table.tsx";
 
 export const Dash = () => {
     const {
@@ -33,6 +34,7 @@ export const Dash = () => {
                         chartData.length > 0 ? <DoughnutChartComp data={chartData} /> : <></>
                     }
                 </div>
+                <RequestTable numberPostPerPage={10} />
             </div>
         </div>
     )

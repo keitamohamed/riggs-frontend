@@ -60,8 +60,11 @@ export interface User {
 
 export interface FormInit {
     userForm: User
-    message: any,
-    error: any
+    message: string,
+    error: {
+        errorCode: number,
+        errors: any,
+    }
 }
 
 export interface UserInit {
@@ -156,6 +159,7 @@ export interface InitAppSys {
         components: any
         status: string
     }
+    traces: Exchange[]
     exchanges: Exchange[]
     chartData: TrafficData[]
     exchange200: number,

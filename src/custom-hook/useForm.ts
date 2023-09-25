@@ -39,8 +39,9 @@ export const useForm = () => {
     }
 
     const setInvalidInputError = async (response: any) => {
+        dispatch(formAction.setMessage(response.message))
         dispatch(formAction.setError(response))
-        const {error: {address, firstName, lastName, phoneNum}} = response
+        const {error: {address, firstName, lastName, phoneNum}} = response.map
         if (!address && !firstName && !lastName && !phoneNum) {
             if (!ctx.getShowAuth()) {
                 dispatch(formAction.reSetError())

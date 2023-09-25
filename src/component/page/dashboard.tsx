@@ -152,9 +152,6 @@ export const Dashboard = () => {
                                 <div className="search col-span-9">
                                     <CiMenuBurger/>
                                 </div>
-                                <div className="list-container col-start-10 col-end-13 w-full grid grid-cols-3 gap-[1em]">
-                                    <li><AiOutlineUsergroupAdd/></li>
-                                </div>
                             </div>
                         </div>
                     </div>

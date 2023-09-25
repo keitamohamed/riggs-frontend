@@ -11,22 +11,20 @@ import {formAction} from "../../setup/redux/form.ts";
 export const RegisterNewUser = () => {
     const ctx = useContext(UIActionContext)
     const dispatch = useAppDispatch()
-    const {message, error} = useAppSelector((state) => state.form)
+    const {message, error: {errors}} = useAppSelector((state) => state.form)
 
-    const reSetMessageNError = () => {
-        dispatch(formAction.setMessage({}))
-        dispatch(formAction.setError({}))
+    const reSetFormMessage = () => {
+        dispatch(formAction.setMessage(""))
     }
-
 
     return (
         <>
             {
-                (message || error) && Object.keys(message).length > 0 || Object.keys(error).length > 0  ?
+                (message || errors) && message !== "" || Object.keys(errors).length > 0  ?
                     <Alert
-                        function={reSetMessageNError}
-                        message={message.message}
-                        error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : ''}`}
+                        function={reSetFormMessage}
+                        message={message}
+                        error={`${errors && errors.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : ''}`}
                     /> : <></>
             }
             <div className="signup_container">

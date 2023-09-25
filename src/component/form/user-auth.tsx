@@ -11,7 +11,7 @@ export const UserAuth = (prop: props) => {
 
     const uiCtx = useContext(UIActionContext)
     const {onSubmitAddNewUser, onSubmitSendUpdateAuth, onChangeSetNewUserAuth, onChangeSetUpdateAuth} = useForm()
-    const {userForm, userForm: {auth}, message, error} = useAppSelector((state) => state.form)
+    const {userForm, message, error: {errors}} = useAppSelector((state) => state.form)
     const {user} = useAppSelector((state) => state.user)
 
     const [conformPassword, setConformPassword] = useState<string>()
@@ -60,10 +60,10 @@ export const UserAuth = (prop: props) => {
                     <div className="form-group">
                         <input type="email"
                                name="email"
-                               className={auth?.email ? 'invalid-input' : ''}
+                               className={errors.auth?.email ? 'invalid-input' : ''}
                                autoComplete="off"
                                onChange={prop.type == 'New' ? onChangeSetNewUserAuth : onChangeSetUpdateAuth}
-                               placeholder={auth?.email ? auth?.email : 'Enter email'}
+                               placeholder={errors.auth?.email ? errors.auth.email : 'Enter email'}
                         />
                     </div>
                     {
@@ -71,10 +71,10 @@ export const UserAuth = (prop: props) => {
                             <div className="form-group">
                                 <input type="text"
                                        name="role"
-                                       className={auth?.role ? 'invalid-input' : ''}
+                                       className={errors.auth?.role ? 'invalid-input' : ''}
                                        autoComplete="off"
                                        onChange={prop.type == 'New' ? onChangeSetNewUserAuth : onChangeSetUpdateAuth}
-                                       placeholder={auth?.role ? auth?.role : 'Enter role (ex: Admin or User)'}
+                                       placeholder={errors.auth?.role ? `${errors?.auth.role} (Must be: User or Admin)` : 'Enter role (ex: Admin or User)'}
                                 />
                             </div>
                         ) : <></>
@@ -82,10 +82,10 @@ export const UserAuth = (prop: props) => {
                     <div className="form-group">
                         <input type="password"
                                name="password"
-                               className={auth?.password ? 'invalid-input' : ''}
+                               className={errors.auth?.password ? 'invalid-input' : ''}
                                autoComplete="off"
                                onChange={prop.type == 'New' ? onChangeSetNewUserAuth : onChangeSetUpdateAuth}
-                               placeholder={auth?.password ? auth?.password : 'Enter password'}
+                               placeholder={errors.auth?.password ? errors?.auth.password : 'Enter password'}
                         />
                     </div>
                     <div className="form-group">
@@ -100,7 +100,7 @@ export const UserAuth = (prop: props) => {
                         {passwordNotMatch ? <p className="message">{passwordNotMatch}</p> : <></>}
                     </div>
                     <div className="form-group message">
-                        {message !== null ? <p className="message">{message?.message}</p> : <></>}
+                        {message !== "" ? <p className="message">{message}</p> : <></>}
                     </div>
                     <div className="form_group next">
                         <input type="submit" value={prop.type == 'Update' ? prop.type : 'Submit'}/>

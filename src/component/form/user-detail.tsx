@@ -12,7 +12,7 @@ type props = {
 export const UserDetail = (prop: props) => {
     const uiCtx = useContext(UIActionContext)
     const dispatch = useAppDispatch()
-    const {userForm, error, error: {address}} = useAppSelector((state) => state.form)
+    const {userForm, error: {errors}} = useAppSelector((state) => state.form)
     const {user} = useAppSelector((state) => state.user)
 
     const {
@@ -64,65 +64,65 @@ export const UserDetail = (prop: props) => {
             <div className={`form sm:!w-[100%] block`}>
                 <div className="form-group">
                     <input type="text"
-                           className={error.firstName ? 'invalid-input' : ''}
+                           className={errors?.firstName ? 'invalid-input' : ''}
                            name="firstName"
                            autoComplete="off"
                            onChange={prop.type == 'New' ? onChangeSetNewUser : onChangeSetUpdate}
-                           placeholder={error.firstName ? error.firstName : 'Enter first name'}
+                           placeholder={errors?.firstName ? errors.firstName : 'Enter first name'}
                     />
                 </div>
                 <div className="form-group">
                     <input type="text"
                            name="lastName"
-                           className={error.lastName ? 'invalid-input' : ''}
+                           className={errors?.lastName ? 'invalid-input' : ''}
                            autoComplete="off"
                            onChange={prop.type == 'New' ? onChangeSetNewUser : onChangeSetUpdate}
-                           placeholder={error.lastName ? error.lastName : 'Enter last name'}
+                           placeholder={errors?.lastName ? errors.lastName : 'Enter last name'}
                     />
                 </div>
                 <div className="form-group">
                     <input type="text"
                            name="phoneNum"
-                           className={error.phoneNum ? 'invalid-input' : ''}
+                           className={errors?.phoneNum ? 'invalid-input' : ''}
                            onChange={prop.type == 'New' ? onChangeSetNewUser : onChangeSetUpdate}
                            autoComplete="off"
-                           placeholder={error.phoneNum ? error.phoneNum : 'Enter phone number'}
+                           placeholder={errors?.phoneNum ? errors.phoneNum : 'Enter phone number'}
                     />
                 </div>
                 <div className="form-group">
                     <input type="text"
                            name="street"
-                           className={address?.street ? 'invalid-input' : ''}
+                           className={errors?.address?.street ? 'invalid-input' : ''}
                            onChange={prop.type == 'New' ? onChangeSetNewUserAddress : onChangeSetUpdateAddress}
                            autoComplete="off"
-                           placeholder={address?.street ? address?.street : "Enter street address"}
+                           placeholder={errors?.address?.street ? errors.address?.street : "Enter street address"}
                     />
                 </div>
                 <div className="form-group">
                     <input type="text"
                            name="city"
-                           className={address?.city ? 'invalid-input' : ''}
+                           className={errors?.address?.city ? 'invalid-input' : ''}
                            onChange={prop.type == 'New' ? onChangeSetNewUserAddress : onChangeSetUpdateAddress}
                            autoComplete="off"
-                           placeholder={address?.city ? address?.city : 'Enter city'}
+                           placeholder={errors?.address?.city ? errors.address?.city : 'Enter city'}
                     />
                 </div>
                 <div className="form-group">
                     <input type="text"
                            name="state"
-                           className={address?.state ? 'invalid-input' : ''}
+                           className={errors?.address?.state ? 'invalid-input' : ''}
                            onChange={prop.type == 'New' ? onChangeSetNewUserAddress : onChangeSetUpdateAddress}
                            autoComplete="off"
-                           placeholder={address?.state ? address?.state : 'Enter state'}
+                           placeholder={errors?.address?.state ? errors.address?.state : 'Enter state'}
                     />
                 </div>
                 <div className="form-group">
                     <input type="text"
-                           className={address?.zipcode ? 'invalid-input' : ''}
+                           className={errors?.address?.zipcode ? 'invalid-input' : ''}
                            name="zipcode"
                            onChange={prop.type == 'New' ? onChangeSetNewUserAddress : onChangeSetUpdateAddress}
                            autoComplete="off"
-                           placeholder={address?.zipcode ? address?.zipcode : 'Enter zipcode'}
+                           placeholder={errors?.address?.zipcode ? errors.address?.zipcode : 'Enter zipcode'}
                     />
                 </div>
                 {
