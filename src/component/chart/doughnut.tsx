@@ -10,6 +10,9 @@ ChartJS.register(
     Legend,
 );
 
+ChartJS.defaults.borderColor = '#F1F6F9'
+ChartJS.defaults.color = '#F1F6F9'
+
 const options = {
     responsive: true,
     plugins: {

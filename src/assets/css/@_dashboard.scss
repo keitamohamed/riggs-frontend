@@ -1,12 +1,17 @@
 
 .dashboard-main {
+  background: $dash_colo_blue;
+  * {
+    color: $color_white;
+  }
 
   .dash-sidebar {
 
     min-height: 100dvh;
-    background: #2e3338;
+    //background: #2e3338;
     padding: 10px;
     row-gap: .5em;
+    border-right: 1px solid $color_white;
 
     * {
       color: $dark_white;
@@ -124,6 +129,56 @@
       }
     }
 
+  }
+
+  .graph-card-container {
+    display: grid;
+    height: 50dvh;
+  }
+
+  .top-deals-container {
+    padding: 10px;
+    border: .001em solid $dark_white;
+
+    .title-container {
+      display: grid;
+      place-items: start;
+      padding: 10px;
+
+      h1 {
+        font-size:1.3em;
+        font-family: $font_family_bacasime;
+      }
+    }
+
+    * {
+      color: $color_white;
+    }
+
+    .context-container {
+      overflow-y: scroll !important;
+      max-height: 45dvh;
+    }
+
+    .book-container {
+      padding: 10px;
+
+      .avatar-context {
+
+        * {
+          text-align: left;
+          font-size: .8em;
+        }
+
+        h5 {
+          font-size: 1em;
+        }
+      }
+
+      .book-price {
+        margin-left: auto;
+      }
+    }
   }
 
   .dashboard-context-container {

@@ -78,7 +78,7 @@ export const Dashboard = () => {
 
     return (
         <>
-            <div className="dashboard-main grid grid-cols-12">
+            <div className="dashboard-main grid grid-cols-12 gap-x-[1em]">
                 <div className="dash-sidebar col-span-2">
                     <div className="sidebar-context grid">
                         <div className="avatar flex gap-3 place-content-center justify-center">

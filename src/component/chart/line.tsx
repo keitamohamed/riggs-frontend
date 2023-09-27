@@ -23,6 +23,9 @@ type DataFormatPass = {
     data: TrafficData[]
 }
 
+ChartJS.defaults.borderColor = '#BAD7E9'
+ChartJS.defaults.color = '#F1F6F9'
+
 ChartJS.register(
     CategoryScale,
     Tooltip,
@@ -30,12 +33,21 @@ ChartJS.register(
 
 const options = {
     responsive: true,
+    indexAxis: 'y',
+    scales: {
+        x: {
+            beginAtZero: true,
+            grid: {
+                display: false,
+            }
+        },
+    },
     plugins: {
         legend: {
             display: false,
         },
         title: {
-            text: 'TRAFFIC DATA',
+            text: 'TRAFFIC DATA RESPONSE CODE',
             display: true,
             padding: 15,
             font: {
