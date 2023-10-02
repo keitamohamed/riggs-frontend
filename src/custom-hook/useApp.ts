@@ -1,16 +1,22 @@
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {GET_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
-import {useContext, useEffect} from "react";
+import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../setup/context/context.ts";
 import {appAction} from "../setup/redux/app.ts";
 import {Exchange} from "../interface/interface.ts";
+import {useUser} from "./useUser.ts";
+import room from "../setup/redux/room.ts";
 
 export const useApp = () => {
+    const {userList} = useUser()
+
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
-
+    const {room: {rooms}, user: {listUser}} = useAppSelector((state) => state)
     const {database, exchanges} = useAppSelector((state) => state.app)
+
+    const [loaded, setLoaded] = useState<boolean>(false)
     
     const checkDatabaseHealth = async () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -25,6 +31,14 @@ export const useApp = () => {
     const setDatabaseHealth = (health: any) => {
         dispatch(appAction.setDatabaseHealth(health))
     }
+    
+    const getNumberUsers = () => {
+        return listUser.length
+    }
+
+    const getNumberOfRoom = () : number => {
+        return rooms.length
+    }
 
     const setExchange = (exchange: Exchange) => {
         dispatch(appAction.resetChartData())
@@ -36,7 +50,21 @@ export const useApp = () => {
         dispatch(appAction.setError(error))
     }
 
+    const initLoadData = () => {
+        userList()
+    }
+
+
+    useEffect(() => {
+        if (!loaded) {
+            initLoadData()
+            setLoaded(true)
+        }
+    }, [loaded])
+
     return {
-        checkDatabaseHealth
+        checkDatabaseHealth,
+        getNumberOfRoom,
+        getNumberUsers
     }
 }

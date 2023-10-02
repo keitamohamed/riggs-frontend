@@ -20,7 +20,10 @@ export const RequestTable = (post: {numberPostPerPage: number}) => {
                 </div>
                 <div className="context">
                     <div className="trace">
-                        <TableData currentPost={currentPosts} />
+                        {
+                            currentPosts.length > 0 ? <TableData currentPost={currentPosts} /> : <></>
+
+                        }
                         <Pagination
                             postPerPage={postPerPage}
                             totalPost={traces.length}

@@ -117,11 +117,9 @@
     width: 100%;
     height: 100%;
     clear: both;
-    //overflow: hidden;
 
     .swiper-pagination {
       top: 50%;
-      //position: absolute;
       right: 2em;
 
       span {
@@ -131,7 +129,6 @@
 
     .swiper {
       width: 100%;
-      //display: table-row;
     }
 
     .swiper-wrapper {

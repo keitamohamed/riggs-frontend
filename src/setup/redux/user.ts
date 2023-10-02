@@ -21,7 +21,7 @@ const initialState: UserInit = {
         }
     },
     booking: [],
-    userList: [],
+    listUser: [],
     message: {},
     error: {}
 }
@@ -42,7 +42,7 @@ const userSlice = createSlice({
             state.user.auth['role'] = auth.value
         },
         userList(state, action) {
-            state.userList = action.payload
+            state.listUser = action.payload
         },
         setMessage(state, action) {
             state.message = action.payload

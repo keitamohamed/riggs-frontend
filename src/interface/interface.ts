@@ -69,7 +69,7 @@ export interface FormInit {
 
 export interface UserInit {
     user: User
-    userList: never[],
+    listUser: never[],
     booking: any[]
     message: any,
     error: any
@@ -152,6 +152,12 @@ export interface Exchange {
 export interface TrafficData {
     code: number,
     recurrent: number
+}
+
+export interface BookingData {
+    month: string,
+    book: number,
+    amount: number,
 }
 
 export interface InitAppSys {

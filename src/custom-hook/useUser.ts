@@ -36,7 +36,7 @@ export const useUser = () => {
     const userList = () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-        dispatch(GET_REQUEST(token, APIPath.LOAD_USERS, loadUsers, setError))
+        dispatch(GET_REQUEST(authCtx.getCookie().aToken, APIPath.LOAD_USERS, loadUsers, setError))
     }
 
     const userTotalBooking = () => {

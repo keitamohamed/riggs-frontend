@@ -1,7 +1,7 @@
 
 type Data = {
     title: string,
-    room: any[]
+    size: number
     revenue: number
 }
 export const GraphCard = (props: Data) => {
@@ -13,7 +13,7 @@ export const GraphCard = (props: Data) => {
             </div>
             <div className="card-context flex">
                 <div className="updated flex">
-                    <h1 className=''>{props.room.length}</h1>
+                    <h1 className=''>{props.size}</h1>
                 </div>
                 <div className="view-info flex">
                     <span>View</span>

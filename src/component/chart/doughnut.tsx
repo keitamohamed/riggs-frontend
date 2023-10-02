@@ -74,7 +74,7 @@ export const DoughnutChartComp = (props: DataFormatPass) => {
     }, [props.data])
 
     return (
-        <div className='chart-context doughnut grid mt-[1em] gap-[2em]'>
+        <div className='chart-context doughnut grid gap-[2em]'>
             <Doughnut data={userData} options={options} />
         </div>
     )

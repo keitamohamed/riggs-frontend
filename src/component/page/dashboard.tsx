@@ -78,8 +78,8 @@ export const Dashboard = () => {
 
     return (
         <>
-            <div className="dashboard-main grid grid-cols-12 gap-x-[1em]">
-                <div className="dash-sidebar col-span-2">
+            <div className="dashboard-main grid grid-cols-12 gap-x-[1em] pb-[1em]">
+                <div className="dash-sidebar col-span-2 sm:hidden md:hidden">
                     <div className="sidebar-context grid">
                         <div className="avatar flex gap-3 place-content-center justify-center">
                             <div className="image-container">
@@ -125,11 +125,12 @@ export const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="dashboard-context-container col-start-3 col-end-13 grid grid-cols-1">
+                <div className="dashboard-context-container sm:col-span-12 md:col-span-12 col-start-3 col-end-13 grid grid-cols-1">
                     <div className="admin-dash-header">
                         {
-                            components?.db ? <><div className="system-info-container">
-                                <div className="sys-context grid grid-cols-5 sm:grid-cols-2 justify-center place-content-center">
+                            components?.db ? <>
+                                <div className="system-info-container">
+                                <div className="sys-context grid grid-cols-5 sm:grid-cols-2 sm:hidden justify-center place-content-center">
                                     <li className='sm:!hidden'>SYS Monitoring</li>
                                     <li className='sm:place-content-center sm:!w-full gap-[.5em]'>
                                         <BsHddNetwork className='sm:!static'/>

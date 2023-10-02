@@ -8,7 +8,6 @@
   .dash-sidebar {
 
     min-height: 100dvh;
-    //background: #2e3338;
     padding: 10px;
     row-gap: .5em;
     border-right: 1px solid $color_white;
@@ -133,7 +132,7 @@
 
   .graph-card-container {
     display: grid;
-    height: 50dvh;
+
   }
 
   .top-deals-container {
@@ -236,6 +235,16 @@
           }
         }
       }
+    }
+  }
+
+  .booking-graph {
+    width: 100%;
+    border: 1px solid $color_white;
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
     }
   }
 

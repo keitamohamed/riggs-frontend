@@ -21,7 +21,7 @@ export const TableData = (props: DataSet) => {
     }
     const getDate = (str: string) => {
         const split = str.split("-")
-        const date = new Date(split[1].slice(-1) + "/" + split[2].substring(0, 2) + "/" + split[0])
+        const date = new Date(split[1] + "/" + split[2].substring(0, 2) + "/" + split[0])
         const strTime = split[2].substring(3, 11).split(":")
         date.setHours(+strTime[0]-4)
         date.setMinutes(+strTime[1])
@@ -39,8 +39,8 @@ export const TableData = (props: DataSet) => {
     return (
         <table className='request-table table-auto w-full'>
             <thead>
-            <tr>
-                <th>Method</th>
+            <tr className='sm:table-auto'>
+                {/*<th>Method</th>*/}
                 <th>Status</th>
                 <th>URI</th>
                 <th>TimeStamp</th>
@@ -52,14 +52,14 @@ export const TableData = (props: DataSet) => {
 
                     return (
                         <tr key={data + '' + index}>
-                            <td>{data.request.method}</td>
+                            {/*<td>{data.request.method}</td>*/}
                             <td className={`${data.response.status === 200 ? 'text-[#03C988]' 
                                 : data.response.status === 404 ? 'text-[#337CCF]' 
                                 : data.response.status === 400 ? 'text-[#FD8D14]' 
                                 : 'text-[#FE0000]' }`}>{data.response.status}</td>
                             <td>{data.request.uri.replace(isURLMatch(data.request.uri), getURLReplaceValue(data.request.uri))}</td>
                             <td>{getDate(data.timestamp)}</td>
-                            <td><BiShow/></td>
+                            {/*<td><BiShow/></td>*/}
                         </tr>
                     )
                 })

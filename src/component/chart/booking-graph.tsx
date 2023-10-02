@@ -5,22 +5,22 @@ import {
     CategoryScale,
     Tooltip,
 } from 'chart.js/auto'
-import {TrafficData} from "../../interface/interface.ts";
+import {BookingData} from "../../interface/interface.ts";
 
 
 type DataFormat = {
-    labels: number[],
+    labels: string[],
     datasets: [
         {
             data: number[],
             borderColor: string,
-            backgroundColor: string[]
+            backgroundColor: string
         }
     ]
 }
 
 type DataFormatPass = {
-    data: TrafficData[]
+    booking: BookingData[]
 }
 
 ChartJS.defaults.borderColor = '#BAD7E9'
@@ -33,38 +33,39 @@ ChartJS.register(
 
 const options = {
     responsive: true,
-    indexAxis: 'y',
     scales: {
         x: {
+            grid: {
+                display: false,
+            }
+        },
+        y: {
             beginAtZero: true,
             grid: {
                 display: false,
+            },
+            ticks: {
+                callback: function(value: number) {
+                    return '$' + value;
+                }
             }
         },
     },
     plugins: {
         legend: {
             display: false,
-        },
-        title: {
-            text: 'TRAFFIC DATA RESPONSE CODE',
-            display: true,
-            padding: 15,
-            font: {
-                size: 18
-            }
-        },
+        }
     },
 }
- 
-export const LineChartComp = (props: DataFormatPass) => {
+
+export const BookingChartComp = (props: DataFormatPass) => {
     const [trafficDate, setTrafficDate] = useState<DataFormat>({
-        labels: props.data.map((data) => data.code),
+        labels: props.booking.map((data) => data.month),
         datasets: [
             {
-                data: props.data.map((data) => data.recurrent),
-                borderColor: '#A8B2D1',
-                backgroundColor: ['#03C988', '#337CCF', '#FD8D14', '#FE0000']
+                data: props.booking.map((data) => data.amount),
+                borderColor: '#FE0000',
+                backgroundColor: '#F1F6F9'
             }
         ]
     })
@@ -74,17 +75,17 @@ export const LineChartComp = (props: DataFormatPass) => {
             ...trafficDate,
             datasets: [
                 {
-                    data: props.data.map((data) => data.recurrent),
-                    borderColor: '#A8B2D1',
-                    backgroundColor: ['#03C988', '#337CCF', '#FD8D14', '#FE0000']
+                    data: props.booking.map((data) => data.amount),
+                    borderColor: '#FE0000',
+                    backgroundColor: '#F1F6F9'
                 }
             ]
         })
-    }, [props.data])
+    }, [props.booking])
 
 
     return (
-        <div className='chart-context grid mt-[1em]'>
+        <div className='chart-context !h-full booking-graph grid w-full'>
             {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
