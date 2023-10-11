@@ -2,9 +2,25 @@
 export const Pagination = (props: {totalPost: number, postPerPage: number, paginate: (num: number) => void}) => {
 
     const pages = []
-
     for (let i = 1; i <= Math.ceil(props.totalPost / props.postPerPage); i++) {
         pages.push(i)
+    }
+
+    const onClick = (pageNumber: number) => {
+
+        const li = document.querySelectorAll(".pageItem")
+        li.forEach(e => {
+            e.addEventListener('click', () => {
+                li.forEach(r =>{
+                    r.classList.remove('current')
+                })
+                if (!e.classList.contains('current')) {
+                    e.classList.add('current')
+                }
+            })
+        })
+
+        props.paginate(pageNumber)
     }
 
     return (
@@ -15,13 +31,21 @@ export const Pagination = (props: {totalPost: number, postPerPage: number, pagin
                         key={`${pageNumber}_${index}`}
                         className="paginationBtnContainer"
                     >
-                        <li
-                            className="pageItem btn"
-                            key={pageNumber}
-                            onClick={() => props.paginate(pageNumber)}
-                        >
-                            {pageNumber}
-                        </li>
+                        {
+                            pageNumber == 1 ? <li
+                                className="pageItem btn current"
+                                key={pageNumber}
+                                onClick={() => onClick(pageNumber)}
+                            >
+                                {pageNumber}
+                            </li> : <li
+                                className="pageItem btn"
+                                key={pageNumber}
+                                onClick={() => onClick(pageNumber)}
+                            >
+                                {pageNumber}
+                            </li>
+                        }
                     </div>
                 ))
             }

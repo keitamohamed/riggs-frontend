@@ -4,7 +4,7 @@ import {
     Credentials, CredentialsReset, DashboardContextProperty,
     ShowRoomDetail,
     UIHideShowContextProvider
-} from "../../interface/interface.ts";
+} from "../../interface/interface-type.ts";
 
 
 const uiDefaultProps = {
@@ -32,7 +32,7 @@ const dashboard: DashboardContextProperty = {
     getDisplayComponent: () => '',
     setDisplayComponentType: (toDisplay: string) => toDisplay,
     getFormType: () => '',
-    setFormType: (toDisplay: string) => toDisplay,
+    setFormType: (toDisplay: string, actionType: string) => '',
 }
 
 export const AuthContext = createContext<AuthContextProperty>(auth)

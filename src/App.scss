@@ -237,6 +237,7 @@
 }
 
 .paginationWrapper {
+  margin-top: 2em;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   width: fit-content;
@@ -251,18 +252,21 @@
     align-self: center;
     justify-self: center;
 
-    &:hover {
-      background: $border_color;
-      border-radius: 50%;
-      color: $color_white;
-    }
-
     li {
       list-style: none;
       max-width: 100%;
       max-height: 100%;
       cursor: pointer;
       text-align: center;
+      border-radius: 50%;
+
+      &:hover {
+        background: $border_color;
+      }
+    }
+
+    li.current {
+      background: #4CAF50;
     }
   }
 

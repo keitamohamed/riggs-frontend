@@ -1,7 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-
-import {InitRoom} from "../../interface/interface.ts";
-
+import {InitRoom} from "../../interface/interface-type.ts";
 
 const initialState: InitRoom = {
     room: {
@@ -9,6 +7,7 @@ const initialState: InitRoom = {
         roomName: '',
         description: '',
         size: '',
+        price: 0,
         detail: {
             view: '',
             bed: '',
@@ -46,6 +45,24 @@ const roomSlice = createSlice({
         },
         setRoom(state, action) {
             state.room = action.payload
+        },
+        resetRoom(state) {
+            state.room = {
+                roomID: 0,
+                roomName: '',
+                description: '',
+                size: '',
+                price: 0,
+                detail: {
+                    view: '',
+                    bed: '',
+                    animal: '',
+                    smoking: '',
+                    bathroom: '',
+                    tv: '',
+                    numberOfBed: 0
+                }
+            }
         },
         setRooms(state, action) {
             state.rooms = action.payload

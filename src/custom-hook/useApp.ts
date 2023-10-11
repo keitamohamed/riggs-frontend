@@ -4,7 +4,7 @@ import {APIPath} from "../api-endpoint/urlPath.ts";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../setup/context/context.ts";
 import {appAction} from "../setup/redux/app.ts";
-import {Exchange} from "../interface/interface.ts";
+import {Exchange} from "../interface/interface-type.ts";
 import {useUser} from "./useUser.ts";
 import room from "../setup/redux/room.ts";
 

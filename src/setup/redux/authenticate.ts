@@ -1,4 +1,4 @@
-import {Credentials} from "../../interface/interface.ts";
+import {Credentials} from "../../interface/interface-type.ts";
 import {createSlice} from "@reduxjs/toolkit";
 
 const credentials: Credentials = {

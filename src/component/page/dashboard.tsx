@@ -8,7 +8,7 @@ import {IoIosBed} from 'react-icons/io'
 
 import {FaHotel} from 'react-icons/fa'
 
-import {Room} from "../../interface/interface.ts";
+import {Room} from "../../interface/interface-type.ts";
 
 import {DashboardRoom} from "../reusable/admin-dashboard-room.tsx";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
@@ -21,6 +21,8 @@ import {AuthContext, DashboardContext} from "../../setup/context/context.ts";
 import {RegisterNewUser} from "./registerNewUser.tsx";
 import {Room_Form} from "../form/room-detail.tsx";
 import {roomAction} from "../../setup/redux/room.ts";
+import {userAction} from "../../setup/redux/user.ts";
+import {formAction} from "../../setup/redux/form.ts";
 
 export const Dashboard = () => {
     const authCtx = useContext(AuthContext)
@@ -28,6 +30,7 @@ export const Dashboard = () => {
     const dispatch = useAppDispatch()
     const {checkDatabaseHealth} = useApp()
     const {findUserByEmail} = useUser()
+
     const {user} = useAppSelector((state) => state.user)
     const {database: {components, status}} = useAppSelector((state) => state.app)
     const [loaded, setLoad] = useState<boolean>(false)
@@ -44,6 +47,13 @@ export const Dashboard = () => {
             space = space/1024;
         }
         return (Math.floor(space) + " " + unite)
+    }
+    
+    const onClick = (str: string) => {
+        dispatch(roomAction.resetRoom())
+        dispatch(roomAction.reSetError())
+        dispatch(formAction.reSetError())
+        dashCtx.setDisplayComponentType(str)
     }
     
     const convertSecondToTime = (second: number) => {
@@ -91,12 +101,12 @@ export const Dashboard = () => {
                         </div>
                         <div className="dash-btn-container grid">
                             <li className='' onClick={
-                                () => dashCtx.setDisplayComponentType('dashboard-one')}>
-                                <span>Main Dash</span><AiFillHome/>
+                                () => onClick('dashboard-one')}>
+                                <span>Main</span><AiFillHome/>
                             </li>
-                            <li onClick={() => dashCtx.setDisplayComponentType('dashboard-two')}
+                            <li onClick={() => onClick('dashboard-two')}
                             >
-                                <span>Room Dash</span> <FaHotel/>
+                                <span>Room</span> <FaHotel/>
                             </li>
                         </div>
                         <div className="dash-buttons-container grid">
@@ -105,7 +115,7 @@ export const Dashboard = () => {
                                 <AiOutlineUsergroupAdd/><span>User Form</span></li>
                             <li className=''
                                 onClick={() => {
-                                    dashCtx.setDisplayComponentType('add-room'), dispatch(roomAction.reSetError())
+                                    onClick('add-room')
                                 }}
                             ><IoIosBed/><span>Room Form</span></li>
                             <li><AiOutlineTable/> <span>Tables</span></li>
@@ -125,11 +135,18 @@ export const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="dashboard-context-container sm:col-span-12 md:col-span-12 col-start-3 col-end-13 grid grid-cols-1">
-                    <div className="admin-dash-header">
+                <div className="dashboard-context-container sm:col-span-12 place-content-center justify-center md:col-span-12 col-start-3 col-end-13 grid grid-cols-1">
+                    <div className="admin-dash-header grid grid-cols-12 place-content-center p-[10px]">
+                        <div className="context-container col-span-1 hidden sm:block md:block lg:block">
+                            <div className="context-nav grid gap-[.5em] px-[15px] place-content-center justify-center">
+                                <div className="search grid place-content-center justify-center">
+                                    <CiMenuBurger/>
+                                </div>
+                            </div>
+                        </div>
                         {
                             components?.db ? <>
-                                <div className="system-info-container">
+                                <div className="system-info-container col-start-2 col-end-13">
                                 <div className="sys-context grid grid-cols-5 sm:grid-cols-2 sm:hidden justify-center place-content-center">
                                     <li className='sm:!hidden'>SYS Monitoring</li>
                                     <li className='sm:place-content-center sm:!w-full gap-[.5em]'>
@@ -147,14 +164,6 @@ export const Dashboard = () => {
                                 </div>
                             </div></> : <></>
                         }
-
-                        <div className="context-container">
-                            <div className="context-nav grid grid-cols-12 gap-[.5em] px-[15px]">
-                                <div className="search col-span-9">
-                                    <CiMenuBurger/>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     {
                         dashCtx.getDisplayComponent() == 'dashboard-two' ?
@@ -163,7 +172,7 @@ export const Dashboard = () => {
                             <div className='room-ad'>
                                 <div className="main">
                                 <Room_Form title={'New Room'} btn={'Submit'}/>
-                            </div>
+                                </div>
                             </div> : dashCtx.getDisplayComponent() == 'user-form' ?
                             <RegisterNewUser/> : <></>
                     }

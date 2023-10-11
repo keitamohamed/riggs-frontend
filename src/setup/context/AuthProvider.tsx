@@ -1,5 +1,5 @@
 import {useCookies} from "react-cookie";
-import {Credentials, CredentialsReset, Props} from "../../interface/interface.ts";
+import {Credentials, CredentialsReset, Props} from "../../interface/interface-type.ts";
 import {AuthContext} from "./context.ts";
 import {useAppDispatch, useAppSelector} from "../redux/reduxHook.ts";
 import {authAction} from "../redux/authenticate.ts";

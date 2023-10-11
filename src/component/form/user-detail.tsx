@@ -50,7 +50,7 @@ export const UserDetail = (prop: props) => {
             <div className="title-container sm:!w-[100%]">
                 {
                     prop.type == 'New' ? (
-                            <div className="title-container sm:!w-[100%]">
+                            <div className="title-context w-full">
                                 <h1>Sign up</h1>
                                 <p>It's quick and easy.</p>
                             </div>

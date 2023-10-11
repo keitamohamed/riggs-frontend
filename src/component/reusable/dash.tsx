@@ -9,7 +9,7 @@ import {GraphCard} from "./graph-card.tsx";
 import pImgae from '../../assets/img/profile-img.jpg'
 import {useApp} from "../../custom-hook/useApp.ts";
 import {BookingChartComp} from "../chart/booking-graph.tsx";
-import {BookingData} from "../../interface/interface.ts";
+import {BookingData} from "../../interface/interface-type.ts";
 
 export const Dash = () => {
     const {getNumberOfRoom, getNumberUsers} = useApp()
@@ -43,8 +43,6 @@ export const Dash = () => {
 
     return (
         <div className='dashboard'>
-            <div className="dash-nav-bar">
-            </div>
             <div className="dashboard-main">
                 <div className="graph-card-container grid grid-cols-12 gap-[1em] sm:p-[10px] md:p-[10px] lg:p-[10px]">
                     <div className="top-deals-container col-span-3 sm:col-span-12 md:col-span-12 lg:col-span-5 bg-[#2a3447]">

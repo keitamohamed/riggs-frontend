@@ -2,7 +2,7 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Pagination} from "swiper/modules";
 
-import {Room} from "../../interface/interface.ts";
+import {Room} from "../../interface/interface-type.ts";
 import photo from "../../assets/img/room-ava-t.jpg";
 import {useEffect, useState} from "react";
 

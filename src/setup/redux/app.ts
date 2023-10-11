@@ -1,7 +1,24 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {InitAppSys} from "../../interface/interface.ts";
+import {InitAppSys} from "../../interface/interface-type.ts";
 
+
+const formatTimeStamp = (str: string) => {
+    const split = str.split("-")
+    const date = new Date(split[1] + "/" + split[2].substring(0, 2) + "/" + split[0])
+    const strTime = split[2].substring(3, 11).split(":")
+    date.setHours(+strTime[0]-4)
+    date.setMinutes(+strTime[1])
+    date.setSeconds(+strTime[2])
+    return new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour:'2-digit',
+        minute:'2-digit',
+        hour12: true
+    }).format(date)
+}
 
 const initialState: InitAppSys = {
     exchange200: 0,
@@ -28,7 +45,7 @@ const appSlice = createSlice({
             // @ts-ignore
             action.payload?.exchanges.map((e): any => {
                 state.exchanges.push({
-                    timestamp: e?.timestamp,
+                    timestamp:  formatTimeStamp(e?.timestamp),
                     request: {
                         uri: e?.request.uri,
                         method: e?.request.method
@@ -39,6 +56,7 @@ const appSlice = createSlice({
                     timeTaken: e?.timeTaken
                 })
             })
+
             state.exchange200 = action.payload?.exchanges.filter((e: any) => e.response.status == 200).length
             state.exchange400 = action.payload?.exchanges.filter((e: any) => e.response.status == 400).length
             state.exchange404 = action.payload?.exchanges.filter((e: any) => e.response.status == 404).length

@@ -1,10 +1,9 @@
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {userAction} from "../setup/redux/user.ts";
-import {GET_REQUEST} from "../api-endpoint/Request.ts";
+import {DOWNLOAD_EXCEL_FILE, GET_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
 import {useContext} from "react";
 import {AuthContext} from "../setup/context/context.ts";
-
 export const useUser = () => {
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
@@ -38,9 +37,9 @@ export const useUser = () => {
       // @ts-ignore
         dispatch(GET_REQUEST(authCtx.getCookie().aToken, APIPath.LOAD_USERS, loadUsers, setError))
     }
-
-    const userTotalBooking = () => {
-        return booking.length
+    
+    const setMessage = (message: any) => {
+        dispatch(userAction.setMessage(message))
     }
 
     const setError = (error: any) => {
@@ -51,10 +50,21 @@ export const useUser = () => {
         dispatch(userAction.setError(error?.data))
     }
 
+    const onClickGenerateUserExcelFile = () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        dispatch(DOWNLOAD_EXCEL_FILE(authCtx.getCookie().aToken, APIPath.USER_EXCEL_FILE, setMessage, setError))
+    }
+
+    const userTotalBooking = () => {
+        return booking.length
+    }
+
     return {
         userList,
         findUserByID,
         findUserByEmail,
-        userTotalBooking
+        userTotalBooking,
+        onClickGenerateUserExcelFile
     }
 }

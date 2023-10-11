@@ -217,7 +217,8 @@
 .admin-dash-header {
 
   .system-info-container {
-    padding-left: 10px;
+    padding: 10px;
+    border: 1px solid $border_color;
 
     li {
       display: flex;

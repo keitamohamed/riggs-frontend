@@ -9,10 +9,13 @@ export const APIPath =  {
     // User api
     UPDATE_USER_INFO: (id: number) => `user/update/${id}`,
     UPDATE_USER_AUTH: (id: number) => `user/update-auth/${id}`,
+    USER_EXCEL_FILE: (`user/user-excel-file`),
 
     // Room
     ROOM_LIST: ("room/list"),
     ADD_ROOM: ("room/add"),
+    UPDATE_ROOM: (id: number) => `room/update/${id}`,
+    DELETE_ROOM: (roomID: number) => `room/delete/${roomID}`,
 
 
     // Booking

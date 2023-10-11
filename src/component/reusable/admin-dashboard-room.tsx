@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {Room} from "../../interface/interface.ts";
+import {Room} from "../../interface/interface-type.ts";
 import {useRoom} from "../../custom-hook/useRoom.ts";
 import {SwiperCarousel} from "../swiper/swiper.tsx";
 import {SwiperNested} from "../swiper/swiper-nested.tsx";
 import {Room_Form} from "../form/room-detail.tsx";
-import {BiHotel} from "react-icons/bi";
+import {SiMicrosoftexcel} from "react-icons/si";
 
 type Props = {
     setProps: React.Dispatch<{title: string, btn:string}>;
@@ -104,7 +104,7 @@ const NavSmallDevices = (prop: Props) => {
                         ...prop,
                         title: 'New Room',
                         btn: 'Submit'
-                    })}}><BiHotel/></li>
+                    })}}><SiMicrosoftexcel/></li>
             </div>
         </div>
     )
@@ -128,13 +128,13 @@ const NavLargeDevices = (prop: Props) => {
                 </form>
             </div>
             <div className="new-room w-full col-start-9 col-end-10 grid gap-3">
-                <li id='room' onClick={() =>
+                <li id='room' className='flex' onClick={() =>
                 {prop.setShow('add-room'),
                     prop.setProps({
                         ...prop,
                         title: 'New Room',
                         btn: 'Submit'
-                    })}}><BiHotel/></li>
+                    })}}><SiMicrosoftexcel/> Excel</li>
             </div>
         </div>
     )

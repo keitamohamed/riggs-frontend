@@ -415,6 +415,13 @@
       input[type='text'], select > option {
         padding-left: 0;
       }
+      input[type='number'] {
+        padding-left: 0;
+      }
+
+      .invalid-input::placeholder {
+        color: $color_red;
+      }
     }
   }
 }

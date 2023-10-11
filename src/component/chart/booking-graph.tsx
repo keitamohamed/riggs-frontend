@@ -5,7 +5,7 @@ import {
     CategoryScale,
     Tooltip,
 } from 'chart.js/auto'
-import {BookingData} from "../../interface/interface.ts";
+import {BookingData} from "../../interface/interface-type.ts";
 
 
 type DataFormat = {

@@ -59,8 +59,9 @@
              font-size: .9em;
            }
 
-           span {
-
+           svg {
+             margin-left: auto;
+             width: fit-content;
            }
          }
 
@@ -196,6 +197,25 @@
     width: 100%;
     height: 100%;
 
+    .main {
+      width: 90%;
+      margin: 0 auto;
+      padding: 15px;
+    }
+
+    .form-group {
+      border-bottom: 1px solid $border_color;
+    }
+
+    input::placeholder {
+      color: $color_white !important;
+    }
+
+    select {
+      background: transparent;
+      color: $color_white;
+    }
+
     .content {
       position: static;
       width: 100%;
@@ -209,11 +229,81 @@
         }
       }
     }
+    .edit-room {
+      svg:hover {
+        fill: $color-green;
+      }
+    }
+
+    .delete-icon {
+      position: relative;
+      display: inline-block;
+      svg:hover {
+        fill: #FE0000;
+      }
+
+      .tooltiptext {
+        padding: 5px;
+        width: 120px;
+        background: black;
+        text-align: center;
+        border-radius: 6px;
+
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: -2.3em;
+        margin-right: 0;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 85%;
+          margin-right: -5px;
+          border: 5px solid;
+          border-color: black transparent transparent transparent;
+        }
+        visibility: hidden;
+      }
+
+      &:hover > .tooltiptext {
+        visibility: visible;
+      }
+    }
   }
 
   .signup_container {
     width: 100%;
     height: 100%;
+
+    .title-context {
+      padding-bottom: 1em;
+
+       * {
+         text-align: left;
+       }
+
+      p {
+        padding-left: 10px;
+      }
+    }
+
+    * {
+      color: $color_white !important;
+    }
+
+    input::placeholder {
+      color: $color_white !important;
+    }
+
+    .form-group {
+
+      .invalid-input {
+        border-color: #C63D2F !important;
+      }
+
+    }
 
     .content {
       position: static;
@@ -231,7 +321,6 @@
             cursor: pointer;
 
             color: $color_white;
-
           }
         }
       }

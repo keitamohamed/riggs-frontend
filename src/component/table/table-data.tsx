@@ -1,4 +1,4 @@
-import {Exchange} from "../../interface/interface.ts";
+import {Exchange} from "../../interface/interface-type.ts";
 import {BiShow} from "react-icons/bi";
 
 type DataSet = {

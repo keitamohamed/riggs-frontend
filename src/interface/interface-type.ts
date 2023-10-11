@@ -1,5 +1,36 @@
 import {ReactNode} from "react";
 
+
+export type booking = {
+    bookingID: number
+    bookDate: Date,
+    arriDate: Date,
+    depDate: Date,
+    numRoom: number,
+    numAdult: number,
+    numChildren: number
+    user: User,
+    rooms: Room[]
+}
+
+export type LoginCredential = {
+    email?: string,
+    password?: string;
+}
+
+export type TraceExcelType = {
+    timestamp: string,
+    request: {
+        uri: string,
+        method: string;
+    },
+    response: {
+        status: number,
+    }
+}
+
+export type TraceExcelArray = TraceExcelType[]
+
 export interface Credentials  {
     accessToken: string,
     refreshToken: string;
@@ -27,8 +58,8 @@ export interface AuthContextProperty {
 export interface DashboardContextProperty {
     getDisplayComponent: () => string,
     setDisplayComponentType: (toDisplay: string) => void,
-    getFormType: () => string,
-    setFormType: (toDisplay: string) => void,
+    getFormType: () => any,
+    setFormType: (toDisplay: string, actionType: string) => void,
 }
 
 export interface UIHideShowContextProvider {
@@ -38,10 +69,6 @@ export interface UIHideShowContextProvider {
     getShowRooms: () => boolean,
 }
 
-export type LoginCredential = {
-    email?: string,
-    password?: string;
-}
 
 export type LoginError = {
     email?: string;
@@ -95,18 +122,6 @@ export interface Booking {
     rooms: Room[]
 }
 
-export type booking = {
-    bookingID: number
-    bookDate: Date,
-    arriDate: Date,
-    depDate: Date,
-    numRoom: number,
-    numAdult: number,
-    numChildren: number
-    user: User,
-    rooms: Room[]
-}
-
 interface UserAddress {
     street: string,
     city: string,
@@ -125,6 +140,7 @@ export interface Room {
     roomName: string,
     description: string,
     size: string,
+    price: number,
     detail: {
         view: string,
         bed: string,
