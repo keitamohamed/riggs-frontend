@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {bookingAction} from "../setup/redux/booking.ts";
-import {DELETE_REQUEST, POST_REQUEST} from "../api-endpoint/Request.ts";
+import {DELETE_REQUEST, GET_REQUEST, POST_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
 import {AuthContext} from "../setup/context/context.ts";
 import {useUser} from "./useUser.ts";
@@ -11,10 +11,16 @@ export const useBooking = () => {
     const dispatch = useAppDispatch()
     const {findUserByEmail} = useUser()
     const {booking} = useAppSelector((state) => state.booking)
-    const {user} = useAppSelector((state) => state.user)
+    const {user, listUser} = useAppSelector((state) => state.user)
 
 
     const [dateRange, setDateRange] = useState([null, null])
+
+    const setBookingList = (bookingList: any) => {
+        dispatch(bookingAction.setBookingList(bookingList))
+        dispatch(bookingAction.setRecentBook(listUser))
+        // dispatch(bookingAction.setUserBooking(listUser))
+    }
 
     const onChangeRoom = (event: React.ChangeEvent<HTMLSelectElement>) => {
         dispatch(bookingAction.setNewBooking(event.target))
@@ -28,6 +34,12 @@ export const useBooking = () => {
         dispatch(bookingAction.setReserveRoom({roomID: id}))
     }
 
+    const loadingBookings = () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        dispatch(GET_REQUEST(authCtx.getCookie().aToken, APIPath.BOOKING_LIST, setBookingList, setError))
+
+    }
     const bookRoom = () => {
         dispatch(bookingAction.setMessage({}))
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -58,6 +70,7 @@ export const useBooking = () => {
         dateRange,
         setReserveRoom,
         bookRoom,
+        loadingBookings,
         deleteBooking
     }
 }

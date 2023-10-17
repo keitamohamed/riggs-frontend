@@ -112,8 +112,8 @@ const NavSmallDevices = (prop: Props) => {
 const NavLargeDevices = (prop: Props) => {
 
     return (
-        <div className="context-container hidden cm:grid grid-cols-9 sm:grid-cols-2 gap-3 sm:gap-y-[2em]">
-            <div className="search-container col-start-1 col-end-8 !w-[90%] border-[0] !border-b-[1px] border-solid pl-[10px] pb-[5px]">
+        <div className="context-container hidden cm:grid grid-cols-12 sm:grid-cols-2 gap-3 sm:gap-y-[2em]">
+            <div className="search-container col-span-9 !w-[90%] border-[0] !border-b-[1px] border-solid pl-[10px] pb-[5px]">
                 <form
                     className='!w-[80%]'
                     action=""
@@ -127,14 +127,14 @@ const NavLargeDevices = (prop: Props) => {
                     </li>
                 </form>
             </div>
-            <div className="new-room w-full col-start-9 col-end-10 grid gap-3">
-                <li id='room' className='flex' onClick={() =>
+            <div className="new-room w-full col-start-11 col-end-13 grid gap-3">
+                <li id='room' className='!flex w-fit gap-[1em]' onClick={() =>
                 {prop.setShow('add-room'),
                     prop.setProps({
                         ...prop,
                         title: 'New Room',
                         btn: 'Submit'
-                    })}}><SiMicrosoftexcel/> Excel</li>
+                    })}}><SiMicrosoftexcel/><span className='ml-auto'>Excel</span></li>
             </div>
         </div>
     )

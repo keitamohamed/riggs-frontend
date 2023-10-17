@@ -51,6 +51,24 @@
     }
   }
 
+  .room-detail {
+    .action-btn {
+      display: flex;
+      width: 100%;
+      position: static;
+      justify-items: end;
+      gap: 1em;
+
+      li {
+        width: fit-content;
+      }
+    }
+  }
+
+  .swiper-button-next, .swiper-button-prev, .swiper-pagination, .swiper-pagination-bullet {
+    display: block !important;
+  }
+
 }
 
 .main {

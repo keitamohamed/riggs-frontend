@@ -18,7 +18,8 @@ const initialState: UserInit = {
             email: "",
             password: "",
             role: ""
-        }
+        },
+        book: [] ,
     },
     booking: [],
     listUser: [],

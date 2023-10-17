@@ -29,6 +29,13 @@ export type TraceExcelType = {
     }
 }
 
+export type RecentBook = {
+    id: number,
+    name: string,
+    email: string,
+    total: number
+}
+
 export type TraceExcelArray = TraceExcelType[]
 
 export interface Credentials  {
@@ -38,6 +45,12 @@ export interface Credentials  {
     role: string,
     error: unknown
     code: string
+}
+
+export type BookingPrice = {
+    id: number,
+    roomID: number,
+    bookingPrice: number,
 }
 
 export interface CredentialsReset {
@@ -76,13 +89,14 @@ export type LoginError = {
     message?: string;
 }
 
-export interface User {
+export type User = {
     userID: number
     firstName: string,
     lastName: string,
     phoneNum: string,
     address: UserAddress
     auth: UserAuth
+    book: any[]
 }
 
 export interface FormInit {
@@ -96,7 +110,7 @@ export interface FormInit {
 
 export interface UserInit {
     user: User
-    listUser: never[],
+    listUser: any[],
     booking: any[]
     message: any,
     error: any
@@ -105,6 +119,7 @@ export interface UserInit {
 
 export interface BookingInit {
     booking: Booking,
+    recentBook: RecentBook[],
     bookingList: Booking[]
     message: any,
     error: any
@@ -118,9 +133,11 @@ export interface Booking {
     numRoom: number,
     numAdult: number,
     numChildren: number
+    prices: BookingPrice[],
     user: User,
     rooms: Room[]
 }
+
 
 interface UserAddress {
     street: string,

@@ -21,7 +21,6 @@ import {AuthContext, DashboardContext} from "../../setup/context/context.ts";
 import {RegisterNewUser} from "./registerNewUser.tsx";
 import {Room_Form} from "../form/room-detail.tsx";
 import {roomAction} from "../../setup/redux/room.ts";
-import {userAction} from "../../setup/redux/user.ts";
 import {formAction} from "../../setup/redux/form.ts";
 
 export const Dashboard = () => {

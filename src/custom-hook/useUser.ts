@@ -4,6 +4,7 @@ import {DOWNLOAD_EXCEL_FILE, GET_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/urlPath.ts";
 import {useContext} from "react";
 import {AuthContext} from "../setup/context/context.ts";
+import {bookingAction} from "../setup/redux/booking.ts";
 export const useUser = () => {
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
@@ -15,6 +16,7 @@ export const useUser = () => {
     }
     const loadUsers = (data: any[]) => {
         dispatch(userAction.userList(data))
+        dispatch(bookingAction.setRecentBook(data))
     }
 
     
@@ -53,7 +55,7 @@ export const useUser = () => {
     const onClickGenerateUserExcelFile = () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        dispatch(DOWNLOAD_EXCEL_FILE(authCtx.getCookie().aToken, APIPath.USER_EXCEL_FILE, setMessage, setError))
+        dispatch(DOWNLOAD_EXCEL_FILE(authCtx.getCookie().aToken, APIPath.USER_EXCEL_FILE, null, setMessage, setError))
     }
 
     const userTotalBooking = () => {

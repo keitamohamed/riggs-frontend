@@ -75,7 +75,7 @@ export const RoomList = () => {
                                             <div className="disc grid grid-cols-8 gap-3 md:grid-cols-1 sm:grid-cols-1">
                                                 <p className={`col-span-6 md:col-span-1 w-[90%] sm:w-full mr-1 sm:grid-cols-1 text-left`}>{room.description}</p>
                                                 <div className="grid !place-content-center col-start-7 col-end-9 sm:grid-cols-2 sm:col-span-8">
-                                                    <h2 className={`flex w-full flex-col md:grid-cols-1 sm:grid-cols-1 sm:!text-left md:!text-left`}>{`$${245} / NIGHT `}
+                                                    <h2 className={`flex w-full flex-col md:grid-cols-1 sm:grid-cols-1 sm:!text-left md:!text-left`}>{`$${room.price} / NIGHT `}
                                                         <p className='sm:!text-left md:!text-left sm:w-[90%]'>EXCLUDING TAXES & FEED</p>
                                                     </h2>
                                                     <h2

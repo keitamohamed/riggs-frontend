@@ -6,7 +6,8 @@ const credentials: Credentials = {
     refreshToken: "",
     email: "",
     role: "",
-    error: {}
+    error: {},
+    code: ""
 }
 
 const initialState = {

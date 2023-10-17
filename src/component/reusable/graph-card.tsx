@@ -1,3 +1,5 @@
+import {SiMicrosoftexcel} from 'react-icons/si'
+import {useUser} from "../../custom-hook/useUser.ts";
 
 type Data = {
     title: string,
@@ -5,6 +7,7 @@ type Data = {
     revenue: number
 }
 export const GraphCard = (props: Data) => {
+    const {onClickGenerateUserExcelFile} = useUser()
 
     return (
         <div className={`card card-graph`}>
@@ -18,6 +21,15 @@ export const GraphCard = (props: Data) => {
                 <div className="view-info flex">
                     <span>View</span>
                     <h4>{`78%`}</h4>
+                </div>
+                <div className="btn-container grid place-content-end !text-right">
+                    {
+                        props.title == 'Users Data' ? <li className='flex list-none w-fit gap-[1em] !text-right ml-auto'
+                                                          onClick={onClickGenerateUserExcelFile}
+                        >
+                            <SiMicrosoftexcel className='!w-fit'/> Excel</li> : <></>
+                    }
+
                 </div>
             </div>
         </div>

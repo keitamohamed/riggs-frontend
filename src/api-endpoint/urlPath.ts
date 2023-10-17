@@ -20,6 +20,7 @@ export const APIPath =  {
 
     // Booking
     NEW_BOOKING: (userID: number) => `booking/add/${userID}`,
+    BOOKING_LIST: (`booking/list-of-booking`),
     DELETE_BOOKING: (id: number) => `booking/delete-booking/${id}`,
 
 

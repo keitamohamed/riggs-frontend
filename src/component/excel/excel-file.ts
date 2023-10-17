@@ -22,7 +22,7 @@ export const useExcelFile = () => {
         })
     }
 
-    const traceExcelFile = () => {
+    const traceExcelFileHeader = () => {
         sheet.properties.defaultRowHeight = 20;
         sheet.columns = [
             {
@@ -60,7 +60,7 @@ export const useExcelFile = () => {
     }
 
     const onClickCreateRiggsTraceExcelFile = () => {
-        traceExcelFile()
+        traceExcelFileHeader()
         styleWorkBook()
         addTraceData()
         workbook.xlsx.writeBuffer()

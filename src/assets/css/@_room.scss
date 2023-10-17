@@ -1,3 +1,4 @@
+@import "@_variable";
 
 .booking-list {
 
@@ -91,8 +92,8 @@
 
         transition:
                 color .01s ease,
-                scale 300ms var(--_scale-delay, 0ms),
-                 translate 500ms var(--_translate-delay, 0ms);
+                scale 300ms var(--_scale-delay, 0),
+                 translate 500ms var(--_translate-delay, 0);
 
 
       }
@@ -362,6 +363,8 @@
         li {
           input {
             width: 100%;
+            background: transparent;
+            text-align: left;
           }
         }
       }
@@ -378,30 +381,17 @@
 
         li {
           display: grid;
-          padding-bottom: 5px;
-          width: 100%;
+          padding: 5px 10px;
           place-items: center;
-          border-right: 1px solid $border_color;
-
-          &:last-child {
-            border: none;
-          }
-
-          svg {
-            font-size: 1.2em;
-            transition: all .1s ease;
-          }
+          border: 1px solid $border_color;
+          cursor: pointer;
+          border-radius: 10px;
 
           &:hover {
-            transition-duration: .1s;
-            transition-delay: .2s;
-            transition: all .1s ease;
-
-            svg {
-              font-size: 1.5em;
-              color: $color_orange;
-              transition-duration: .0s;
-              transition-delay: .0s;
+            border-radius: 5px;
+            background: $color_white;
+            * {
+              color: $dash_colo_blue;
             }
           }
         }

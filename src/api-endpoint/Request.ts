@@ -1,6 +1,7 @@
 import axios from "axios";
 import FileSaver from 'file-saver'
 import {LoginCredential} from "../interface/interface-type.ts";
+import {locale} from "moment";
 
 
 export const POST_AUTHENTICATE_REQUEST = (
@@ -91,6 +92,7 @@ export const GET_REQUEST = (
 export const DOWNLOAD_EXCEL_FILE = (
     token: string,
     url: string,
+    fileName: string,
     action: (data: object) => void,
     setError: (error: any) => void,
     appInfo: boolean
@@ -115,9 +117,8 @@ export const DOWNLOAD_EXCEL_FILE = (
                 .then((response) => {
                     const blob = new Blob([response.data],
                             {type: "'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"});
-                    FileSaver.saveAs(blob, "user-list.xlsx")
+                    FileSaver.saveAs(blob, `${'Riggs_User_Data_For_' + getCurrentDate() + '.xlsx'}`)
                 })
-            // action(response.data)
         } catch (error) {
             setError(error.response)
         }
@@ -179,4 +180,9 @@ export const DELETE_REQUEST = (
             setError(error.response.data)
         }
     }
+}
+
+const getCurrentDate = () : string => {
+    const date = new Date();
+    return `${date.toLocaleDateString('en-us', {month: 'long'}) + '/' + date.getUTCDay() + '/' + date.getUTCFullYear()}`
 }
