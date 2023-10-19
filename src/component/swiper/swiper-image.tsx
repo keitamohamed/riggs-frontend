@@ -31,7 +31,7 @@ export const SwiperImage = () => {
                                 return (
                                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                     // @ts-ignore
-                                    book.rooms.map((room) => {
+                                    book.prices.map((room) => {
                                         return (
                                             <SwiperSlide>
                                                 <div className="booking-list mt-2">
