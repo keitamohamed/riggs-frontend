@@ -73,4 +73,47 @@
       }
     }
   }
+
+  .profile_profile {
+
+    .swiper {
+
+      .room-detail {
+        padding: 0;
+
+        .check {
+          li:last-child {
+            padding-left: 1em;
+          }
+          .price-li {
+            padding-left: 0 !important;
+          }
+        }
+
+        .book-delete-btn {
+          li {
+            font-size: .8em;
+          }
+
+          li:last-child {
+            border: none;
+          }
+
+          li:last-child:hover {
+            border: none;
+            background: none;
+
+            svg {
+              color: $color_red;
+              font-size: 1.5em;
+            }
+          }
+        }
+      }
+
+      .swiper-button-next, .swiper-button-prev {
+        display: none !important;
+      }
+    }
+  }
 }

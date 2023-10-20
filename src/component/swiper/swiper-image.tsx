@@ -12,6 +12,14 @@ export const SwiperImage = () => {
     const {booking} = useAppSelector((state) => state.user)
     const {deleteBooking} = useBooking()
 
+    const formatPriceInUSCurrency = (total: number) => {
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        })
+        return formatter.format(total)
+    }
+
     return (
         <>
             {
@@ -26,37 +34,40 @@ export const SwiperImage = () => {
                         className={`swiper-custom-css`}
                     >
                         {
-                            booking.map((book, index) => {
+                            booking.map((book) => {
 
                                 return (
                                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                     // @ts-ignore
-                                    book.prices.map((room) => {
+                                    book.prices.map((price, index) => {
                                         return (
                                             <SwiperSlide>
                                                 <div className="booking-list mt-2">
                                                     <div className="images-container" key={`${index}_${book.bookingID}`}>
-                                                        <div className="image grid grid-cols-6 sm:flex sm:flex-col sm:mb-2">
-                                                            <div className="hotel-image col-span-2">
+                                                        <div className="image grid grid-cols-12 w-[96%] sm:w-[100%] ml-auto sm:flex sm:flex-col sm:mb-2 sm:gap-[1.5em]">
+                                                            <div className="hotel-image col-span-6">
                                                                 <img className="h-auto max-w-full" src={photo} alt=""/>
                                                             </div>
-                                                            <div className="room-detail col-span-4 w-full sm:mt-1">
-                                                                <h3>{room.roomName}</h3>
+                                                            <div className="room-detail col-start-7 col-end-13 w-full sm:mt-1">
+                                                                <h3>{price.roomName}</h3>
                                                                 <div className="detail">
                                                                     <div className="check">
                                                                         <li>Booking#:<i>{book.bookingID}</i></li>
-                                                                        <li>Room Type:<i>Double</i></li>
+                                                                        <li>Room#:<i>{book.rooms[index].roomID}</i></li>
+                                                                    </div>
+                                                                    <div className="check">
+                                                                        <li>Room Name:<i>{book.rooms[index].roomName}</i></li>
+                                                                        <li>Date Book:<i> {book.bookDate}</i></li>
                                                                     </div>
                                                                     <div className="check flex-row">
                                                                         <li>Check-in:<i> {book.arrDate}</i></li>
                                                                         <li>Check-out:<i> {book.depDate}</i></li>
                                                                     </div>
                                                                     <div className="check flex-row">
-                                                                        <li>Price:<i>$162</i></li>
-                                                                        <li>Date Book:<i> {book.bookDate}</i></li>
+                                                                        <li className='price-li'>Price:<i>{formatPriceInUSCurrency(price.price)}</i></li>
                                                                     </div>
                                                                 </div>
-                                                                <div className="action-btn">
+                                                                <div className="book-delete-btn flex !w-[85%] !justify-end">
                                                                     <li className=''
                                                                         onClick={() => null}
                                                                     >

@@ -50,7 +50,7 @@ export interface Credentials  {
 export type BookingPrice = {
     id: number,
     roomID: number,
-    bookingPrice: number,
+    price: number,
 }
 
 export interface CredentialsReset {

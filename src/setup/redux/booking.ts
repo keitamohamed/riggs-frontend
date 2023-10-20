@@ -75,7 +75,7 @@ const bookingSlice = createSlice({
                     let bookingTotal = 0
                     const prices = book.prices
                     prices.map(price => {
-                        bookingTotal += price.bookingPrice
+                        bookingTotal += price.price
                     })
                     state.recentBook.push({
                         id: book.bookingID,
@@ -131,7 +131,7 @@ const bookingSlice = createSlice({
             const price = {
                 id: 0,
                 roomID: action.payload,
-                bookingPrice: 0
+                price: 0
             }
 
             state.booking.prices.push(price)

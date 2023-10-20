@@ -65,8 +65,42 @@
     }
   }
 
-  .swiper-button-next, .swiper-button-prev, .swiper-pagination, .swiper-pagination-bullet {
+  .book-delete-btn {
+    gap: 1em;
+
+    li {
+      border: 1px solid $border_color;
+      padding: 2px 15px;
+      cursor: pointer;
+      border-radius: 10px;
+
+      &:hover {
+        color: $color_white;
+        background: $color_blue;
+        border-color: $color_blue;
+      }
+    }
+
+    li:last-child:hover {
+      background: $color_red;
+      border-color: $color_red;
+    }
+  }
+
+  .swiper-pagination-bullet {
     display: block !important;
+  }
+
+  .swiper-button-next, .swiper-button-prev {
+    display: none;
+  }
+
+  .swiper-pagination {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    position: inherit;
+    margin: 2em auto;
   }
 
 }
