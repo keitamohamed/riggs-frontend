@@ -3,7 +3,6 @@ import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {LineChartComp} from "../chart/line.tsx";
 import {DoughnutChartComp} from "../chart/doughnut.tsx";
 import {RequestTable} from "../table/request-table.tsx";
-import {bookingData} from "../../api-endpoint/fake-booking-data.ts";
 
 import {GraphCard} from "./graph-card.tsx";
 import {useApp} from "../../custom-hook/useApp.ts";

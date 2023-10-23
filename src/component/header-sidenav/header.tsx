@@ -42,7 +42,10 @@ export const Header = () => {
                     <p>Washington d.c</p>
                 </div>
                 <div className="action-btn grid grid-cols-2 sm:grid-cols-1 sm:col-span-2 col-span-3">
-                    <div className="book sm:hidden"><h3 onClick={() => nav('/booking')}>Book Room</h3></div>
+                    <div className={`book sm:hidden ${authCtx.isAuthenticated() ? '' : 'hidden'}`}
+                         aria-disabled={true}
+                    >
+                        <h3 onClick={() => nav('/booking')}>Book Room</h3></div>
                     <div className="book login-signup">
                         <h5 className={`${authCtx.isAuthenticated() ? 'hidden' : 'block'}`} onClick={toLogin}>Login</h5>
                         <h5 className={`${authCtx.isAuthenticated() ? 'block' : 'hidden'}`} onClick={setLogout}>Logout</h5>

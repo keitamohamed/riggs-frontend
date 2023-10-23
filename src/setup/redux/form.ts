@@ -16,7 +16,8 @@ const resetForm = {
         email: "",
         password: "",
         role: ""
-    }
+    },
+    book: []
 }
 
 const initialState: FormInit = {
@@ -35,7 +36,8 @@ const initialState: FormInit = {
             email: "",
             password: "",
             role: ""
-        }
+        },
+        book: []
     },
     message: '',
     error: {

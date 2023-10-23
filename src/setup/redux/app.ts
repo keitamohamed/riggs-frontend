@@ -20,6 +20,20 @@ const formatTimeStamp = (str: string) => {
     }).format(date)
 }
 
+const isURLMatch = (str: string) => {
+    const arr = [
+        'http://localhost:8080/riggs/user',
+        'http://localhost:8080/riggs/room',
+        'http://localhost:8080/riggs/booking',
+        'http://localhost:8080/riggs/admin'
+    ]
+    return arr.filter(e => str.includes(e))[0]
+}
+
+const getURLReplaceValue = (str: string) => {
+    return isURLMatch(str).includes('/user') ? '/user' : isURLMatch(str).includes('/booking') ? '/booking' : isURLMatch(str).includes('/room') ? '/room' : ''
+}
+
 const initialState: InitAppSys = {
     exchange200: 0,
     exchange400: 0,
@@ -47,7 +61,7 @@ const appSlice = createSlice({
                 state.exchanges.push({
                     timestamp:  formatTimeStamp(e?.timestamp),
                     request: {
-                        uri: e?.request.uri,
+                        uri: getURLReplaceValue(e?.request.uri),
                         method: e?.request.method
                     },
                     response: {
@@ -65,9 +79,23 @@ const appSlice = createSlice({
         setTraces(state, action) {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            state.traces = action.payload?.exchanges.filter((data: any) =>
+            const filterResult = action.payload?.exchanges.filter((data: any) =>
                 data.request.uri !== 'http://localhost:8080/riggs/admin/httpexchanges' &&
                 data.request.uri !== 'http://localhost:8080/riggs/admin/health')
+
+            filterResult.map((e: any): any => {
+                state.traces.push({
+                    timestamp:  formatTimeStamp(e?.timestamp),
+                    request: {
+                        uri: e?.request.uri.replace(isURLMatch(e?.request.uri), getURLReplaceValue(e?.request.uri)),
+                        method: e?.request.method
+                    },
+                    response: {
+                        status: e?.response.status
+                    },
+                    timeTaken: e?.timeTaken
+                })
+            })
         },
         setChartData(state, action) {
             let numTime = action.payload?.exchanges.filter((e: any) => e.response.status == 200).length
@@ -98,7 +126,7 @@ const appSlice = createSlice({
             state.message = action.payload
         },
         setError(state, action) {
-            state.error = action.payload.error
+            state.error = action.payload?.error
         }
     }
 })

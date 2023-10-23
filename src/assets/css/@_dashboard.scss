@@ -16,6 +16,11 @@
       color: $dark_white;
     }
 
+    svg, img {
+      fill: $color_white;
+      background: transparent;
+    }
+
     li {
       display: flex;
       justify-content: space-evenly;

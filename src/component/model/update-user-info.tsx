@@ -1,4 +1,4 @@
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import {UIActionContext} from "../../setup/context/context.ts";
 import {UserAuth} from "../form/user-auth.tsx";
 import {UserDetail} from "../form/user-detail.tsx";
@@ -16,18 +16,14 @@ export const UpdateUserInfo = () => {
         dispatch(formAction.reSetError())
     }
 
-    useEffect(() => {
-        console.log(message , ' and error ', Object.keys(error || {}).length )
-    }, [message, error])
-
     return (
         <>
             {
                 Object.keys(message).length !== 0 ||  Object.keys(error).length !== 0  ?
                     <Alert
                         function={reSetMessageNError}
-                        message={message.message}
-                        error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : ''}`}
+                        message={message}
+                        error={`${error && error.errors?.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : ''}`}
                     /> : <></>
             }
             <div className="signup_container">

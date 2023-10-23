@@ -27,7 +27,7 @@ const authSlice = createSlice({
         },
         setCredentials(state, action) {
             const {accessToken, email} = action.payload
-            const role = Object.keys(action.payload).filter(key => key.includes("ROLE"))
+            const role = Object.keys(action.payload).filter(key => key?.includes("ROLE"))
             state.credentials.accessToken = accessToken
             state.credentials.email = email
             state.credentials.role = role[0]

@@ -22,8 +22,11 @@ import {RegisterNewUser} from "./registerNewUser.tsx";
 import {Room_Form} from "../form/room-detail.tsx";
 import {roomAction} from "../../setup/redux/room.ts";
 import {formAction} from "../../setup/redux/form.ts";
+import logo from "../../assets/img/riggs-logo-white.svg";
+import {useNavigate} from "react-router-dom";
 
 export const Dashboard = () => {
+    const nav = useNavigate()
     const authCtx = useContext(AuthContext)
     const dashCtx = useContext(DashboardContext)
     const dispatch = useAppDispatch()
@@ -90,6 +93,13 @@ export const Dashboard = () => {
             <div className="dashboard-main grid grid-cols-12 gap-x-[1em] pb-[1em]">
                 <div className="dash-sidebar col-span-2 sm:hidden md:hidden">
                     <div className="sidebar-context grid">
+                        <div className={`context w-full`}>
+                            <div className={`context-canvas w-full mt-[1em] mb-[.5em]`}>
+                                <li className={`list-none w-full grid place-content-center `} onClick={() => nav('/')}>
+                                    <img className={`w-[50%]`} src={logo} alt="logo"/>
+                                </li>
+                            </div>
+                        </div>
                         <div className="avatar flex gap-3 place-content-center justify-center">
                             <div className="image-container">
                                 <img className="w-12 h-12 rounded-full" src={profile} alt="img"/>
@@ -145,7 +155,7 @@ export const Dashboard = () => {
                         </div>
                         {
                             components?.db ? <>
-                                <div className="system-info-container col-start-2 col-end-13">
+                                <div className="system-info-container col-start-2 col-end-13 sm:hidden">
                                 <div className="sys-context grid grid-cols-5 sm:grid-cols-2 sm:hidden justify-center place-content-center">
                                     <li className='sm:!hidden'>SYS Monitoring</li>
                                     <li className='sm:place-content-center sm:!w-full gap-[.5em]'>

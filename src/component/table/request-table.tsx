@@ -3,15 +3,13 @@ import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {TableData} from "./table-data.tsx";
 import {usePaginate, usePost} from "../../custom-hook/usePaginate.ts";
 import {Pagination} from "../reusable/Pagination.tsx";
-import {useUser} from "../../custom-hook/useUser.ts";
 import {useExcelFile} from "../excel/excel-file.ts";
 
 export const RequestTable = (post: {numberPostPerPage: number}) => {
-    const {onClickGenerateUserExcelFile} = useUser()
     const {onClickCreateRiggsTraceExcelFile} = useExcelFile()
     const {traces} = useAppSelector((state) => state.app)
     const {currentPost, postPerPage, setCurrentPost} = usePaginate(post.numberPostPerPage)
-    const {currentPosts} = usePost(traces, currentPost, postPerPage)
+    const {currentPosts} = usePost(traces.slice(0, 30), currentPost, postPerPage)
 
     const paginate = (pageNumber: number) => setCurrentPost(pageNumber)
 
@@ -29,11 +27,9 @@ export const RequestTable = (post: {numberPostPerPage: number}) => {
                         }
                         <Pagination
                             postPerPage={postPerPage}
-                            totalPost={traces.length}
+                            totalPost={traces.slice(0, 30).length}
                             paginate={paginate} />
                     </div>
-
-
                 </div>
             </div>
         </div>
