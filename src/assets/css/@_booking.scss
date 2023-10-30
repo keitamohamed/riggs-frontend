@@ -33,6 +33,12 @@
   }
 
   .header-transparent {
+
+    li {
+      img:last-child {
+        display: none;
+      }
+    }
     .book {
       h5 {
         color: $dark !important;

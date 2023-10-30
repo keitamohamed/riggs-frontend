@@ -8,17 +8,9 @@ import {Header} from "../header-sidenav/header.tsx";
 import {SideNav} from "../header-sidenav/side-nav.tsx";
 import {EmailSection} from "../reusable/emailSection.tsx";
 
-import atelier from '../../assets/img/atelier-side-table-detail_high-res.jpg'
-import cafeRiggs from '../../assets/img/cafe-riggs-220422-420-credit-caitlin-isola.jpg'
-import cafe from '../../assets/img/cafe.jpg'
-import riggsHotel from '../../assets/img/riggshotel.jpg'
-import sliver from '../../assets/img/silver-lyan-4.jpeg'
-import silverLyan from '../../assets/img/35-silverlyan1454.jpg'
-import img1 from '../../assets/img/5f114359c91bb.jpg'
-import img3 from '../../assets/img/60643d4c99091.jpg'
-import img2 from '../../assets/img/riggshotel_large.jpg'
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../setup/context/context.ts";
+import {SwiperIndex} from "../swiper/swiper-index.tsx";
 
 export const Index = () => {
     const nav = useNavigate()
@@ -62,14 +54,18 @@ export const Index = () => {
                 </main>
                 <div className="intro intro--no-ctas">
                     <div className="intro-inner no-ctas">
-                        <h1 className='sm:!text-[50px]'>riggs washington DC</h1>
+                        <h1 className='sm:!text-[40px]'>riggs washington DC</h1>
                     </div>
                 </div>
-                <div className="info-container">
+                <div className="info-container info-container-main">
                     <div className="summary-info grid mt-2 grid-cols-10">
-                        <div className="img-container grid gap-1 grid-cols-2 col-start-1 col-end-7 sm:col-start-1 sm:col-end-11">
-                            <img src={atelier} alt=""/>
-                            <img src={cafeRiggs} alt=""/>
+                        <div className="img-container grid col-start-1 col-end-7 sm:col-start-1 sm:col-end-11">
+                            <div className="lg-device grid gap-1 grid-cols-2 col-start-1 col-end-7 sm:hidden">
+                                <img src={'/atelier-side-table-detail_high-res.jpg'} alt=""/>
+                                <img src={'/cafe-riggs-220422-420-credit-caitlin-isola.jpg'} alt=""/>
+                            </div>
+                            <SwiperIndex images={['/atelier-side-table-detail_high-res.jpg',
+                                '/cafe-riggs-220422-420-credit-caitlin-isola.jpg']}/>
                         </div>
                         <div className="text-container col-start-7 col-end-11 sm:col-start-1 sm:col-end-11">
                             <h2 className='sm:!text-[45px]'>Summer in the <br className='sm:hidden'/>City</h2>
@@ -81,9 +77,6 @@ export const Index = () => {
                                     Mall, the city's world-class museums or venturing
                                     out of town to one of the nearby wineries.
                                 </p>
-                                <div className="action-container">
-                                    <h5>Book Room</h5>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,20 +94,23 @@ export const Index = () => {
                                     the bar and dining room offering a menu of classics
                                     and innovative originals in a stately setting.
                                 </p>
-                                <div className="action-container">
-                                    <h5>Book Room</h5>
-                                </div>
                             </div>
                         </div>
-                        <div className="img-container grid gap-1 grid-cols-2 col-start-5 col-end-11 sm:col-start-1 sm:col-end-11 sm:order-1">
-                            <img src={cafe} alt=""/>
-                            <img src={riggsHotel} alt=""/>
+                        <div className="img-container grid col-start-5 col-end-11 sm:col-start-1 sm:col-end-11 sm:order-1">
+                            <div className="lg-device grid gap-1 grid-cols-2 sm:hidden">
+                                <img src={'/cafe.jpeg'} alt=""/>
+                                <img src={'/room-3.jpeg'} alt=""/>
+                            </div>
+                            <SwiperIndex images={['/cafe.jpeg', '/room-3.jpeg']}/>
                         </div>
                     </div>
                     <div className="summary-info grid mt-12 grid-cols-10">
-                        <div className="img-container grid gap-1 grid-cols-2 col-start-1 col-end-7 sm:col-start-1 sm:col-end-11">
-                            <img src={sliver} alt=""/>
-                            <img src={silverLyan} alt=""/>
+                        <div className="img-container grid col-start-1 col-end-7 sm:col-start-1 sm:col-end-11">
+                            <div className="lg-device grid gap-1 grid-cols-2 col-start-1 col-end-7 sm:hidden">
+                                <img src={'/silver-lyan-4.jpeg'} alt=""/>
+                                <img src={'/35-silverlyan1454.jpeg'} alt=""/>
+                            </div>
+                            <SwiperIndex images={['/silver-lyan-4.jpeg', '/35-silverlyan1454.jpeg']}/>
                         </div>
                         <div className="text-container col-start-7 col-end-11 sm:col-start-1 sm:col-end-11">
                             <h2 className='sm:!text-[45px]'>Sliver Lyan</h2>
@@ -130,16 +126,13 @@ export const Index = () => {
                                     people and history to offer a bar that celebrates the notion of
                                     exchange – as well as a damn good time.
                                 </p>
-                                <div className="action-container">
-                                    <h5>Book Room</h5>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div className="image-container gap-4 grid grid-cols-3">
                         <div className="img-one">
                             <div className="image">
-                                <img src={img1} alt=""/>
+                                <img src={'/5f114359c91bb.jpeg'} alt=""/>
                             </div>
                             <div className="text-container">
                                 <h2>Rooms and suites</h2>
@@ -147,7 +140,7 @@ export const Index = () => {
                         </div>
                         <div className="img-one">
                             <div className="image">
-                                <img src={img2} alt=""/>
+                                <img src={'/room-3.jpeg'} alt=""/>
                             </div>
                             <div className="text-container">
                                 <h5>Eat & Drink</h5>
@@ -155,7 +148,7 @@ export const Index = () => {
                         </div>
                         <div className="img-one">
                             <div className="image">
-                                <img src={img3} alt=""/>
+                                <img src={'/60643d4c99091.jpeg'} alt=""/>
                             </div>
                             <div className="text-container">
                                 <h5>Meeting And Events</h5>

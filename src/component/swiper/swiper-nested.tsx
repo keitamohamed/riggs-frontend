@@ -3,7 +3,6 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Pagination} from "swiper/modules";
 
 import {Room} from "../../interface/interface-type.ts";
-import photo from "../../assets/img/room-ava-t.jpg";
 import {useEffect, useState} from "react";
 
 type Prop = {
@@ -31,7 +30,6 @@ export const SwiperNested = (props: Prop) => {
 
         if (breakPoint.width <= 768 ) {
             wrapper?.classList.add('swiper-nested-sm')
-            // wrapper.style.height = `${image_container.clientHeight + 100}px`
         } else
         wrapper?.classList.remove('swiper-nested-sm')
     }, [breakPoint.width])
@@ -76,7 +74,7 @@ export const SwiperNested = (props: Prop) => {
                                             <div className="images-container sm:!block" key={`${room.roomID}`}>
                                                 <div className="image grid grid-cols-1 sm:flex sm:flex-col sm:mb-2">
                                                     <div className="image-fit-screen">
-                                                        <img className="h-auto max-w-full" src={photo} alt=""/>
+                                                        <img className="h-auto max-w-full" src={'/room-ava-t.jpg'} alt=""/>
                                                     </div>
                                                     <div className="room-detail col-span-4 w-full sm:mt-1">
                                                         <h3 className='title-id grid grid-cols-12 px-1'>
@@ -99,7 +97,7 @@ export const SwiperNested = (props: Prop) => {
                                             <div className="images-container sm:!block">
                                                 <div className="image grid grid-cols-1 sm:flex sm:flex-col sm:mb-2">
                                                     <div className="image-fit-screen">
-                                                        <img className="h-auto max-w-full" src={photo} alt=""/>
+                                                        <img className="h-auto max-w-full" src={'/room-ava-t.jpg'} alt=""/>
                                                     </div>
                                                 </div>
                                             </div>

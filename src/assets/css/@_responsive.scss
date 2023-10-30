@@ -55,8 +55,28 @@
 
 @include responsive_max(sm) {
 
-  .swiper-dashboard-sm {
+  .index {
+    .new-letter {
 
+      .email-container {
+        width: 100%;
+        padding: 10px;
+
+        div {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          gap: 1em;
+          width: 100%;
+        }
+
+        input, textarea {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .swiper-dashboard-sm {
     .room-detail {
       .detail {
 
@@ -76,8 +96,25 @@
 
   .profile_profile {
 
-    .swiper {
+    .header {
+      background: transparent;
+      position: fixed;
 
+      .context-canvas {
+
+        .list-none {
+
+          img {
+            display: none;
+          }
+
+          img:last-child {
+            display: block;
+          }
+        }
+      }
+    }
+    .swiper {
       .room-detail {
         padding: 0;
 
@@ -113,6 +150,44 @@
 
       .swiper-button-next, .swiper-button-prev {
         display: none !important;
+      }
+    }
+  }
+
+  .dashboard-main {
+
+    .dash-sidebar {
+      .logo {
+        width: 25%;
+      }
+
+      .dash-buttons-container {
+
+        span {
+          display: block;
+        }
+
+        li {
+
+          &:hover {
+            background: $color_white !important;
+            * {
+              color: $dark;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .signup_container {
+
+    .signup_container {
+
+      .form_group.next {
+        p {
+          width: 100%;
+        }
       }
     }
   }

@@ -24,10 +24,10 @@ export const GraphCard = (props: Data) => {
                 </div>
                 <div className="btn-container grid place-content-end !text-right">
                     {
-                        props.title == 'Users Data' ? <li className='flex list-none w-fit gap-[1em] !text-right ml-auto'
+                        props.title == 'Users Data' ? <li className='list-none gap-[1em] !text-right ml-auto'
                                                           onClick={onClickGenerateUserExcelFile}
                         >
-                            <SiMicrosoftexcel className='!w-fit'/> Excel</li> : <></>
+                            <SiMicrosoftexcel className=''/> Excel</li> : <></>
                     }
 
                 </div>

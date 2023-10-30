@@ -4,7 +4,6 @@ import {AiOutlineEdit, AiFillDelete} from 'react-icons/ai'
 
 import {Grid, Pagination, Keyboard, Navigation, Mousewheel} from "swiper/modules";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
-import photo from "../../assets/img/room-ava.jpg";
 import {useRoom} from "../../custom-hook/useRoom.ts";
 import {Room} from "../../interface/interface-type.ts";
 import {DashboardContext} from "../../setup/context/context.ts";
@@ -72,7 +71,7 @@ export const SwiperCarousel = () => {
                                             <div className="images-container" key={`${room.roomID}`}>
                                                 <div className="image grid grid-cols-1 sm:flex sm:flex-col sm:mb-2">
                                                     <div className="image-fit-screen col-span-2">
-                                                        <img className="h-auto max-w-full" src={photo} alt=""/>
+                                                        <img className="h-auto max-w-full" src={'/room-ava.jpg'} alt=""/>
                                                     </div>
                                                     <div className="room-detail col-span-4 w-full sm:mt-1">
                                                         <h3 className='title-id grid grid-cols-12 px-1'>

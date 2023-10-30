@@ -2,7 +2,6 @@ import {AiFillEdit} from "react-icons/ai";
 import {LuEdit2} from "react-icons/lu";
 
 import {TransparentHeader} from "../header-sidenav/header-trans.tsx";
-import img from "../../assets/img/profile-img.jpg"
 import {useUser} from "../../custom-hook/useUser.ts";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {useCallback, useContext, useEffect, useState} from "react";
@@ -17,7 +16,7 @@ export const Profile = () => {
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
     const {user, booking} = useAppSelector((state) => state.user)
-    const {message, error} = useAppSelector((state) => state.booking)
+    const {message, error} = useAppSelector((state) => state.form)
     const {findUserByEmail} = useUser()
     const [loadUserDate, setLoadUserData] = useState<boolean>(false)
     
@@ -73,7 +72,8 @@ export const Profile = () => {
                     <div className="content">
                         <div className="user_info flex items-center
                         space-x-6 sm:grid sm:grid-cols-1 border-1 sm:border-0">
-                            <img src={img} alt="avatar" className="w-24 h-24 rounded sm:w-full sm:h-full"/>
+                            <img src={'/profile-img.jpg'} alt="avatar"
+                                 className="w-24 h-24 rounded sm:w-full sm:h-full"/>
                             <div className="info-container infocol-span-6
                             flex items-center space-x-4 w-full sm:mb-5">
                                 <div className="info grow sm:p-2">
@@ -130,8 +130,8 @@ export const Profile = () => {
                             (message || error) && Object.keys(message).length > 0 || Object.keys(error).length > 0  ?
                                 <Alert
                                     function={reSetMessageNError}
-                                    message={message.message}
-                                    error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : ''}`}
+                                    message={message}
+                                    error={`${error && error.errors === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : ''}`}
                                 /> : <></>
                         }
                     </div>

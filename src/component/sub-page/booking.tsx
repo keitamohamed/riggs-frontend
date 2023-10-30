@@ -1,6 +1,6 @@
 import {RiDeleteBinLine} from "react-icons/ri";
 
-import room1 from "../../assets/img/room-1.jpg"
+import room1 from "../../assets/svg/room-1.jpg"
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 
 export const Booking = () => {

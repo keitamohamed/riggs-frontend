@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {Booking, BookingInit, BookingPrice, User} from "../../interface/interface-type.ts";
-import {RecentBook} from "../../component/reusable/recent-book.tsx";
 
 
 const user = {
@@ -51,8 +50,11 @@ const initialState: BookingInit = {
     },
     recentBook: [],
     bookingList: [],
-    message: {},
-    error: {}
+    message: '',
+    error: {
+        errorCode: 0,
+        errors: {}
+    }
 }
 
 const bookingSlice = createSlice({
@@ -118,13 +120,16 @@ const bookingSlice = createSlice({
             state.message = action.payload
         },
         reSetMessage(state) {
-            state.message = {}
+            state.message = ""
         },
         setError(state, action) {
             state.error = action.payload
         },
         reSetError(state) {
-            state.error = {}
+            state.error = {
+                errors: {},
+                errorCode: 0,
+            }
         },
         setReserveRoom(state, action) {
             state.booking.rooms.push(action.payload)

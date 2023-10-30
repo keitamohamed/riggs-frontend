@@ -1,5 +1,4 @@
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
-import pImgae from "../../assets/img/profile-img.jpg";
 
 export const RecentBook = () => {
     const {recentBook} = useAppSelector((state) => state.booking)
@@ -19,13 +18,13 @@ export const RecentBook = () => {
                     <div className="title-container">
                         <h1>Recent Booking</h1>
                     </div>
-                    <div className="context-container">
+                    <div className={`context-container ${recentBook.length == 0 ? 'relative h-[45dvh]' : ''}`}>
                         {
                             recentBook.length > 0 ? recentBook.map((book, index) => {
                                 return (
                                     <div className="book-container flex gap-[.5em]" key={index}>
                                         <div className="avatar flex gap-[.7em]" key={`${book.id}_${index}`}>
-                                            <img className='w-10 h-10 rounded-full' src={pImgae} alt=""/>
+                                            <img className='w-10 h-10 rounded-full' src={'/profile-img.jpg'} alt=""/>
                                             <div className="avatar-context grid grid-cols-1">
                                                 <h5>{book.name}</h5>
                                                 <p className='!w-[50%]'>{book.email}</p>
@@ -37,7 +36,7 @@ export const RecentBook = () => {
                                         </div>
                                     </div>
                                 )
-                            }) : <></>
+                            }) : <div className='no-booking absolute inset-0 h-4 mx-auto my-auto'>No Booking Made</div>
                         }
                     </div>
                 </div>

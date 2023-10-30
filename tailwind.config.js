@@ -12,6 +12,9 @@ export default {
       'cm': {'min': '768px'},
       // => @media (min-width: 768px) { ... }
 
+      'sms': {'max': '960px'},
+      // => @media (max-width: 960px) { ... }
+
       'md': {'min': '768px', 'max': '960px'},
       // => @media (min--width: 570px and max-width: 960px) { ... }
 

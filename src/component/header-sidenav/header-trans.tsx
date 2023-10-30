@@ -6,9 +6,10 @@ import {BiHotel} from "react-icons/bi";
 
 import {authAction} from "../../setup/redux/authenticate.ts";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
-import logo from "../../assets/img/riggs-logo-navy.svg";
 import {useBooking} from "../../custom-hook/useBooking.ts";
 import {useUser} from "../../custom-hook/useUser.ts";
+import logo from "../../assets/svg/riggs-logo-navy.svg"
+import logoWhite from "../../assets/svg/riggs-logo-white.svg"
 
 type props = {custom_class: string}
 export const TransparentHeader = ({custom_class}: props) => {
@@ -54,6 +55,7 @@ export const TransparentHeader = ({custom_class}: props) => {
                     <div className={`context-canvas w-full`}>
                         <li className={`list-none w-full grid place-content-center  ${numRooms() == 0 ? 'sm:place-content-end sm:pr-6' : ''}`} onClick={() => nav('/')}>
                             <img className={`${numRooms() == 0 ? 'ml-[10em] sm:ml-[6em]' : 'mr-[10em] sm:mr-[4em]'} sm:mr-[1em] sm:pr-4`} src={logo} alt="logo"/>
+                            <img className={`${numRooms() == 0 ? 'ml-[10em] sm:ml-[6em] sms:hidden' : 'mr-[10em] sm:mr-[4em]'} sm:mr-[1em] sm:pr-4`} src={logoWhite} alt="logo"/>
                         </li>
                     </div>
                 </div>

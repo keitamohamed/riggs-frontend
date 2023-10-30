@@ -6,7 +6,6 @@
   }
 
   .dash-sidebar {
-
     min-height: 100dvh;
     padding: 10px;
     row-gap: .5em;
@@ -30,9 +29,12 @@
       svg {
         font-size: 1em;
       }
+
     }
 
     .sidebar-context {
+      display: inherit;
+      width: 100%;
       row-gap: .5em;
 
       .avatar {
@@ -40,12 +42,34 @@
         border-bottom: 1px solid $border_color;
       }
 
+      .dash-btn-container {
+        padding: 10px 0;
+        display: inherit;
+        width: 100%;
+        li {
+          margin-bottom: .5em;
+        }
+
+        svg {
+          width: fit-content;
+        }
+      }
+
       span {
         text-align: left;
       }
 
-      svg {
-        width: fit-content;
+      .context {
+
+        .context-canvas {
+          width: 100%;
+
+          li {
+            justify-items: center;
+            text-align: center;
+            position: relative;
+          }
+        }
       }
 
       .dash-btn-container {
@@ -66,7 +90,7 @@
 
            svg {
              margin-left: auto;
-             width: fit-content;
+             width: 10%;
            }
          }
 
@@ -77,20 +101,45 @@
       }
 
       .dash-buttons-container, .dash-buttons-container-update, .update-btn-container {
+        width: 100%;
         margin-top: .5em;
-        display: flex;
         flex-direction: column;
-        place-items: start;
+        place-items: flex-start;
         gap: .5em;
-        padding: 0 10px;
 
         li {
-          place-items: center;
-          gap: 1em;
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          place-content: start;
+          flex-direction: row;
+          align-items: flex-start;
+          gap: 1.5em;
+          padding: 5px 10px;
+
+          &:hover {
+            background: $color_white;
+
+            * {
+              color: $dark;
+            }
+
+            svg {
+              fill: $dark;
+              color: $dark;
+            }
+          }
+
+          svg {
+            align-self: center;
+          }
         }
+
       }
 
       .dash-buttons-container-update {
+        display: grid;
+        width: 100%;
         padding: 0;
         gap: 0;
         row-gap: .5em;
@@ -98,17 +147,16 @@
 
         .updated-btn {
           display: flex;
-          flex-wrap: wrap;
-          padding: 2px 3px;
+          width: 100%;
+          padding: 2px 5px;
           place-items: center;
           border-radius: 5px;
           cursor: pointer;
           transition: all 1s ease-in-out;
           text-align: left;
+          background: $color_blue;
 
           &:hover {
-            background: $dark_white;
-            color: $dark;
 
             * {
               color: $dark;
@@ -117,15 +165,30 @@
           }
 
           svg {
-            display: flex;
-            transition: none;
+            display: grid;
             margin-left: auto;
+            transition: all .5s ease-in-out;
           }
+
+          svg:last-child {
+            display: none;
+          }
+        }
+
+        .updated-btn.arrow-down {
+
+          svg:first-child {
+            display: none;
+          }
+          svg:last-child {
+            display: grid;
+          }
+
         }
 
         .update-btn-container {
           height: 0;
-          transition: all 1s ease-in-out;
+          transition: all .5s ease-in-out;
         }
 
         .update-btn-container.h-full {

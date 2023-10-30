@@ -99,7 +99,9 @@
     }
 
     .btn-container {
+
       li {
+        display: flex;
         border: 1px solid $border_color;
         padding: 2px 10px;
         font-size: 1em;
@@ -115,6 +117,12 @@
         &:hover {
           background: $color_white;
           color:  $dash_colo_blue;
+        }
+
+        svg {
+          display: flex;
+          margin-left: auto;
+          place-content: center;
         }
       }
     }
@@ -142,7 +150,11 @@
   }
 
   .email-container {
+    display: grid;
     padding: 2em 1em 1em;
+    margin: 0 auto;
+    width: 70%;
+    gap: 1em;
 
     input, textarea {
       background: transparent;
@@ -159,6 +171,13 @@
 
   .btn-container {
     border: 1px solid $dark_white;
+    color: $dark;
+    background: $dark_white;
+    border-radius: 10px;
+
+    p {
+      cursor: pointer;
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 
-import {AiOutlineUsergroupAdd, AiFillHome, AiOutlineForm, AiOutlineTable, AiOutlineLeft} from 'react-icons/ai'
+import {AiOutlineUsergroupAdd, AiFillHome, AiOutlineForm, AiOutlineTable, AiOutlineLeft, AiOutlineDown} from 'react-icons/ai'
 import {CiMenuBurger, CiHardDrive} from 'react-icons/ci'
 import {BsHddNetwork, BsDatabase} from 'react-icons/bs'
 import {BiTime} from 'react-icons/bi'
@@ -15,15 +15,16 @@ import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {useApp} from "../../custom-hook/useApp.ts";
 import {Dash} from "../reusable/dash.tsx";
 
-import profile from "../../assets/img/profile-img.jpg"
 import {useUser} from "../../custom-hook/useUser.ts";
 import {AuthContext, DashboardContext} from "../../setup/context/context.ts";
 import {RegisterNewUser} from "./registerNewUser.tsx";
 import {Room_Form} from "../form/room-detail.tsx";
 import {roomAction} from "../../setup/redux/room.ts";
 import {formAction} from "../../setup/redux/form.ts";
-import logo from "../../assets/img/riggs-logo-white.svg";
 import {useNavigate} from "react-router-dom";
+
+import logo from "../../assets/svg/riggs-logo-white.svg"
+
 
 export const Dashboard = () => {
     const nav = useNavigate()
@@ -73,7 +74,9 @@ export const Dashboard = () => {
     
     const updatedAction = () => {
         const ele: HTMLElement = document.querySelector('.update-btn-container') as HTMLElement;
+        const actionBtn: HTMLElement = document.querySelector('.updated-btn') as HTMLElement;
         ele.classList.toggle("h-full")
+        actionBtn.classList.toggle('arrow-down')
     }
 
     useEffect(() => {
@@ -91,24 +94,24 @@ export const Dashboard = () => {
     return (
         <>
             <div className="dashboard-main grid grid-cols-12 gap-x-[1em] pb-[1em]">
-                <div className="dash-sidebar col-span-2 sm:hidden md:hidden">
-                    <div className="sidebar-context grid">
-                        <div className={`context w-full`}>
-                            <div className={`context-canvas w-full mt-[1em] mb-[.5em]`}>
-                                <li className={`list-none w-full grid place-content-center `} onClick={() => nav('/')}>
-                                    <img className={`w-[50%]`} src={logo} alt="logo"/>
+                <div className="dash-sidebar inline-block col-start-1 col-end-3 sms:col-start-1 sms:col-end-13 sms:z-10 sm:">
+                    <div className="sidebar-context">
+                        <div className={`context`}>
+                            <div className={`context-canvas mt-[1em] mb-[.5em]`}>
+                                <li className={`list-none grid place-content-center `} onClick={() => nav('/')}>
+                                    <img className={`logo w-[50%]`} src={logo} alt="logo"/>
                                 </li>
                             </div>
                         </div>
                         <div className="avatar flex gap-3 place-content-center justify-center">
                             <div className="image-container">
-                                <img className="w-12 h-12 rounded-full" src={profile} alt="img"/>
+                                <img className="w-12 h-12 rounded-full" src={'/profile-img.jpg'} alt="img"/>
                             </div>
                             <div className="avatar-name-container grid place-content-center">
                                 <h2>{user.firstName + ' ' + user.lastName}</h2>
                             </div>
                         </div>
-                        <div className="dash-btn-container grid">
+                        <div className="dash-btn-container">
                             <li className='' onClick={
                                 () => onClick('dashboard-one')}>
                                 <span>Main</span><AiFillHome/>
@@ -118,7 +121,7 @@ export const Dashboard = () => {
                                 <span>Room</span> <FaHotel/>
                             </li>
                         </div>
-                        <div className="dash-buttons-container grid">
+                        <div className="dash-buttons-container">
                             <li className='' onClick={() => {
                                 dashCtx.setDisplayComponentType('user-form')}}>
                                 <AiOutlineUsergroupAdd/><span>User Form</span></li>
@@ -129,12 +132,13 @@ export const Dashboard = () => {
                             ><IoIosBed/><span>Room Form</span></li>
                             <li><AiOutlineTable/> <span>Tables</span></li>
                         </div>
-                        <div className="dash-buttons-container-update grid">
-                            <span className='updated-btn w-full'
+                        <div className="dash-buttons-container-update">
+                            <span className='updated-btn'
                                   onClick={updatedAction}
                             >
                                 Updated
                                 <AiOutlineLeft/>
+                                <AiOutlineDown/>
                             </span>
                             <div className="update-btn-container">
                                 <li className=''><AiOutlineForm/><span>Updated User</span></li>
@@ -144,7 +148,7 @@ export const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="dashboard-context-container sm:col-span-12 place-content-center justify-center md:col-span-12 col-start-3 col-end-13 grid grid-cols-1">
+                <div className="dashboard-context-container col-start-3 col-end-13 sm:col-start-1 sm:col-end-13 place-content-center justify-center md:col-span-12 grid grid-cols-1">
                     <div className="admin-dash-header grid grid-cols-12 place-content-center p-[10px]">
                         <div className="context-container col-span-1 hidden sm:block md:block lg:block">
                             <div className="context-nav grid gap-[.5em] px-[15px] place-content-center justify-center">

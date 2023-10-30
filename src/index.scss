@@ -162,8 +162,8 @@ svg {
 
 .intro {
   margin-top: 5.2em;
-  margin-bottom: 5em;
-  padding-bottom: 50px;
+  margin-bottom: 2em;
+  padding-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: .1em;
 
@@ -179,10 +179,10 @@ svg {
 .info-container {
 
   .summary-info {
-    margin-bottom: 100px;
+    padding-bottom: 90px;
 
     .text-container {
-      padding: 10% 4%;
+      padding: 10% 4% 0;
 
       h2 {
         padding: 20px 10px 10px;
@@ -229,6 +229,8 @@ svg {
 
   .image-container {
     cursor: pointer;
+    padding-top: 1em;
+
     .img-one {
       .image {
         img {
@@ -247,6 +249,15 @@ svg {
           font-weight: normal;
         }
       }
+    }
+  }
+}
+
+.info-container-main {
+  .swiper {
+    .swiper-pagination-bullet {
+      cursor: pointer;
+      background: $color_white;
     }
   }
 }

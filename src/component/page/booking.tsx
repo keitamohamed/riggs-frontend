@@ -16,7 +16,7 @@ import {bookingAction} from "../../setup/redux/booking.ts";
 export const Booking = () => {
     const uiCtx = useContext(UIActionContext)
     const dispatch = useAppDispatch()
-    const {booking, message,error} = useAppSelector((state) => state.booking)
+    const {booking, message, error} = useAppSelector((state) => state.booking)
     const {onChangeRoom, onChange, dateRange, setDateRange} = useBooking()
     const {loadRoom} = useRoom()
     const [startDate, endDate] = dateRange
@@ -66,8 +66,8 @@ export const Booking = () => {
                 Object.keys(message).length !== 0 ||  Object.keys(error).length !== 0  ?
                     <Alert
                         function={reSetMessageNError}
-                        message={message.message}
-                        error={`${error && error.status === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : ''}`}
+                        message={message}
+                        error={`${error && error.errors === 'UNPROCESSABLE_ENTITY'  ? 'Unprocessable Entity. Check all field' : ''}`}
                     /> : <></>
             }
             <TransparentHeader custom_class={''}/>
@@ -79,8 +79,8 @@ export const Booking = () => {
                         </div>
                     </div>
                 ) : <div className="context-container sm:mt-12">
-                    <div className="context grid grid-cols-12 sm:grid-cols-1 gap-2">
-                        <div className="date-selector col-start-1 col-end-8 sm:col-span-1">
+                    <div className="context grid grid-cols-12 sms:grid-cols-1 gap-2">
+                        <div className="date-selector col-start-1 col-end-8 sms:col-start-1 sms:col-end-13">
                             <div className={`select-date-container w-full`}>
                                 <div className="text-container">
                                     <h5 className="text">Select your dates</h5>
@@ -96,7 +96,7 @@ export const Booking = () => {
                                 />
                             </div>
                         </div>
-                        <div className="booking-info col-start-8 col-end-13 sm:col-span-1">
+                        <div className="booking-info col-start-8 col-end-13 sms:col-start-1">
                             <div className="date-container grid grid-cols-2">
                                 <div className="start-date">
                                     <h1>{booking.arrDate?.getDate()}</h1>

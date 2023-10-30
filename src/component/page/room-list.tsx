@@ -7,9 +7,9 @@ import {MdPets} from "react-icons/md";
 import {GrPersonalComputer} from "react-icons/gr";
 
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
-import roomImg from "../../assets/img/room-1.jpg"
 import {RoomActionContext} from "../../setup/context/context.ts";
 import {useBooking} from "../../custom-hook/useBooking.ts";
+
 export const RoomList = () => {
     const ctx = useContext(RoomActionContext)
     const {setReserveRoom} = useBooking()
@@ -44,7 +44,7 @@ export const RoomList = () => {
                             <>
                                 <div className={`room grid grid-cols-1 sm:grid-cols-10 sm:pb-2`} key={room.roomID}>
                                     <div className="image-container col-span-4 sm:col-span-10 sm:w-[100vw] sm:h-[40vh]">
-                                        <img src={roomImg} alt="" className='sm:!object-fill sm:w-[100vw] sm:h-[40vh]' />
+                                        <img src={'/room-1.jpg'} alt="" className='sm:!object-fill sm:w-[100vw] sm:h-[40vh]' />
                                     </div>
                                     <div className="room-action p-[.8em] grid grid-cols-8 sm:grid-cols-2 sm:col-span-10 sm:mt-6 col-span-6">
                                         <h1 className='!w-full col-span-5 sm:col-end-1 sm:!text-center md:!w-full text-center'>{room.roomName}</h1>
@@ -68,7 +68,7 @@ export const RoomList = () => {
                                     </div>
                                 <div className={`room-detail gap-2 sm:grid-cols-1`}>
                                         <div className="image-container w-full">
-                                            <img src={roomImg} alt="" />
+                                            <img src={'/room-1.jpg'} alt="" />
                                         </div>
                                         <div className="info grid gap-1 w-[90%] sm:!w-full m-auto md:grid-cols-1 sm:p-2 sm:pr-[15px]">
                                             <h2 className='info-room-title'>{room.roomName}</h2>
@@ -127,7 +127,7 @@ export const RoomList = () => {
                             </>
                         )
                     })
-                ) : ''
+                ) : <div className='no-booking absolute inset-0 h-4 mx-auto my-auto'>No Room Available. Try Again Later</div>
             }
         </div>
 

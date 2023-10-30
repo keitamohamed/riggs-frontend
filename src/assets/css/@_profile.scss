@@ -2,7 +2,11 @@
 .profile_profile {
 
   .header {
-    background: transparent;
+    position: static;
+    * {
+      color: $dark;
+    }
+
   }
 
   .content {
@@ -10,9 +14,24 @@
   }
 
   .context-canvas {
-    img {
-      filter: brightness(0) invert(1);
+    display: flex;
+    justify-items: start;
+    place-content: start;
+
+    .list-none {
+      display: grid;
+      place-items: start;
+      place-content: start;
     }
+
+    img {
+      margin-left: auto;
+    }
+
+    img:last-child {
+      display: none;
+    }
+
   }
 
   .transparent-bg {

@@ -121,8 +121,11 @@ export interface BookingInit {
     booking: Booking,
     recentBook: RecentBook[],
     bookingList: Booking[]
-    message: any,
-    error: any
+    message: string,
+    error: {
+        errorCode: number,
+        errors: any,
+    }
 }
 
 export interface Booking {
