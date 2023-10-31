@@ -1,6 +1,9 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 
-import {AiOutlineUsergroupAdd, AiFillHome, AiOutlineForm, AiOutlineTable, AiOutlineLeft, AiOutlineDown} from 'react-icons/ai'
+import {AiOutlineUsergroupAdd,
+    AiFillHome, AiOutlineForm,
+    AiOutlineTable, AiOutlineLeft,
+    AiOutlineDown, AiOutlineClose} from 'react-icons/ai'
 import {CiMenuBurger, CiHardDrive} from 'react-icons/ci'
 import {BsHddNetwork, BsDatabase} from 'react-icons/bs'
 import {BiTime} from 'react-icons/bi'
@@ -96,11 +99,14 @@ export const Dashboard = () => {
             <div className="dashboard-main grid grid-cols-12 gap-x-[1em] pb-[1em]">
                 <div className="dash-sidebar inline-block col-start-1 col-end-3 sms:col-start-1 sms:col-end-13 sms:z-10 sm:">
                     <div className="sidebar-context">
-                        <div className={`context`}>
-                            <div className={`context-canvas mt-[1em] mb-[.5em]`}>
-                                <li className={`list-none grid place-content-center `} onClick={() => nav('/')}>
+                        <div className={`context sms:grid sms:grid-cols-2`}>
+                            <div className={`context-canvas mt-[1em] mb-[.5em] grid place-content-center justify-start`}>
+                                <li className={`list-none grid place-content-center justify-start`} onClick={() => nav('/')}>
                                     <img className={`logo w-[50%]`} src={logo} alt="logo"/>
                                 </li>
+                            </div>
+                            <div className="close-btn-container hidden place-content-center justify-end sms:grid">
+                                <AiOutlineClose className='grid ml-auto'/>
                             </div>
                         </div>
                         <div className="avatar flex gap-3 place-content-center justify-center">

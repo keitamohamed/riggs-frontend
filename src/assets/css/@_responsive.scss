@@ -157,8 +157,26 @@
   .dashboard-main {
 
     .dash-sidebar {
-      .logo {
-        width: 25%;
+      z-index: 20;
+      height: 100dvh;
+
+      .avatar {
+        padding-bottom: 20px !important;
+
+        .image-container {
+          width: 100%;
+          padding-left: 20px;
+        }
+
+        .avatar-name-container {
+          width: 100%;
+        }
+      }
+
+
+      .context {
+        margin-bottom: 1em;
+        padding-bottom: 10px;
       }
 
       .dash-buttons-container {
@@ -176,6 +194,33 @@
             }
           }
         }
+      }
+
+      .dash-btn-container {
+        li {
+          width: 80% !important;
+
+          * {
+            display: block;
+          }
+
+          svg {
+            font-size: 1em !important;
+          }
+
+          &:hover {
+            background: $color_white !important;
+
+            * {
+              color: $dark;
+              fill: $dark;
+            }
+          }
+        }
+      }
+
+      .dash-buttons-container-update {
+        //width: 100% !important;
       }
     }
   }
