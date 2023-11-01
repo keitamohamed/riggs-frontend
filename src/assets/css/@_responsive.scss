@@ -1,4 +1,16 @@
 
+@include responsive_min(lg) {
+
+  .dashboard-main {
+
+    .dash-sidebar {
+      display: inline-block;
+      -webkit-animation: none;
+    }
+  }
+
+}
+
 @include responsive_max(cs) {
 
   .dashboard-main {
@@ -157,6 +169,7 @@
   .dashboard-main {
 
     .dash-sidebar {
+      display: none;
       z-index: 20;
       height: 100dvh;
 
@@ -177,6 +190,18 @@
       .context {
         margin-bottom: 1em;
         padding-bottom: 10px;
+
+        .close-btn-container {
+          padding-right: 20px;
+
+          svg {
+            font-size: 1.5em;
+
+            &:hover {
+              fill: $color-red;
+            }
+          }
+        }
       }
 
       .dash-buttons-container {
@@ -220,8 +245,19 @@
       }
 
       .dash-buttons-container-update {
-        //width: 100% !important;
+        margin-top: 1em !important;
       }
+    }
+
+    .slide-out {
+      animation: slide-out 0.5s forwards;
+      -webkit-animation: slide-out 0.5s forwards;
+    }
+
+    .slide-in {
+      display: inline-block;
+      animation: slide-in 0.5s forwards;
+      -webkit-animation: slide-in 0.5s forwards;
     }
   }
 

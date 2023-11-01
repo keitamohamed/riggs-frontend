@@ -26,8 +26,7 @@ import {roomAction} from "../../setup/redux/room.ts";
 import {formAction} from "../../setup/redux/form.ts";
 import {useNavigate} from "react-router-dom";
 
-import logo from "../../assets/svg/riggs-logo-white.svg"
-
+import {DashSideNav} from "../header-sidenav/dash-side-nav.tsx";
 
 export const Dashboard = () => {
     const nav = useNavigate()
@@ -82,6 +81,16 @@ export const Dashboard = () => {
         actionBtn.classList.toggle('arrow-down')
     }
 
+    const showSidebar = () => {
+        const el = document.querySelector(".dash-sidebar")
+        const dashboardContainer = document.querySelector(".dashboard-context-container") as HTMLElement
+        if (el && dashboardContainer) {
+            dashboardContainer.style.display = 'none'
+            el.classList.remove('slide-out')
+            el.classList.add('slide-in')
+        }
+    }
+
     useEffect(() => {
         if (!loaded) {
             checkDatabaseHealth()
@@ -97,69 +106,13 @@ export const Dashboard = () => {
     return (
         <>
             <div className="dashboard-main grid grid-cols-12 gap-x-[1em] pb-[1em]">
-                <div className="dash-sidebar inline-block col-start-1 col-end-3 sms:col-start-1 sms:col-end-13 sms:z-10 sm:">
-                    <div className="sidebar-context">
-                        <div className={`context sms:grid sms:grid-cols-2`}>
-                            <div className={`context-canvas mt-[1em] mb-[.5em] grid place-content-center justify-start`}>
-                                <li className={`list-none grid place-content-center justify-start`} onClick={() => nav('/')}>
-                                    <img className={`logo w-[50%]`} src={logo} alt="logo"/>
-                                </li>
-                            </div>
-                            <div className="close-btn-container hidden place-content-center justify-end sms:grid">
-                                <AiOutlineClose className='grid ml-auto'/>
-                            </div>
-                        </div>
-                        <div className="avatar flex gap-3 place-content-center justify-center">
-                            <div className="image-container">
-                                <img className="w-12 h-12 rounded-full" src={'/profile-img.jpg'} alt="img"/>
-                            </div>
-                            <div className="avatar-name-container grid place-content-center">
-                                <h2>{user.firstName + ' ' + user.lastName}</h2>
-                            </div>
-                        </div>
-                        <div className="dash-btn-container">
-                            <li className='' onClick={
-                                () => onClick('dashboard-one')}>
-                                <span>Main</span><AiFillHome/>
-                            </li>
-                            <li onClick={() => onClick('dashboard-two')}
-                            >
-                                <span>Room</span> <FaHotel/>
-                            </li>
-                        </div>
-                        <div className="dash-buttons-container">
-                            <li className='' onClick={() => {
-                                dashCtx.setDisplayComponentType('user-form')}}>
-                                <AiOutlineUsergroupAdd/><span>User Form</span></li>
-                            <li className=''
-                                onClick={() => {
-                                    onClick('add-room')
-                                }}
-                            ><IoIosBed/><span>Room Form</span></li>
-                            <li><AiOutlineTable/> <span>Tables</span></li>
-                        </div>
-                        <div className="dash-buttons-container-update">
-                            <span className='updated-btn'
-                                  onClick={updatedAction}
-                            >
-                                Updated
-                                <AiOutlineLeft/>
-                                <AiOutlineDown/>
-                            </span>
-                            <div className="update-btn-container">
-                                <li className=''><AiOutlineForm/><span>Updated User</span></li>
-                                <li className=''><AiOutlineForm/><span>Updated Room</span></li>
-                                <li><AiOutlineTable/> <span>Tables</span></li>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="dashboard-context-container col-start-3 col-end-13 sm:col-start-1 sm:col-end-13 place-content-center justify-center md:col-span-12 grid grid-cols-1">
+                <DashSideNav/>
+                <div className="dashboard-context-container grid grid-cols-1 col-start-3 col-end-13 sm:col-start-1 sm:col-end-13 place-content-center justify-center md:col-span-12">
                     <div className="admin-dash-header grid grid-cols-12 place-content-center p-[10px]">
                         <div className="context-container col-span-1 hidden sm:block md:block lg:block">
                             <div className="context-nav grid gap-[.5em] px-[15px] place-content-center justify-center">
                                 <div className="search grid place-content-center justify-center">
-                                    <CiMenuBurger/>
+                                    <li onClick={showSidebar}><CiMenuBurger/></li>
                                 </div>
                             </div>
                         </div>

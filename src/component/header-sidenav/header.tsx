@@ -27,7 +27,6 @@ export const Header = () => {
             el.classList.remove('slide-out')
             el.classList.add('slide-in')
         }
-
     }
 
     return (
