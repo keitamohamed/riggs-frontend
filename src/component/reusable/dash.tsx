@@ -37,7 +37,7 @@ export const Dash = () => {
 
 
     return (
-        <div className='dashboard'>
+        <div className='dashboard px-[1em]'>
             <div className="dashboard-main">
                 <div className="graph-card-container grid grid-cols-12 gap-[1em] sm:p-[10px] md:p-[10px] lg:p-[10px]">
                     <RecentBook/>

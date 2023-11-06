@@ -1,4 +1,4 @@
-import {useContext, useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import {FiArrowDownCircle} from 'react-icons/fi'
 
 import {Carousel} from "../swiper/index-slider.tsx";
@@ -11,6 +11,7 @@ import {EmailSection} from "../reusable/emailSection.tsx";
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../setup/context/context.ts";
 import {SwiperIndex} from "../swiper/swiper-index.tsx";
+import logo from "../../assets/svg/riggs-logo-navy.svg";
 
 export const Index = () => {
     const nav = useNavigate()
@@ -157,9 +158,38 @@ export const Index = () => {
                     </div>
                 </div>
                 <EmailSection/>
-                <div className={`${authCtx.isAuthenticated() ? 'header_cta sm:block' : 'hidden'}`}>
+                <div className="footer py-[20px] px-[20px]">
+                    <div className="footer-context grid grid-cols-9 sm:!gap-[1em]">
+                        <div className="logo-section col-start-1 col-end-2 sm:col-end-10 sm:w-full ">
+                            <li className={`list-none grid w-full place-content-center justify-start sm:place-items-center`}>
+                                <img className={`logo w-[90%] sm:w-[40%]`} src={logo} alt="logo"/>
+                            </li>
+                        </div>
+                        <div className="div-section-two grid col-start-3 col-end-4 sm:col-start-1 sm:col-end-10">
+                            <li>718 F Street</li>
+                            <li>Washington, DC 20000</li>
+                            <li>United State</li>
+                            <li>+1999 000 0000</li>
+                            <li>riggs.reservation@gmail.com</li>
+                        </div>
+                        <div className="div-section-link grid col-start-5 col-end-7 sm:col-start-1 sm:col-end-10 sm:!pl-0">
+                            <li>Contact</li>
+                            <li>Gallery</li>
+                            <li>Our hotels</li>
+                            <li>Press room</li>
+                            <li>Terms & conditions</li>
+                            <li>FAQs</li>
+                        </div>
+                        <div className="div-section-developer col-start-8 col-end-10 sm:col-start-1 sm:col-end-10">
+                            <div className="copyright grid place-content-start place-items-start">
+                                <a className='sm:w-[120px] text-left' href=''>@ Keita Design 2023</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className={`${authCtx.isAuthenticated() ? 'header_cta w-[200px] sm:block' : 'hidden'}`}>
                     <div className="action_container">
-                        <p className="action_btn" onClick={() => nav("/booking")}>
+                        <p className="action_btn rounded-full" onClick={() => nav("/booking")}>
                             Book a room
                         </p>
                     </div>

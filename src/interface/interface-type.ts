@@ -215,7 +215,11 @@ export interface InitAppSys {
 export interface InitRoom {
     room: Room,
     rooms: any[],
-    message: unknown,
+    message: {
+        message: string,
+        status: string,
+        statusCode: number
+    },
     error: {
         map: any
     }

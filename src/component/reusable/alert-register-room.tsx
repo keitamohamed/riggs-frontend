@@ -1,11 +1,10 @@
 import {useEffect, useState} from "react";
+import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
+import {roomAction} from "../../setup/redux/room.ts";
 
-type props = {
-    message: string
-    error: string
-    function: () => void
-}
-export const Alert = (prop: props) => {
+export const AlertRegisterRoom = () => {
+    const dispatch = useAppDispatch()
+    const {message} = useAppSelector((state) => state.room)
     const [alertOpen, setAlertOpen] = useState<boolean>(false)
 
 
@@ -14,7 +13,9 @@ export const Alert = (prop: props) => {
             (element.classList.contains('alert-message') || element.classList.contains('alert-error'))) {
             element.classList.remove('alert-message', 'alert-error')
             element.classList.add('alert-close')
-            prop.function()
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            dispatch(roomAction.reSetMessage())
         }
     }
 
@@ -25,7 +26,7 @@ export const Alert = (prop: props) => {
 
     useEffect(() => {
         const el = document.querySelector('.alert-box') as HTMLElement
-        if (prop.message !== "") {
+        if (message?.message !== "") {
             openAlert(el, 'alert-message')
             setInterval(function () {
                 closeAlert(el)
@@ -33,11 +34,11 @@ export const Alert = (prop: props) => {
             el.classList.remove('alert-close')
         }
 
-    }, [alertOpen])
+    }, [message])
 
     return (
-        <div className={`alert-box`}>
-                <p>{prop.message}</p>
-            </div>
+        <div className={`alert-box w-full`}>
+            <p className='text-center'>{message.message}</p>
+        </div>
     )
 }

@@ -267,13 +267,13 @@ svg {
   z-index: 20;
   top: auto;
   bottom: 0;
-  left: 0;
-  right: 0;
+  right: 2%;
   padding: 17px 0;
   text-align: center;
   background: $dark_white;
   overflow: hidden;
   min-height: 40px;
+  border-radius: 50%;
 
   .action_container {
     display: flex;
@@ -309,6 +309,55 @@ svg {
       color: $color_white;
       &::after {
         transform: translateY(0);
+      }
+    }
+  }
+}
+
+.footer {
+  padding: 2em 20px;
+
+   li {
+     list-style: none;
+     text-align: left;
+     font-size: 18px;
+     font-family: $font_family_poppins;
+     color: #434343;
+   }
+
+  .div-section-two {
+    display: inline-block;
+
+    * {
+      padding: 5px 0;
+    }
+  }
+
+  .div-section-link {
+    color: #434343;
+    padding-left: 1em;
+
+    li {
+      font-size: 16px;
+      padding: 6px 0;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      &:hover {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .div-section-developer {
+
+    .copyright {
+      * {
+        font-family: $font_family_domine;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: normal;
+        color: #434343;;
       }
     }
   }

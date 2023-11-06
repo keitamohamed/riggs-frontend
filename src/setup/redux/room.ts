@@ -19,7 +19,11 @@ const initialState: InitRoom = {
         }
     },
     rooms: [],
-    message: {},
+    message: {
+        message: '',
+        status: '',
+        statusCode: 0
+    },
     error: {
         map: {}
     }
@@ -72,6 +76,13 @@ const roomSlice = createSlice({
         },
         setError(state, action) {
             state.error.map = action.payload.map
+        },
+        reSetMessage(state) {
+            state.message = {
+                message: '',
+                status: '',
+                statusCode: 0
+            }
         },
         reSetError(state)  {
             state.error = {

@@ -71,7 +71,12 @@ export const SwiperCarousel = () => {
                                             <div className="images-container" key={`${room.roomID}`}>
                                                 <div className="image grid grid-cols-1 sm:flex sm:flex-col sm:mb-2">
                                                     <div className="image-fit-screen col-span-2">
-                                                        <img className="h-auto max-w-full" src={'/room-ava.jpg'} alt=""/>
+                                                        {
+                                                            room.roomName == 'First Lady Suites' ?
+                                                                <img className="h-auto max-w-full" src={'/first-lady-suites.jpeg'} alt=""/> :
+                                                                <img className="h-auto max-w-full" src={'/room-ava.jpg'} alt=""/>
+                                                        }
+
                                                     </div>
                                                     <div className="room-detail col-span-4 w-full sm:mt-1">
                                                         <h3 className='title-id grid grid-cols-12 px-1'>

@@ -70,7 +70,7 @@ export const Room_Form = (prop: props) => {
                             className={map.error?.detail.tv ? 'invalid-input' : ''}
                             id="tv">
                             <option value={'invalid-value'}>
-                                {map.error?.detail.tv ? map.error.detail.tv : 'Is smoking allow'}
+                                {map.error?.detail.tv ? map.error.detail.tv : 'Is there tv'}
                             </option>
                             <option value='No tv'>No tv</option>
                             <option value='Yes, tv'>Yes, there is tv</option>
@@ -86,8 +86,8 @@ export const Room_Form = (prop: props) => {
                             <option value={'invalid-value'}>
                                 {map.error?.detail.smoking ? map.error.detail.smoking : 'Is smoking allow'}
                             </option>
-                            <option value='Animal not allow'>Smoking not allow</option>
-                            <option value='Smoking not allow'>Smoking allow</option>
+                            <option value='Smoking not allow'>Smoking not allow</option>
+                            <option value='Smoking allow'>Smoking allow</option>
                         </select>
                     </div>
                     <div className="form-group">
