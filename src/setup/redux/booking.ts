@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {Booking, BookingInit, BookingPrice, User} from "../../interface/interface-type.ts";
+import {Booking, BookingInit, BookingPrice, User} from "../../interface-type/interface-type.ts";
 
 
 const user = {

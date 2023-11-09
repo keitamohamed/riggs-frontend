@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Room} from "../../interface/interface-type.ts";
+import {Room} from "../../interface-type/interface-type.ts";
 import {useRoom} from "../../custom-hook/useRoom.ts";
 import {SwiperCarousel} from "../swiper/swiper.tsx";
 import {SwiperNested} from "../swiper/swiper-nested.tsx";

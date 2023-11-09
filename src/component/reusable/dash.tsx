@@ -7,7 +7,7 @@ import {RequestTable} from "../table/request-table.tsx";
 import {GraphCard} from "./graph-card.tsx";
 import {useApp} from "../../custom-hook/useApp.ts";
 import {BookingChartComp} from "../chart/booking-graph.tsx";
-import {BookingData} from "../../interface/interface-type.ts";
+import {BookingData} from "../../interface-type/interface-type.ts";
 import {RecentBook} from "./recent-book.tsx";
 
 export const Dash = () => {

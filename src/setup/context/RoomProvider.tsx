@@ -1,4 +1,4 @@
-import {Props} from "../../interface/interface-type.ts";
+import {Props} from "../../interface-type/interface-type.ts";
 import {RoomActionContext} from "./context.ts";
 import {useState} from "react";
 

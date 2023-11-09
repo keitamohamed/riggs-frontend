@@ -17,7 +17,6 @@ export const APIPath =  {
     UPDATE_ROOM: (id: number) => `room/update/${id}`,
     DELETE_ROOM: (roomID: number) => `room/delete/${roomID}`,
 
-
     // Booking
     NEW_BOOKING: (userID: number) => `booking/add/${userID}`,
     BOOKING_LIST: (`booking/list-of-booking`),
@@ -26,6 +25,15 @@ export const APIPath =  {
 
     // Admin access point
     APP_HEALTH: ("health"),
-    APP_HTTPEXCHANGES: ("httpexchanges")
+    APP_HTTPEXCHANGES: ("httpexchanges"),
 
+
+    //File Upload
+    USER_FILE: (userID: number) => `user/file-upload/${userID}`,
+    ROOM_FILE: (roomID: number) => `room/file-upload/${roomID}`
+}
+
+export const ContextType = {
+    JSONFILE: ('application/json'),
+    FILE: ('multipart/form-data')
 }

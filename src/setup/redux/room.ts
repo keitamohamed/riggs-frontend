@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {InitRoom} from "../../interface/interface-type.ts";
+import {InitRoom} from "../../interface-type/interface-type.ts";
 
 const initialState: InitRoom = {
     room: {
@@ -20,6 +20,7 @@ const initialState: InitRoom = {
     },
     rooms: [],
     message: {
+        id: 0,
         message: '',
         status: '',
         statusCode: 0
@@ -45,6 +46,14 @@ const roomSlice = createSlice({
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 state.room.detail[room.name as keyof object] = room.value
+            }
+        },
+        setRoomName(state, action) {
+            const room = action.payload
+            if (room.value !== 'roomName') {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                state.room[room.name as keyof object] = room.value
             }
         },
         setRoom(state, action) {
@@ -79,6 +88,7 @@ const roomSlice = createSlice({
         },
         reSetMessage(state) {
             state.message = {
+                id: 0,
                 message: '',
                 status: '',
                 statusCode: 0

@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {InitAppSys} from "../../interface/interface-type.ts";
+import {InitAppSys} from "../../interface-type/interface-type.ts";
 
 
 const formatTimeStamp = (str: string) => {

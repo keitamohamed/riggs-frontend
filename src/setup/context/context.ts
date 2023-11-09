@@ -4,7 +4,7 @@ import {
     Credentials, CredentialsReset, DashboardContextProperty,
     ShowRoomDetail,
     UIHideShowContextProvider
-} from "../../interface/interface-type.ts";
+} from "../../interface-type/interface-type.ts";
 
 
 const uiDefaultProps = {

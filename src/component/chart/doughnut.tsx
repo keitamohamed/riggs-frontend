@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Doughnut} from "react-chartjs-2";
 import {ArcElement, Chart as ChartJS, Legend, Tooltip} from "chart.js/auto";
 import {} from 'chart.js'
-import {TrafficData} from "../../interface/interface-type.ts";
+import {TrafficData} from "../../interface-type/interface-type.ts";
 
 ChartJS.register(
     ArcElement,

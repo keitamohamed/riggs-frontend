@@ -1,6 +1,6 @@
 import axios from "axios";
 import FileSaver from 'file-saver'
-import {LoginCredential} from "../interface/interface-type.ts";
+import {LoginCredential} from "../interface-type/interface-type.ts";
 
 
 export const POST_AUTHENTICATE_REQUEST = (
@@ -36,7 +36,8 @@ export const POST_REQUEST = (
     url: string,
     data: object,
     action: (response: object) => void,
-    setError: (error: object) => void
+    setError: (error: object) => void,
+    contextType: string
     ) => {
     return async () => {
         const send = async () => {
@@ -46,7 +47,7 @@ export const POST_REQUEST = (
                 data: data,
                 headers: {
                     Authorization: token ? `Bearer ${token}` : 'Bearer',
-                    'Content-Type': 'application/json'
+                    'Content-Type': contextType
                 }
             });
         }

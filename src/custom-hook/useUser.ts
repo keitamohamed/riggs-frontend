@@ -1,7 +1,7 @@
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {userAction} from "../setup/redux/user.ts";
 import {DOWNLOAD_EXCEL_FILE, GET_REQUEST} from "../api-endpoint/Request.ts";
-import {APIPath} from "../api-endpoint/urlPath.ts";
+import {APIPath} from "../api-endpoint/url-context-type.ts";
 import {useContext} from "react";
 import {AuthContext} from "../setup/context/context.ts";
 import {bookingAction} from "../setup/redux/booking.ts";

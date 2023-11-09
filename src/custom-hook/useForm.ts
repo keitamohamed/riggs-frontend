@@ -1,7 +1,7 @@
 import {formAction} from "../setup/redux/form.ts";
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {POST_REQUEST, PUT_REQUEST} from "../api-endpoint/Request.ts";
-import {APIPath} from "../api-endpoint/urlPath.ts";
+import {APIPath, ContextType} from "../api-endpoint/url-context-type.ts";
 import {useContext} from "react";
 import {AuthContext, UIActionContext} from "../setup/context/context.ts";
 import {useUser} from "./useUser.ts";
@@ -54,7 +54,7 @@ export const useForm = () => {
         event.preventDefault()
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        await dispatch(POST_REQUEST(null, APIPath.ADD_NEW_USER, userForm, setMessage, setInvalidInputError))
+        await dispatch(POST_REQUEST(null, APIPath.ADD_NEW_USER, userForm, setMessage, setInvalidInputError, ContextType.JSONFILE))
     }
     const onSubmitSendUpdate = async () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment

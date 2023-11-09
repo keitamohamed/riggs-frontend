@@ -1,13 +1,16 @@
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {roomAction} from "../setup/redux/room.ts";
-import {Room} from "../interface/interface-type.ts";
+import {Room} from "../interface-type/interface-type.ts";
 import {DELETE_REQUEST, GET_REQUEST, POST_REQUEST, PUT_REQUEST} from "../api-endpoint/Request.ts";
-import {APIPath} from "../api-endpoint/urlPath.ts";
+import {APIPath, ContextType} from "../api-endpoint/url-context-type.ts";
 import {useContext} from "react";
 import {AuthContext, DashboardContext} from "../setup/context/context.ts";
+import {useFile} from "./useFile.ts";
 
 export const useRoom = () => {
     const dashCtx = useContext(DashboardContext)
+    const {uploadFile} = useFile()
+
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
     const {room, rooms} = useAppSelector((state) => state.room)
@@ -52,7 +55,7 @@ export const useRoom = () => {
         }
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        await dispatch(POST_REQUEST(authCtx.getCookie().aToken, APIPath.ADD_ROOM, room, setMessage, setError))
+        await dispatch(POST_REQUEST(authCtx.getCookie().aToken, APIPath.ADD_ROOM, room, setMessage, setError, ContextType.JSONFILE))
         await loadRoom()
     }
     

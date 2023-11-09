@@ -1,5 +1,5 @@
 import {DashboardContext} from "./context.ts";
-import {Props} from "../../interface/interface-type.ts";
+import {Props} from "../../interface-type/interface-type.ts";
 import {useState} from "react";
 
 

@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {bookingAction} from "../setup/redux/booking.ts";
 import {DELETE_REQUEST, GET_REQUEST, POST_REQUEST} from "../api-endpoint/Request.ts";
-import {APIPath} from "../api-endpoint/urlPath.ts";
+import {APIPath, ContextType} from "../api-endpoint/url-context-type.ts";
 import {AuthContext} from "../setup/context/context.ts";
 import {useUser} from "./useUser.ts";
 
@@ -44,7 +44,7 @@ export const useBooking = () => {
         dispatch(bookingAction.setMessage({}))
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        dispatch(POST_REQUEST(authCtx.getCookie().aToken, APIPath.NEW_BOOKING(user.userID), booking, setMessage, setError))
+        dispatch(POST_REQUEST(authCtx.getCookie().aToken, APIPath.NEW_BOOKING(user.userID), booking, setMessage, setError, ContextType.JSONFILE))
     }
 
     const deleteBooking = async (id: number) => {

@@ -309,6 +309,7 @@
         }
       }
     }
+
     .edit-room {
       svg:hover {
         fill: $color-green;
@@ -349,6 +350,21 @@
 
       &:hover > .tooltiptext {
         visibility: visible;
+      }
+    }
+
+    .file-upload {
+
+      .btn-container {
+
+        .btn-upload-file {
+          background: $dark;
+          padding: 5px 10px;
+          cursor: pointer;
+          border-radius: 5px;
+          text-transform: capitalize;
+          font-size: 100%;
+        }
       }
     }
   }

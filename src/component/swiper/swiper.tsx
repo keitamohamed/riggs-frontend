@@ -5,7 +5,7 @@ import {AiOutlineEdit, AiFillDelete} from 'react-icons/ai'
 import {Grid, Pagination, Keyboard, Navigation, Mousewheel} from "swiper/modules";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {useRoom} from "../../custom-hook/useRoom.ts";
-import {Room} from "../../interface/interface-type.ts";
+import {Room} from "../../interface-type/interface-type.ts";
 import {DashboardContext} from "../../setup/context/context.ts";
 
 export const SwiperCarousel = () => {

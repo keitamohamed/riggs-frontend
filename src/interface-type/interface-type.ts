@@ -53,6 +53,11 @@ export type BookingPrice = {
     price: number,
 }
 
+export type FileType = {
+    file: File[]
+    url: any[]
+}
+
 export interface CredentialsReset {
     accessToken: string,
     email: string,
@@ -216,6 +221,7 @@ export interface InitRoom {
     room: Room,
     rooms: any[],
     message: {
+        id: number
         message: string,
         status: string,
         statusCode: number
