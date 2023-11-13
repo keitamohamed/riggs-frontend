@@ -178,7 +178,7 @@ export const Index = () => {
                             <li>+1999 000 0000</li>
                             <li>riggs@gmail.com</li>
                         </div>
-                        <div className="div-section-link grid col-start-5 col-end-7 sm:col-start-1 sm:col-end-10 sm:!pl-0">
+                        <div className="div-section-link grid grid-col-start-5 col-end-7 sm:col-start-1 sm:col-end-10 sm:!pl-0">
                             <li onClick={() => onClickScrollEvent('new-letter')}>Contact</li>
                             <li>Gallery</li>
                             <li>Our hotels</li>
