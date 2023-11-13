@@ -2,7 +2,7 @@ import {AiOutlineClose} from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
 
 import {useContext} from "react";
-import {AuthContext} from "../../setup/context/context.ts";
+import {AuthContext, DashboardContext} from "../../setup/context/context.ts";
 import {useUser} from "../../custom-hook/useUser.ts";
 
 import logo from "../../assets/svg/riggs-logo-navy.svg"
@@ -10,6 +10,7 @@ import logo from "../../assets/svg/riggs-logo-navy.svg"
 
 export const SideNav = () => {
     const authCtx = useContext(AuthContext)
+    const dashCtx = useContext(DashboardContext)
     const nav = useNavigate()
     const {findUserByEmail} = useUser()
 
@@ -28,21 +29,18 @@ export const SideNav = () => {
         }
     }
 
-    const handleClick = (target: string) => {
-        const clickElement = document.querySelector(`.side-nav-link`)
-        clickElement?.addEventListener('click', () => {
-            const element = document.querySelector(`.${target}`) as HTMLElement
-            const position = element?.getBoundingClientRect().top + window.scrollY
-            sidebarHide()
-            window.scrollTo({top: position - 205, behavior: 'smooth'})
-        })
+    const onClickScrollEvent = (className: string) => {
+        sidebarHide()
+        const element = document.querySelector(`.${className}`) as HTMLElement
+        const position = element?.getBoundingClientRect().top + window.scrollY
+        window.scrollTo({top: position - 250, behavior: 'smooth'})
     }
 
     return (
         <div className={`side-nav slide-out`}>
             <div className="off-canvas">
                 <div className="canvas grid grid-cols-12 sm:grid-cols-1">
-                    <div className={`nav-container col-start-1 col-end-8 sm:col-start-1 col-end-1`}>
+                    <div className={`nav-container col-start-1 grid-col-end-8 sm:col-start-1 grid-col-end-1`}>
                         <div className="canvas_inner grid-x">
                             <div className={`context grid grid-cols-12`}>
                                 <div className="svg-container col-start-1 col-end-3">
@@ -63,7 +61,7 @@ export const SideNav = () => {
                                 {
                                     authCtx.isAuthenticated() &&
                                     authCtx.getCookie().Role == "ROLE_ADMIN" ?
-                                        <li onClick={() => nav('/dash')}>Dashboard</li> : ''
+                                        <li onClick={() => {nav('/dash'), dashCtx.setDisplayComponentType('dashboard-one')}}>Dashboard</li> : ''
                                 }
                                 {
                                     authCtx.isAuthenticated() && authCtx.getCookie().Role == "ROLE_ADMIN" ?
@@ -77,7 +75,7 @@ export const SideNav = () => {
                         </ul>
                         <ul className={`canvas-l-ul grid pl-[7em] sm:pl-[2em]`}>
                             <nav className={`nav grid grid-cols-2 gap-2 w-[90%] sm:grid-cols-1`}>
-                                <li className='side-nav-link' onClick={() => handleClick('new-letter')}>Contact</li>
+                                <li className='side-nav-link' onClick={() => onClickScrollEvent('email-container')}>Contact</li>
                                 <li className='side-nav-link'>Gallery</li>
                                 <li className='side-nav-link'>Press room</li>
                                 <li className='side-nav-link'>Careers</li>

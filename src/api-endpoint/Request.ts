@@ -89,6 +89,22 @@ export const GET_REQUEST = (
         }
     }
 }
+
+export const DOWNLOAD_IMAGE_FILE = (
+    token: string,
+    url: string,
+) => {
+    return axios({
+        method: "GET",
+        url: url,
+        withCredentials: true,
+        headers: {
+            Authorization: token ? `Bearer ${token}` : 'Bearer',
+        }
+    })
+        .then(file => file)
+}
+
 export const DOWNLOAD_EXCEL_FILE = (
     token: string,
     url: string,

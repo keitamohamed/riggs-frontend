@@ -61,7 +61,7 @@ export const Booking = () => {
     }, [dateRange])
 
     return (
-        <div className='booking'>
+        <div className={`booking ${!uiCtx.getShowRooms() ? '!gap-[.5em]' : ''}`}>
             {
                 Object.keys(message).length !== 0 ||  Object.keys(error).length !== 0  ?
                     <Alert

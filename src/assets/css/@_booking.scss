@@ -1,8 +1,12 @@
 
 .booking {
   overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1em;
+
   .header {
-    position: absolute;
+    position: static;
     border-bottom: 1px solid $dark_white;
     z-index: 45;
 
@@ -48,7 +52,7 @@
 
   .context-container {
     vertical-align: baseline;
-    padding: 15% 5% 3.5%;
+    padding: 8% 5% 3.5%;
   }
 
   .drop-down-menu {
@@ -101,11 +105,11 @@
   }
 
   .room-available {
-    padding-top: 5em;
     z-index: 50;
     width: 100%;
     height: 100%;
     background: $color_white;
+    padding: 10px 1em;
   }
 
   .select-date-container {

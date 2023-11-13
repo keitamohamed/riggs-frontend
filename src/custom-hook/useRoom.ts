@@ -5,11 +5,9 @@ import {DELETE_REQUEST, GET_REQUEST, POST_REQUEST, PUT_REQUEST} from "../api-end
 import {APIPath, ContextType} from "../api-endpoint/url-context-type.ts";
 import {useContext} from "react";
 import {AuthContext, DashboardContext} from "../setup/context/context.ts";
-import {useFile} from "./useFile.ts";
 
 export const useRoom = () => {
     const dashCtx = useContext(DashboardContext)
-    const {uploadFile} = useFile()
 
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()

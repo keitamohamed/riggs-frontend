@@ -36,6 +36,12 @@ export const Index = () => {
         })
     }
 
+    const onClickScrollEvent = (className: string) => {
+        const element = document.querySelector(`.${className}`) as HTMLElement
+        const position = element?.getBoundingClientRect().top + window.scrollY
+        window.scrollTo({top: position - 150, behavior: 'smooth'})
+    }
+
     useEffect(() => {
         window.addEventListener('scroll', listenScrollEvent)
         listenScrollClickEvent()
@@ -170,10 +176,10 @@ export const Index = () => {
                             <li>Washington, DC 20000</li>
                             <li>United State</li>
                             <li>+1999 000 0000</li>
-                            <li>riggs.reservation@gmail.com</li>
+                            <li>riggs@gmail.com</li>
                         </div>
                         <div className="div-section-link grid col-start-5 col-end-7 sm:col-start-1 sm:col-end-10 sm:!pl-0">
-                            <li>Contact</li>
+                            <li onClick={() => onClickScrollEvent('new-letter')}>Contact</li>
                             <li>Gallery</li>
                             <li>Our hotels</li>
                             <li>Press room</li>

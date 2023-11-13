@@ -89,12 +89,12 @@ export const Dashboard = () => {
                 <DashSideNav/>
                 <div className="dashboard-context-container grid grid-cols-1 col-start-3 col-end-13 sm:col-start-1 sm:col-end-13 place-content-center justify-center md:col-span-12">
                     <AlertRegisterRoom/>
-                    <div className="admin-dash-header grid grid-cols-12 sm:grid-cols-1 place-content-center p-[10px]">
+                    <div className="admin-dash-header grid grid-cols-12 sm:grid-cols-1 md:grid-cols-1 place-content-center p-[10px]">
                         <div className="context-container col-span-1 hidden sm:block md:block lg:block">
                             <div className="context-nav grid grid-cols-1 gap-[.5em] px-[15px] place-content-center justify-center">
                                 <div className="search !grid grid-cols-2 !w-full place-content-center justify-center">
                                     <li className={`list-none grid w-full place-content-center justify-start`} onClick={() => nav('/')}>
-                                        <img className={`logo w-[50%]`} src={logo} alt="logo"/>
+                                        <img className={`logo w-[50%] cursor-pointer`} src={logo} alt="logo"/>
                                     </li>
                                     <li className='list-none grid w-full place-content-center justify-end' onClick={showSidebar}>
                                         <CiMenuBurger className='!text-[1.5em]'/></li>
@@ -103,7 +103,7 @@ export const Dashboard = () => {
                         </div>
                         {
                             components?.db ? <>
-                                <div className="system-info-container col-start-2 col-end-13 sm:hidden">
+                                <div className="system-info-container col-start-2 col-end-13 sm:hidden md:hidden">
                                 <div className="sys-context grid grid-cols-5 sm:grid-cols-2 sm:hidden justify-center place-content-center">
                                     <li className='sm:!hidden'>SYS Monitoring</li>
                                     <li className='sm:place-content-center sm:!w-full gap-[.5em]'>
@@ -126,7 +126,7 @@ export const Dashboard = () => {
                         dashCtx.getDisplayComponent() == 'dashboard-two' ?
                             <DashboardRoom /> : dashCtx.getDisplayComponent() == 'dashboard-one' ?
                             <Dash/> : dashCtx.getDisplayComponent() == 'add-room' ?
-                            <div className='room-ad'>
+                            <div className='room-ad sm:!h-[100dvh] md:!h-[100dvh]'>
                                 <div className="main">
                                 <Room_Form title={'New Room'} btn={'Submit'}/>
                                 </div>

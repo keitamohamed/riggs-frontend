@@ -2,13 +2,207 @@
 @include responsive_min(lg) {
 
   .dashboard-main {
-
     .dash-sidebar {
       display: inline-block;
       -webkit-animation: none;
     }
   }
 
+  .booking {
+    .context-container {
+
+      .context {
+
+        .date-selector {
+          .select-date-container {
+            min-height: 100%;
+            .react-datepicke {
+              height: 100%;
+              max-height: 100%;
+            }
+
+            .react-datepicker__header {
+              display: grid;
+              grid-template-columns: repeat(1, 1fr);
+
+              .react-datepicker__day-names {
+                display: flex;
+                justify-items: center;
+                place-content: center;
+                gap: .5em;
+              }
+            }
+
+            .react-datepicker__month-container {
+              height: 100%;
+            }
+
+            .react-datepicker__month {
+              display: grid;
+              grid-template-columns: repeat(1, 1fr);
+              gap: 1em;
+
+              .react-datepicker__week {
+                display: flex;
+                justify-items: center;
+                place-content: center;
+                gap: .5em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+@include responsive_max(cu) {
+  .booking {
+
+    .context-container {
+
+      .context {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+
+        .date-selector {
+          display: grid;
+          width: 100%;
+          grid-column-start: 1;
+          grid-column-end: 2;
+        }
+
+        .booking-info {
+          display: grid;
+          width: 100%;
+          grid-column-start: 1;
+          grid-column-end: 2;
+        }
+      }
+    }
+  }
+
+  .dashboard-main {
+    grid-template-columns: repeat(1, 1fr);
+
+    .dash-sidebar {
+      display: none;
+      padding: 0;
+
+      .sidebar-context {
+        width: 100%;
+        display: inline-block;
+
+        .dash-btn-container, .dash-buttons-container {
+
+          * {
+            display: flex;
+            width: 100% !important;
+          }
+
+          li:hover {
+            background: $color_white !important;
+
+            * {
+              color: $dark;
+            }
+          }
+
+        }
+
+        .dash-buttons-container {
+
+          li {
+            * {
+              width: fit-content !important;
+            }
+          }
+        }
+      }
+
+      .avatar {
+        justify-items: start;
+        place-content: start;
+        place-items: start;
+        padding-left: 1em !important;
+
+        .image-container {
+          width: 30% !important;
+        }
+
+        .avatar-name-container {
+          display: flex;
+          justify-items: center;
+          place-content: start;
+          margin-top: 1.2em;
+        }
+
+        img {
+          width: 5rem;
+          height: 5rem;
+        }
+
+        h2 {
+          font-size: 1.5em;
+        }
+      }
+
+      .sidebar-hidden-style-white {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: $color_white;
+        padding: 10px;
+
+        svg {
+          fill: $dark;
+          color: $dark;
+          font-size: 2em;
+
+          &:hover {
+            fill: $color_red;
+          }
+        }
+      }
+    }
+
+    .dashboard-context-container {
+      grid-column-start: 1;
+      grid-column-end: 13;
+
+      .admin-dash-header {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1em;
+
+        .context-container {
+          grid-column-start: 1;
+          grid-column-end: 2;
+
+          .search {
+
+            .logo {
+              padding-left: 1em;
+              width: 40%;
+            }
+          }
+        }
+
+        .system-info-container {
+          grid-column-start: 1;
+          display: none;
+        }
+      }
+    }
+
+    .slide-in {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      animation: slide-in .5s forwards;
+      -webkit-animation: slide-in .5s forwards;
+    }
+  }
 }
 
 @include responsive_max(cs) {
@@ -60,6 +254,18 @@
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
+      }
+    }
+  }
+}
+
+@include responsive_max(md) {
+
+  .dashboard-main {
+    .dash-sidebar {
+
+      .sidebar-hidden-style-white {
+        display: none;
       }
     }
   }
@@ -270,6 +476,16 @@
         p {
           width: 100%;
         }
+      }
+    }
+  }
+
+  .booking {
+
+    .react-datepicker {
+      .react-datepicker__month-container {
+        display: grid;
+        height: 100%;
       }
     }
   }

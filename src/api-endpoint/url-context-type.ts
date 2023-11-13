@@ -29,8 +29,12 @@ export const APIPath =  {
 
 
     //File Upload
+    FILE_BASE_DIR: ('http://localhost:8080/riggs/'),
+
     USER_FILE: (userID: number) => `user/file-upload/${userID}`,
-    ROOM_FILE: (roomID: number) => `room/file-upload/${roomID}`
+    ROOM_IMAGE_SAVE: (roomID: number) => `room/save-image/${roomID}`,
+    ROOM_IMAGE_DOWNLOAD: (id: number) => `room/download-image/${id}`,
+
 }
 
 export const ContextType = {

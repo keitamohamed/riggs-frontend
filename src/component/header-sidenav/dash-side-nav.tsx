@@ -49,7 +49,7 @@ export const DashSideNav = () => {
     }
 
     return (
-        <div className="dash-sidebar lg:inline-block xl:inline-block col-start-1 col-end-3 sms:col-start-1 sms:col-end-13 sms:z-10 sm:">
+        <div className="dash-sidebar lg:inline-block xl:inline-block col-start-1 col-end-3 sms:col-start-1 sms:col-end-13 sms:z-10 sm:hidden md:hidden">
             <div className="sidebar-context">
                 <div className={`context sms:grid sms:grid-cols-2`}>
                     <div className={`context-canvas mt-[1em] mb-[.5em] grid place-content-center justify-start`}>
@@ -70,12 +70,20 @@ export const DashSideNav = () => {
                     </div>
                 </div>
                 <div className="dash-btn-container">
-                    <li className='' onClick={
+                    <li className='smg:!hidden' onClick={
                         () => onClick('dashboard-one')}>
                         <span>Main</span><AiFillHome/>
                     </li>
-                    <li onClick={() => onClick('dashboard-two')}
-                    >
+                    <li className='!hidden smg:!flex' onClick={
+                        () => {onClick('dashboard-one'); sidebarHide()}}>
+                        <span>Main</span><AiFillHome/>
+                    </li>
+
+                    <li className='smg:!hidden' onClick={() => {onClick('dashboard-two')}}>
+                        <span>Room</span> <FaHotel/>
+                    </li>
+                    <li className='!hidden smg:!flex'
+                        onClick={() => {onClick('dashboard-two'); sidebarHide()}}>
                         <span>Room</span> <FaHotel/>
                     </li>
                 </div>
@@ -103,6 +111,11 @@ export const DashSideNav = () => {
                         <li className=''><AiOutlineForm/><span>Updated Room</span></li>
                         <li><AiOutlineTable/> <span>Tables</span></li>
                     </div>
+                </div>
+            </div>
+            <div className="sidebar-hidden-style-white hidden">
+                <div className="close-btn-container place-content-center justify-end">
+                    <li className={'hidden sms:block'} onClick={sidebarHide}><AiOutlineClose className='grid ml-auto'/></li>
                 </div>
             </div>
         </div>

@@ -52,7 +52,7 @@ export const DashboardRoom = () => {
 
 
     return (
-        <div className='room-ad'>
+        <div className='room-ad sm:!h-[100dvh]'>
             <div className="main">
                 <div className="filter-container">
                     <NavSmallDevices

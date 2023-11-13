@@ -39,6 +39,10 @@ const initialState: FormInit = {
         },
         book: []
     },
+    imgFile: {
+        file: [],
+        url: []
+    },
     message: '',
     error: {
         errorCode: 0,
@@ -101,6 +105,18 @@ const formSlice = createSlice({
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             state.userForm.auth[auth.name as keyof object] = auth.value
+        },
+        addFile(state, action) {
+           state.imgFile.file.push(action.payload as File)
+        },
+        addUrl(state, action) {
+            state.imgFile.url.push(action.payload)
+        },
+        reSetFile(state) {
+            state.imgFile = {
+                file: [],
+                url: []
+            }
         },
         setMessage(state, action) {
             state.message = action.payload

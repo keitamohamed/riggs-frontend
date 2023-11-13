@@ -1,6 +1,7 @@
 
 .dashboard-main {
   background: $dash_colo_blue;
+
   * {
     color: $color_white;
   }
@@ -358,6 +359,7 @@
       .btn-container {
 
         .btn-upload-file {
+          width: 100%;
           background: $dark;
           padding: 5px 10px;
           cursor: pointer;
@@ -438,6 +440,52 @@
 
     * {
       color: $dark;
+    }
+  }
+
+  .swiper {
+
+    .swiper-pagination {
+      display: flex;
+      position: static;
+      width: 80%;
+      justify-content: center;
+      margin: 2em auto 0;
+
+      .swiper-pagination-bullet {
+        background: $color_white;
+      }
+    }
+  }
+
+  .table {
+    .paginationWrapper {
+      list-style: none;
+      grid-template-columns: repeat(4, 1fr);
+      width: fit-content;
+      gap: 1.3em;
+      padding: 10px;
+
+      .paginationBtnContainer {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: $dark_55;
+        display: grid;
+        justify-content: center;
+
+        li {
+          cursor: pointer;
+          color: $dark;
+          display: grid;
+          place-content: center;
+        }
+
+        &:hover {
+          background: $color_white;
+        }
+      }
+
     }
   }
 

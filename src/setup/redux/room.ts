@@ -16,7 +16,8 @@ const initialState: InitRoom = {
             bathroom: '',
             tv: '',
             numberOfBed: 0
-        }
+        },
+        image: []
     },
     rooms: [],
     message: {
@@ -74,7 +75,8 @@ const roomSlice = createSlice({
                     bathroom: '',
                     tv: '',
                     numberOfBed: 0
-                }
+                },
+                image: []
             }
         },
         setRooms(state, action) {

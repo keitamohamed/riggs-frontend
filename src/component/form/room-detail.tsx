@@ -1,7 +1,7 @@
+import {useContext, useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {roomAction} from "../../setup/redux/room.ts";
 import {useRoom} from "../../custom-hook/useRoom.ts";
-import {useContext, useState} from "react";
 import {DashboardContext} from "../../setup/context/context.ts";
 import {FileUpload} from "./file-upload.tsx";
 import {useFile} from "../../custom-hook/useFile.ts";
@@ -15,9 +15,12 @@ export const Room_Form = (prop: props) => {
     const dashCtx = useContext(DashboardContext)
     const dispatch = useAppDispatch()
     const {room, message, error: {map}} = useAppSelector((state) => state.room)
+    const {file} = useAppSelector((state) => state.form.imgFile)
+
+    const {dropZone, previewFile} = useFile()
     const {onSubmit} = useRoom()
     const {uploadFile} = useFile()
-    const [show, setShow] = useState<boolean>(false)
+    const [show, setShow] = useState<boolean>(true)
 
     const [roomName] = useState<string[]>([
         'Superior King',
@@ -51,16 +54,22 @@ export const Room_Form = (prop: props) => {
           })
     }
 
-    const setAction = async () => {
-        await uploadFile(message.id, 'New')
+    const setAction = () => {
+        uploadFile(room.roomID, 'New')
         setShow(false)
     }
+
+    useEffect(() => {
+        dropZone()
+        previewFile()
+    }, [file])
+
 
     return (
         <>
             <div className="content">
                 {
-                    !show ? (
+                    dashCtx.getFormType().actionType == "Update" || dashCtx.getFormType().actionType == "Submit"  ? (
                         <form
                             onSubmit={onSubmitForm}
                             action=""
@@ -160,8 +169,9 @@ export const Room_Form = (prop: props) => {
                             <div className="file-upload">
                                 <FileUpload/>
                                 <div className="btn-container w-[85%] m-auto">
-                                    <p className="btn-upload-file"
-                                       onClick={setAction}
+                                    <p
+                                        onClick={setAction}
+                                        className="btn-upload-file"
                                     >
                                         upload File
                                     </p>

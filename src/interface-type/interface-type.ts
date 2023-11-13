@@ -106,6 +106,7 @@ export type User = {
 
 export interface FormInit {
     userForm: User
+    imgFile: FileType
     message: string,
     error: {
         errorCode: number,
@@ -175,6 +176,14 @@ export interface Room {
         tv: string,
         numberOfBed: number
     }
+    image: ImgField[]
+}
+
+type ImgField = {
+    id: number,
+    name: string,
+    type: string,
+    path: string,
 }
 
 

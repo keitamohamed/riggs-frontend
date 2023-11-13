@@ -1,54 +1,53 @@
-import {useContext, useEffect, useState} from "react";
-import {FileType} from "../interface-type/interface-type.ts";
+import {useContext, useState} from "react";
 import {POST_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath, ContextType} from "../api-endpoint/url-context-type.ts";
 import {AuthContext} from "../setup/context/context.ts";
-import {useAppDispatch} from "../setup/redux/reduxHook.ts";
+import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {roomAction} from "../setup/redux/room.ts";
+import {formAction} from "../setup/redux/form.ts";
+import {FileType} from "../interface-type/interface-type.ts";
 
 export const useFile = () => {
     const authCtx = useContext(AuthContext)
+    const {file, url} = useAppSelector((state) => state.form.imgFile)
     const dispatch = useAppDispatch()
-    const [files, setFiles] = useState<FileType>({
+    const [files] = useState<FileType>({
         file: [],
         url: []
     })
+
     const [drag] = useState<string[]>(['dragleave', 'dragend'])
 
     const saveFile = (inputElement: any) => {
       if (inputElement?.files.length) {
           for (let i = 0; i < inputElement.files.length; i++) {
-              const newFile = inputElement.files[i]
-              const {file} = files
-              file.push(newFile)
+              dispatch(formAction.addFile(inputElement.files[i]))
+              files.file.push(inputElement.files[i])
           }
-          previewFile()
       }
     }
 
     const previewFile = () => {
         const imageContainer = document.querySelector(".file-preview") as HTMLFormElement;
-        if (imageContainer !== null && files.file.length > 0) {
+        if (imageContainer !== null && file.length > 0) {
             imageContainer.style.visibility = "visible"
         }
-
-        files.file.map((file) => {
+        file.map((imgFile) => {
             const fileReader = new FileReader()
-            fileReader.readAsDataURL(file)
+            fileReader.readAsDataURL(imgFile)
             const div = document.createElement("div")
             div.classList.add("content_image");
             const img = document.createElement("img")
             img.classList.add("imageFile")
-            const {url} = files
             let isFileExist = false;
             fileReader.onload = () => {
                 url.map(img => {
-                    if (fileReader.result === img) {
+                    if (fileReader.result == img) {
                         isFileExist = true
                     }
                 })
                 if (!isFileExist) {
-                    url.push(fileReader.result)
+                    dispatch(formAction.addUrl(fileReader.result))
                     img.src = `${fileReader.result}`
                     div.append(img)
                     imageContainer?.append(div)
@@ -101,13 +100,6 @@ export const useFile = () => {
         })
     }
 
-    const reSetFile = () => {
-        setFiles({
-            file: [],
-            url: []
-        })
-    }
-
     const setMessage = (message: any) => {
         dispatch(roomAction.setMessage(message))
     }
@@ -122,25 +114,21 @@ export const useFile = () => {
             element.style.display = 'block'
             return
         }
-        if (files.file.length === 0) {
+        if (file.length == 0) {
             return;
         }
-        files.file.map(async file => {
+        file.map(async file => {
             const formData = new FormData()
             formData.append('file', file)
-            if (actionType === "New") {
+            if (actionType == "New") {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                dispatch(POST_REQUEST(authCtx.getCookie().aToken, APIPath.ROOM_FILE(153211), formData, setMessage, setError, ContextType.FILE))
+                await dispatch(POST_REQUEST(authCtx.getCookie().aToken, APIPath.ROOM_IMAGE_SAVE(id), formData, setMessage, setError, ContextType.FILE))
+
             }
         })
-        reSetFile()
+        dispatch(formAction.reSetFile())
     }
 
-
-    useEffect(() => {
-        dropZone()
-    }, [])
-
-    return {uploadFile}
+    return {uploadFile, dropZone, previewFile}
 }
