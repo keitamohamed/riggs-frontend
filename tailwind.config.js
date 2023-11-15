@@ -21,6 +21,9 @@ export default {
       'md': {'min': '768px', 'max': '960px'},
       // => @media (min--width: 570px and max-width: 960px) { ... }
 
+      'cul': {'min': '300px', 'max': '1390px'},
+      // => @media (min--width: 300px and max-width: 1390px) { ... }
+
       'lg': {'min': '960px', 'max': '1440px'},
       // => @media (min-width: 960px and max: 1440px) { ... }
 

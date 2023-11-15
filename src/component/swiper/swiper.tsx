@@ -82,23 +82,22 @@ export const SwiperCarousel = () => {
 
                                                 </div>
                                                 <div className="room-detail col-span-4 w-full sm:mt-1">
-                                                    <h3 className='title-id grid grid-cols-12 px-1'>
-                                                        <p className='col-start-1 col-end-8 text-left'>{`${room.roomName}`}</p>
-                                                        <span className={`w-full col-start-8 col-end-13 text-right`}>{room.roomID}</span>
+                                                    <h3 className='title-id grid grid-cols-2 px-1'>
+                                                        <p className='text-left'>{`${room.roomName}`}</p>
+                                                        <span className={`w-full text-right`}>{room.roomID}</span>
                                                     </h3>
-                                                    <div className="detail text-left px-1 pt-[.5em]">
-                                                        <div className="check text-left sm:!grid-cols-1 md:!grid-cols-2 lg:!grid-cols-2">
-                                                            <li>Size:<i>{room.size}</i></li>
-                                                            <li>View:<i>{room?.detail.view}</i></li>
+                                                    <div className="detail grid grid-cols-1 text-left px-1 pt-[1em] gap-[1em]">
+                                                        <div className="check text-left grid sm:!grid-cols-2 md:!grid-cols-2 lg:!grid-cols-2 g-[.5em] place-items-center">
+                                                            <li className='w-fit'>Size: <i>{room.size}</i></li>
+                                                            <li className='w-fit'>View: <i>{room?.detail.view}</i></li>
                                                         </div>
-                                                        <div className="edit-room grid gap-[1em] grid-cols-3">
-                                                            <div className="grid place-content-start col-span-1">
-                                                                <li><span className='flex justify-end ml-auto'>${room?.price} a Night</span></li>
+                                                        <div className="edit-room grid grid-cols-2 w-full gap-[1em] place-items-end">
+                                                            <div className="grid w-full place-content-start">
+                                                                <li className='text-left'><span className='flex place-items-center ml-auto'>${room?.price} a Night</span></li>
                                                             </div>
-                                                            <div className="edit-room-btn-container col-start-2 col-end-4 flex justify-end gap-[1em] pt-[10px]">
+                                                            <div className="edit-room-btn-container w-full flex justify-end gap-[1em] pt-[10px]">
                                                                 <li onClick={() => setRoomSelected(room, 'Update')}><AiOutlineEdit className='ml-auto'/></li>
                                                                 <li onClick={() => setRoomSelected(room, 'Update Image')}>
-                                                                    {/*<AiFillFileImage className='ml-auto'/>*/}
                                                                     <IoMdPhotos className='ml-auto'/>
                                                                 </li>
                                                                 <li className='delete-icon' onClick={() => onClickDeleteRoom(room.roomID)}>

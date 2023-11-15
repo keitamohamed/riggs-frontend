@@ -47,6 +47,7 @@
         padding: 10px 0;
         display: inherit;
         width: 100%;
+
         li {
           margin-bottom: .5em;
         }
@@ -63,7 +64,7 @@
       .context {
 
         .context-canvas {
-          width: 100%;
+          width: fit-content;
 
           li {
             justify-items: center;
@@ -77,16 +78,15 @@
         place-items: start;
         row-gap: .5em;
         border-bottom: 1px solid $border_color;
-        padding-bottom: 10px;
+        padding: 1em 15px 10px;
 
          li {
-           background: $color_blue;
-           padding: 3px 10px;
            place-items: center;
            border-radius: 5px;
+           border: none;
 
            * {
-             font-size: .9em;
+             border: none;
            }
 
            svg {
@@ -107,6 +107,7 @@
         flex-direction: column;
         place-items: flex-start;
         gap: .5em;
+        padding: 0 15px;
 
         li {
           display: flex;
@@ -116,15 +117,9 @@
           flex-direction: row;
           align-items: flex-start;
           gap: 1.5em;
-          padding: 5px 10px;
+          padding: 5px 0;
 
           &:hover {
-            background: $color_white;
-
-            * {
-              color: $dark;
-            }
-
             svg {
               fill: $dark;
               color: $dark;

@@ -129,12 +129,12 @@ export const UserDetail = (prop: props) => {
                 {
                     prop.type == 'New' ?
                         <div className="form_group next">
-                            <p className='next-btn sm:hidden block' onClick={onClickCheckValidation}>Next</p>
-                            <p className='sm:block hidden' onClick={onClickCheckValidation}><HiOutlineArrowRight/></p>
+                            <p className='next-btn sm:hidden flex place-content-center' onClick={onClickCheckValidation}>Next</p>
+                            <p className='sm:flex hidden place-content-center' onClick={onClickCheckValidation}><HiOutlineArrowRight/></p>
                         </div> :
                         <div className="form_group next">
-                            <p className='' onClick={onSubmitSendUpdate}>Update</p>
-                            <p className=''>
+                            <p className='next-btn sm:hidden flex place-content-center' onClick={onSubmitSendUpdate}>Update</p>
+                            <p className='sm:flex hidden place-content-center'>
                                 <span onClick={() => uiCtx.setShowAuth(true)}>Edit Authenticate</span>
                             </p>
                         </div>
