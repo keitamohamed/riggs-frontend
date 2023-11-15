@@ -133,7 +133,12 @@ export interface BookingInit {
     booking: Booking,
     recentBook: RecentBook[],
     bookingList: Booking[]
-    message: string,
+    message: {
+        id: number,
+        message: string,
+        status: string,
+        statusCode: number
+    },
     error: {
         errorCode: number,
         errors: any,

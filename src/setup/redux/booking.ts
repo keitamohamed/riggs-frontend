@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {Booking, BookingInit, BookingPrice, User} from "../../interface-type/interface-type.ts";
+import {Booking, BookingInit, User} from "../../interface-type/interface-type.ts";
 
 
 const user = {
@@ -50,7 +50,12 @@ const initialState: BookingInit = {
     },
     recentBook: [],
     bookingList: [],
-    message: '',
+    message: {
+        id: 0,
+        message: '',
+        status: '',
+        statusCode: 0
+    },
     error: {
         errorCode: 0,
         errors: {}
@@ -120,7 +125,12 @@ const bookingSlice = createSlice({
             state.message = action.payload
         },
         reSetMessage(state) {
-            state.message = ""
+            state.message = {
+                id: 0,
+                message: '',
+                status: '',
+                statusCode: 0
+            }
         },
         setError(state, action) {
             state.error = action.payload
