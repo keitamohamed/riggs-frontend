@@ -43,10 +43,16 @@ const initialState: FormInit = {
         file: [],
         url: []
     },
-    message: '',
+    message: {
+        id: 0,
+        message: '',
+        status: '',
+        statusCode: 0
+    },
     error: {
         errorCode: 0,
-        errors: {}
+        errors: {},
+        message: ''
     }
 }
 
@@ -79,7 +85,7 @@ const formSlice = createSlice({
             const auth = action.payload
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            state.update.auth[auth.name as keyof object] = auth.value
+            state.userForm.auth[auth.name as keyof object] = auth.value
         },
         setUser(state, action) {
             state.userForm = action.payload
@@ -91,8 +97,7 @@ const formSlice = createSlice({
             state.userForm[user.name as keyof object] = user.value
         },
         setRole(state, action) {
-            const auth = action.payload
-            state.userForm.auth['role'] = auth.value
+            state.userForm.auth.role = action.payload
         },
         setNewUserAddress(state, action) {
             const address = action.payload
@@ -125,6 +130,7 @@ const formSlice = createSlice({
             state.error = {
                 errorCode: action.payload.statusCode,
                 errors: action.payload.map.error,
+                message: action.payload.message
             }
             // state.error = action.payload.error;
         },
@@ -135,10 +141,16 @@ const formSlice = createSlice({
             state.error = {
                 errors: {},
                 errorCode: 0,
+                message: ''
             }
         },
         reSetMessage(state) {
-            state.message = ""
+            state.message = {
+                id: 0,
+                message: '',
+                status: '',
+                statusCode: 0
+            }
         }
     }
 

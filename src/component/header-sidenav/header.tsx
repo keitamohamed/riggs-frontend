@@ -41,7 +41,7 @@ export const Header = () => {
                     <p>Washington d.c</p>
                 </div>
                 <div className="action-btn grid grid-cols-2 sm:grid-cols-1 sm:col-span-2 col-span-3">
-                    <div className={`book sm:hidden ${authCtx.isAuthenticated() ? '' : 'hidden'}`}
+                    <div className={`book sm:hidden md:hidden ${authCtx.isAuthenticated() ? '' : 'hidden'}`}
                          aria-disabled={true}
                     >
                         <h3 onClick={() => nav('/booking')}>Book Room</h3></div>

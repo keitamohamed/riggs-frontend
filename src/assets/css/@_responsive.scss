@@ -54,7 +54,6 @@
       }
     }
   }
-
 }
 
 
@@ -333,6 +332,13 @@
         }
       }
     }
+
+    .action_btn {
+      padding: 1rem !important;
+      border-radius: 9999px !important;
+    }
+
+
     .swiper {
       .room-detail {
         padding: 0;

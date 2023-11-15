@@ -40,7 +40,7 @@ export const SideNav = () => {
         <div className={`side-nav slide-out`}>
             <div className="off-canvas">
                 <div className="canvas grid grid-cols-12 sm:grid-cols-1">
-                    <div className={`nav-container col-start-1 grid-col-end-8 sm:col-start-1 grid-col-end-1`}>
+                    <div className={`nav-container col-start-1 col-end-8 sm:col-start-1 col-end-1`}>
                         <div className="canvas_inner grid-x">
                             <div className={`context grid grid-cols-12`}>
                                 <div className="svg-container col-start-1 col-end-3">
@@ -64,17 +64,25 @@ export const SideNav = () => {
                                         <li onClick={() => {nav('/dash'), dashCtx.setDisplayComponentType('dashboard-one')}}>Dashboard</li> : ''
                                 }
                                 {
-                                    authCtx.isAuthenticated() && authCtx.getCookie().Role == "ROLE_ADMIN" ?
+                                    authCtx.isAuthenticated() && authCtx.isAdmin() ? (
                                         <li className='side-nav-link' onClick={() => nav('/register')}>
-                                            Register User</li> : ''
+                                            Register
+                                        </li>
+                                    )
+                                        : !authCtx.isAuthenticated() ? (
+                                            <li className='side-nav-link' onClick={() => nav('/register')}>
+                                                Register
+                                            </li>
+                                        ) : <></>
                                 }
+
                                 <li>About</li>
                                 <li>Rooms & Suites</li>
                                 <li>Experiences</li>
                             </nav>
                         </ul>
                         <ul className={`canvas-l-ul grid pl-[7em] sm:pl-[2em]`}>
-                            <nav className={`nav grid grid-cols-2 gap-2 w-[90%] sm:grid-cols-1`}>
+                            <nav className={`nav grid grid-cols-2 gap-2 w-[100%] sm:grid-cols-1`}>
                                 <li className='side-nav-link' onClick={() => onClickScrollEvent('email-container')}>Contact</li>
                                 <li className='side-nav-link'>Gallery</li>
                                 <li className='side-nav-link'>Press room</li>

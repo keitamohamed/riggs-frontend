@@ -39,23 +39,36 @@ export const useForm = () => {
     }
 
     const setInvalidInputError = async (response: any) => {
-        dispatch(formAction.setMessage(response.message))
-        dispatch(formAction.setError(response))
-        const {error: {address, firstName, lastName, phoneNum}} = response.map
-        if (!address && !firstName && !lastName && !phoneNum) {
-            if (!ctx.getShowAuth()) {
-                dispatch(formAction.reSetError())
+
+        if (response.status) {
+            dispatch(formAction.setMessage(response.message))
+            const {error: {address, firstName, lastName, phoneNum}} = response.map
+            if (!address && !firstName && !lastName && !phoneNum) {
+                if (!ctx.getShowAuth()) {
+                    dispatch(formAction.reSetError())
+                }
+                ctx.setShowAuth(true)
             }
-            ctx.setShowAuth(true)
+        } else {
+            dispatch(formAction.setError(response))
         }
     }
 
     const onSubmitAddNewUser = async (event: any) => {
         event.preventDefault()
+        setRole()
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         await dispatch(POST_REQUEST(null, APIPath.ADD_NEW_USER, userForm, setMessage, setInvalidInputError, ContextType.JSONFILE))
     }
+
+    const setRole = () => {
+        if (!authCtx.isAuthenticated()) {
+            dispatch(formAction.setRole("User"))
+            dispatch(formAction.reSetError())
+        }
+    }
+
     const onSubmitSendUpdate = async () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -67,7 +80,7 @@ export const useForm = () => {
     const onSubmitSendUpdateAuth = () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        dispatch(PUT_REQUEST(authCtx.getCookie().aToken, APIPath.UPDATE_USER_AUTH(update.auth.authID), userForm.auth, setMessage, setInvalidInputError))
+        dispatch(PUT_REQUEST(authCtx.getCookie().aToken, APIPath.UPDATE_USER_AUTH(userForm.auth.authID), userForm.auth, setMessage, setInvalidInputError))
         findUserByEmail(authCtx.getCookie().email)
         dispatch(formAction.reSetForm())
     }

@@ -45,7 +45,7 @@ export const RoomList = () => {
                             <>
                                 <div className={`room grid grid-cols-1 sm:grid-cols-10 sm:pb-2`} key={room.roomID}>
                                     <div className="image-container col-span-4 sm:col-span-10 sm:w-[100vw] sm:h-[40vh]">
-                                        <img src={`${APIPath.FILE_BASE_DIR + '' + APIPath.ROOM_IMAGE_DOWNLOAD(room.roomID)}`} alt={room.image[0].name} className='sm:!object-fill sm:w-[100vw] sm:h-[40vh]' />
+                                        <img src={`${APIPath.FILE_BASE_DIR_PRODUCTION + '' + APIPath.ROOM_IMAGE_DOWNLOAD(room.roomID)}`} alt={room.image[0].name} className='sm:!object-fill sm:w-[100vw] sm:h-[40vh]' />
                                     </div>
                                     <div className="room-action p-[.8em] grid grid-cols-8 sm:grid-cols-2 sm:col-span-10 sm:mt-6 col-span-6">
                                         <h1 className='!w-full col-span-5 sm:col-end-1 sm:!text-center md:!w-full text-center'>{room.roomName}</h1>
@@ -69,7 +69,7 @@ export const RoomList = () => {
                                     </div>
                                 <div className={`room-detail gap-2 sm:grid-cols-1`}>
                                         <div className="image-container w-full">
-                                            <img src={'/room-1.jpg'} alt="" />
+                                            <img src={`${APIPath.FILE_BASE_DIR_PRODUCTION + '' + APIPath.ROOM_IMAGE_DOWNLOAD(room.roomID)}`} alt="" />
                                         </div>
                                         <div className="info grid gap-1 w-[90%] sm:!w-full m-auto md:grid-cols-1 sm:p-2 sm:pr-[15px]">
                                             <h2 className='info-room-title'>{room.roomName}</h2>

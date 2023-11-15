@@ -1,7 +1,7 @@
 import {useCookies} from "react-cookie";
 import {Credentials, CredentialsReset, Props} from "../../interface-type/interface-type.ts";
 import {AuthContext} from "./context.ts";
-import {useAppDispatch, useAppSelector} from "../redux/reduxHook.ts";
+import {useAppDispatch} from "../redux/reduxHook.ts";
 import {authAction} from "../redux/authenticate.ts";
 
 const {Provider} = AuthContext
@@ -24,6 +24,7 @@ const AuthProvider = ({children}: Props) => {
         setCookie('aToken', credentials.accessToken)
         setCookie('refreshToken', credentials.refreshToken)
         setCookie('email', credentials.email)
+        console.log(credentials)
         setRole(credentials)
     }
 

@@ -30,6 +30,7 @@ export const APIPath =  {
 
     //File Upload
     FILE_BASE_DIR: ('http://localhost:8080/riggs/'),
+    FILE_BASE_DIR_PRODUCTION: ('https://riggs.up.railway.app/riggs/'),
 
     USER_FILE: (userID: number) => `user/file-upload/${userID}`,
     ROOM_IMAGE_SAVE: (roomID: number) => `room/save-image/${roomID}`,

@@ -1,12 +1,12 @@
-import {FormEvent, useContext, useEffect, useState} from "react";
+import {FormEvent, useContext, useState} from "react";
 import {UIActionContext} from "../../setup/context/context.ts";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {useForm} from "../../custom-hook/useForm.ts";
-import {Alert} from "../reusable/alert.tsx";
 
 type props = {
     type: string,
 }
+
 export const UserAuth = (prop: props) => {
 
     const uiCtx = useContext(UIActionContext)
@@ -57,15 +57,21 @@ export const UserAuth = (prop: props) => {
                 </div>
                 <form onSubmit={prop.type == 'Update' ? onSubmitSendAuthUpdate : onSubmitAddNewUser}
                       className={`form sm:!w-[100%] block}`}>
-                    <div className="form-group">
-                        <input type="email"
-                               name="email"
-                               className={errors.auth?.email ? 'invalid-input' : ''}
-                               autoComplete="off"
-                               onChange={prop.type == 'New' ? onChangeSetNewUserAuth : onChangeSetUpdateAuth}
-                               placeholder={errors.auth?.email ? errors.auth.email : 'Enter email'}
-                        />
-                    </div>
+                    {
+                        prop.type === "Update" ?
+                            <></>
+                            : (
+                                <div className="form-group">
+                                    <input type="email"
+                                           name="email"
+                                           className={errors.auth?.email ? 'invalid-input' : ''}
+                                           autoComplete="off"
+                                           onChange={prop.type == 'New' ? onChangeSetNewUserAuth : onChangeSetUpdateAuth}
+                                           placeholder={errors.auth?.email ? errors.auth.email : 'Enter email'}
+                                    />
+                                </div>
+                            )
+                    }
                     {
                         user.auth.role === 'Admin'.toUpperCase() ? (
                             <div className="form-group">
@@ -100,7 +106,7 @@ export const UserAuth = (prop: props) => {
                         {passwordNotMatch ? <p className="message">{passwordNotMatch}</p> : <></>}
                     </div>
                     <div className="form-group message">
-                        {message !== "" ? <p className="message">{message}</p> : <></>}
+                        {message.message !== "" ? <p className="message">{message.message}</p> : <></>}
                     </div>
                     <div className="form_group next">
                         <input type="submit" value={prop.type == 'Update' ? prop.type : 'Submit'}/>

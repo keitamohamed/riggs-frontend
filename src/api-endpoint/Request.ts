@@ -96,13 +96,13 @@ export const DOWNLOAD_IMAGE_FILE = (
 ) => {
     return axios({
         method: "GET",
-        url: url,
+        url: `riggs/${url}`,
         withCredentials: true,
         headers: {
             Authorization: token ? `Bearer ${token}` : 'Bearer',
         }
     })
-        .then(file => file)
+
 }
 
 export const DOWNLOAD_EXCEL_FILE = (

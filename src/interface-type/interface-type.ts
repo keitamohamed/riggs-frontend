@@ -107,10 +107,16 @@ export type User = {
 export interface FormInit {
     userForm: User
     imgFile: FileType
-    message: string,
+    message: {
+        id: number,
+        message: string,
+        status: string,
+        statusCode: number
+    },
     error: {
         errorCode: number,
         errors: any,
+        message: string
     }
 }
 

@@ -1,5 +1,6 @@
-import {BsArrowRightSquare} from "react-icons/bs";
 import {useContext} from "react";
+
+import {HiOutlineArrowRight} from "react-icons/hi";
 import {UIActionContext} from "../../setup/context/context.ts";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {userAction} from "../../setup/redux/user.ts";
@@ -128,11 +129,11 @@ export const UserDetail = (prop: props) => {
                 {
                     prop.type == 'New' ?
                         <div className="form_group next">
-                            <p className='sm:hidden block' onClick={onClickCheckValidation}>Next</p>
-                            <p className='sm:block hidden' onClick={onClickCheckValidation}><BsArrowRightSquare/></p>
+                            <p className='next-btn sm:hidden block' onClick={onClickCheckValidation}>Next</p>
+                            <p className='sm:block hidden' onClick={onClickCheckValidation}><HiOutlineArrowRight/></p>
                         </div> :
                         <div className="form_group next">
-                            <p className='sm:block hidden' onClick={onSubmitSendUpdate}>Update</p>
+                            <p className='' onClick={onSubmitSendUpdate}>Update</p>
                             <p className=''>
                                 <span onClick={() => uiCtx.setShowAuth(true)}>Edit Authenticate</span>
                             </p>

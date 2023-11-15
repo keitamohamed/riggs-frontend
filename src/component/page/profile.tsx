@@ -91,23 +91,18 @@ export const Profile = () => {
                                         ) : <p>Loading data....</p>
                                     }
                                 </div>
-                                <div className="action_btn flex-none w-fit
-                                grid grid-cols-2 justify-center
-                                sm:rounded-full sm:grid-cols-1 bg-[#EEEEEE]
-                                p-2
-                                top-0 right-2
-                                sm:-top-5
-                                sm:bg-[#ED2B2A] sm:p-4">
-                                    <li className='list-none'
+                                <div className={`action_btn flex-none w-fit grid grid-cols-1 justify-center sm:rounded-full sm:grid-cols-1 bg-[#EEEEEE]
+                                p-2 top-0 right-2 sm:-top-5 sm:bg-[#ED2B2A] sm:p-4`}>
+                                    <li className='list-none cm:hidden'
                                         onClick={onClickShowModel}>
                                         <LuEdit2 className="text-1xl hidden sm:block sm:text-white text-[#19A7CE]"/>
                                     </li>
                                     <li
-                                        className='list-none'
+                                        className='list-none large-sc sm:hidden flex w-full gap-[.5em]'
                                         onClick={onClickShowModel}>
                                         <AiFillEdit className="text-1xl block sm:hidden sm:text-white text-[#19A7CE]"/>
+                                        <p className="sm:hidden text-[#19A7CE]">Edit</p>
                                     </li>
-                                    <p className="sm:hidden text-[#19A7CE]">Edit</p>
                                 </div>
                             </div>
                         </div>

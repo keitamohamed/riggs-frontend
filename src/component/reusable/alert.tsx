@@ -1,10 +1,16 @@
 import {useEffect, useState} from "react";
 
 type props = {
-    message: string
+    message: {
+        id: number,
+        message: string,
+        status: string,
+        statusCode: number
+    }
     error: string
     function: () => void
 }
+
 export const Alert = (prop: props) => {
     const [alertOpen, setAlertOpen] = useState<boolean>(false)
 
@@ -14,7 +20,9 @@ export const Alert = (prop: props) => {
             (element.classList.contains('alert-message') || element.classList.contains('alert-error'))) {
             element.classList.remove('alert-message', 'alert-error')
             element.classList.add('alert-close')
-            prop.function()
+            if (prop.message.message) {
+                prop.function()
+            }
         }
     }
 
@@ -25,7 +33,7 @@ export const Alert = (prop: props) => {
 
     useEffect(() => {
         const el = document.querySelector('.alert-box') as HTMLElement
-        if (prop.message !== "") {
+        if (prop.message.message !== "" || prop.error) {
             openAlert(el, 'alert-message')
             setInterval(function () {
                 closeAlert(el)
@@ -37,7 +45,7 @@ export const Alert = (prop: props) => {
 
     return (
         <div className={`alert-box`}>
-                <p>{prop.message}</p>
+                <p>{prop.error ? prop.error : prop.message.message}</p>
             </div>
     )
 }

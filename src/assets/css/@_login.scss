@@ -88,17 +88,32 @@
 
     .submit, .next {
       display: grid;
-      margin-top: 2em;
-      padding: 2px 0;
+      padding: 2px 10px;
       place-items: end;
       color: $color_white;
 
+      * {
+        color: $color_white;
+      }
+
       svg {
         cursor: pointer;
+        color: $color_white;
+      }
+
+      p, input[type=submit] {
+        background: $dark;
+        padding: 2px 20px;
+        border: none;
+        border-radius: 10px;
+
+        * {
+          border: none;
+          padding: 0;
+        }
       }
 
       .pointer {
-        border: 1px solid $light_slate;
         padding: 2px 15px;
         cursor: pointer;
       }
@@ -152,7 +167,11 @@
     display: grid;
     place-items: start;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px 0 2em 10px;
+
+    * {
+      text-align: left;
+    }
 
     h1 {
       font-family: $font_family_bacasime;
