@@ -24,7 +24,6 @@ const AuthProvider = ({children}: Props) => {
         setCookie('aToken', credentials.accessToken)
         setCookie('refreshToken', credentials.refreshToken)
         setCookie('email', credentials.email)
-        console.log(credentials)
         setRole(credentials)
     }
 

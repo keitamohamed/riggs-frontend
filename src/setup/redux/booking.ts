@@ -99,7 +99,6 @@ const bookingSlice = createSlice({
                 action.payload.map((user: User) => {
                     const books = user.book;
                     books.map((book) => {
-                        console.log(recent.id + ' : ' + book.bookingID)
                         if (recent.id == book.bookingID) {
                             recent.name = user.firstName + ' ' + user.lastName
                             recent.email = user.auth.email
@@ -107,6 +106,9 @@ const bookingSlice = createSlice({
                     })
                 })
             })
+        },
+        setBookingUser(state, action) {
+            booking.user = action.payload
         },
         setNewDate(state, action) {
             const startDate = action.payload[0]

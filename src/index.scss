@@ -27,6 +27,11 @@ h1, h2 {
   font-family: $font_family_bacasime;
 }
 
+select {
+  -moz-appearance: none;
+  appearance: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

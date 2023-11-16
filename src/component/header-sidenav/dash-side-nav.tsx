@@ -43,43 +43,58 @@ export const DashSideNav = () => {
                 <div className={`context cul:grid cul:grid-cols-2`}>
                     <div className={`context-canvas mt-[1em] mb-[.5em] grid place-content-center justify-start`}>
                         <li className={`list-none grid place-content-start justify-start`} onClick={() => nav('/')}>
-                            <img className={`logo w-[50%] smg:hidden`} src={logoWhite} alt="logo"/>
-                            <img className={`logo w-[50%] lg:hidden xl:hidden`} src={logoNavy} alt="logo"/>
+                            <img className={`logo w-[50%] sm:hidden`} src={logoWhite} alt="logo"/>
+                            <img className={`logo w-[50%] md:hidden lg:hidden xl:hidden`} src={logoNavy} alt="logo"/>
                         </li>
                     </div>
                     <div className="close-btn-container hidden place-content-center justify-end cul:grid">
                         <div className="avatar grid grid-cols-1 gap-3 place-content-start justify-center">
                             <div className="image-container">
-                                <img className="w-3 h-3 rounded-full" src={'/profile-img.jpg'} alt="img"/>
+                                <img className="w-3 h-3 rounded-full cursor-pointer"
+                                     src={'/profile-img.jpg'}
+                                     alt="img"
+                                     onClick={() => nav("/profile")}
+                                />
                             </div>
                             <div className="avatar-name-container grid place-content-center">
-                                <h2>{user.firstName + ' ' + user.lastName}</h2>
+                                <h2 className='cursor-pointer'
+                                    onClick={() => nav('/profile')}
+                                >
+                                    {user.firstName + ' ' + user.lastName}
+                                </h2>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="avatar flex gap-3 place-content-center justify-center cul:hidden">
                     <div className="image-container">
-                        <img className="w-12 h-12 rounded-full" src={'/profile-img.jpg'} alt="img"/>
+                        <img
+                            className="w-12 h-12 rounded-full cursor-pointer"
+                            src={'/profile-img.jpg'} alt="img"
+                            onClick={() => nav("/profile")}/>
                     </div>
                     <div className="avatar-name-container grid place-content-center">
-                        <h2>{user.firstName + ' ' + user.lastName}</h2>
+                        <h2 className='cursor-pointer'
+                            onClick={() => nav("/profile")}
+                        >
+                            {user.firstName + ' ' + user.lastName}
+                        </h2>
                     </div>
                 </div>
                 <div className="dash-btn-container">
                     <li className='on-lg-hide' onClick={
                         () => onClick('dashboard-one')}>
+                        <AiFillHome/>
                         <span>Main</span>
-                        {/*<AiFillHome/>*/}
                     </li>
                     <li className='on-sm-show' onClick={
                         () => {onClick('dashboard-one'); sidebarHide()}}>
                         <span>Main Dash</span>
-                        {/*<AiFillHome/>*/}
                     </li>
 
                     <li className='on-lg-hide' onClick={() => {onClick('dashboard-two')}}>
-                        <span>Room</span> <FaHotel/>
+                        <FaHotel/>
+                        <span>Room</span>
                     </li>
                     <li className='on-sm-show'
                         onClick={() => {onClick('dashboard-two'); sidebarHide()}}>

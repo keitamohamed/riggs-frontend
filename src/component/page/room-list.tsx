@@ -11,7 +11,7 @@ import {RoomActionContext} from "../../setup/context/context.ts";
 import {useBooking} from "../../custom-hook/useBooking.ts";
 import {APIPath} from "../../api-endpoint/url-context-type.ts";
 
-export const RoomList = () => {
+export const  RoomList = () => {
     const ctx = useContext(RoomActionContext)
     const {setReserveRoom} = useBooking()
     const {rooms} = useAppSelector((state) => state.room)

@@ -5,6 +5,7 @@ import {Navigation, Pagination, Mousewheel, Keyboard} from "swiper/modules";
 import {RiDeleteBinLine} from "react-icons/ri";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {useBooking} from "../../custom-hook/useBooking.ts";
+import {APIPath} from "../../api-endpoint/url-context-type.ts";
 
 
 export const SwiperImage = () => {
@@ -45,7 +46,7 @@ export const SwiperImage = () => {
                                                     <div className="images-container" key={`${index}_${book.bookingID}`}>
                                                         <div className="image grid grid-cols-12 w-[96%] sm:w-[100%] ml-auto sm:flex sm:flex-col sm:mb-2 sm:gap-[1.5em]">
                                                             <div className="hotel-image col-span-6">
-                                                                <img className="h-auto max-w-full" src={'/dc-street.jpg'} alt=""/>
+                                                                <img className="h-auto max-w-full" src={APIPath.FILE_BASE_DIR_PRODUCTION + APIPath.ROOM_IMAGE_DOWNLOAD(book.rooms[index].roomID)} alt=""/>
                                                             </div>
                                                             <div className="room-detail col-start-7 col-end-13 w-full sm:mt-1">
                                                                 <h3>{price.roomName}</h3>

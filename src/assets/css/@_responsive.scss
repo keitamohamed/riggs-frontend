@@ -56,6 +56,25 @@
   }
 }
 
+@include responsive_min(cu) {
+
+  .dashboard-main {
+
+    .dash-sidebar {
+
+      .on-lg-hide {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1.5em;
+      }
+
+      .on-sm-show {
+        display: none;
+      }
+    }
+  }
+}
+
 
 @include responsive_max(cu) {
 
@@ -149,6 +168,7 @@
         .dash-buttons-container {
 
           li {
+
             * {
               width: fit-content !important;
             }

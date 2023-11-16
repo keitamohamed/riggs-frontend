@@ -33,6 +33,24 @@
     background: url("/login-bg.jpg");
     background-size: cover;
   }
+  .content {
+
+    .submit {
+      p {
+        background: none;
+      }
+
+      .no-account {
+        p {
+          background: none;
+        }
+
+        p:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+  }
 }
 
 

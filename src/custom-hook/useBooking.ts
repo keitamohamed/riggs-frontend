@@ -13,7 +13,6 @@ export const useBooking = () => {
     const {booking} = useAppSelector((state) => state.booking)
     const {user, listUser} = useAppSelector((state) => state.user)
 
-
     const [dateRange, setDateRange] = useState([null, null])
 
     const setBookingList = (bookingList: any) => {
