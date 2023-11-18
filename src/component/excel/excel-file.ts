@@ -1,6 +1,6 @@
 import ExcelJS from 'exceljs'
 
-import {TraceExcelArray} from "../../interface-type/interface-type.ts";
+import {TraceExcelArray} from "../../type-dt/type-dt.ts";
 import FileSaver from "file-saver";
 import {useApp} from "../../custom-hook/useApp.ts";
 import {useAppSelector} from "../../setup/redux/reduxHook.ts";

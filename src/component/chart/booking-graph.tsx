@@ -1,12 +1,13 @@
 import {useEffect, useState} from "react";
 import {Line} from 'react-chartjs-2'
+
 import {
     Chart as ChartJS,
     CategoryScale,
     Tooltip,
 } from 'chart.js/auto'
-import {BookingData} from "../../interface-type/interface-type.ts";
-
+import {BookingData, ChartMonthlyProgress} from "../../type-dt/type-dt.ts";
+import {useGraphData} from "../../type-dt/useGraphData.ts";
 
 type DataFormat = {
     labels: string[],
@@ -19,8 +20,8 @@ type DataFormat = {
     ]
 }
 
-type DataFormatPass = {
-    booking: BookingData[]
+type MonthlyProgress = {
+    booking: ChartMonthlyProgress[]
 }
 
 ChartJS.defaults.borderColor = '#BAD7E9'
@@ -58,7 +59,9 @@ const options = {
     },
 }
 
-export const BookingChartComp = (props: DataFormatPass) => {
+export const BookingChartComp = (props: MonthlyProgress) => {
+    const {getMonth} = useGraphData()
+
     const [trafficDate, setTrafficDate] = useState<DataFormat>({
         labels: props.booking.map((data) => data.month),
         datasets: [

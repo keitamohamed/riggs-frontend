@@ -1,4 +1,4 @@
-import {Props} from "../../interface-type/interface-type.ts";
+import {Props} from "../../type-dt/type-dt.ts";
 import {useState} from "react";
 
 import {UIActionContext} from "./context.ts";

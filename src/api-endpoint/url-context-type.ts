@@ -21,11 +21,12 @@ export const APIPath =  {
     NEW_BOOKING: (userID: number) => `booking/add/${userID}`,
     BOOKING_LIST: (`booking/list-of-booking`),
     DELETE_BOOKING: (id: number) => `booking/delete-booking/${id}`,
+    MONTHLY_PROGRESS: ("booking/chartMonthlyTargets"),
 
 
     // Admin access point
     APP_HEALTH: ("health"),
-    APP_HTTPEXCHANGES: ("httpexchanges"),
+    APP_HTTP_EXCHANGES: ("httpexchanges"),
 
 
     //File Upload

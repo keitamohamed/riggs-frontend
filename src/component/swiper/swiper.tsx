@@ -6,7 +6,7 @@ import {IoMdPhotos} from 'react-icons/io'
 import {Grid, Keyboard, Mousewheel, Pagination} from "swiper/modules";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";
 import {useRoom} from "../../custom-hook/useRoom.ts";
-import {Room} from "../../interface-type/interface-type.ts";
+import {Room} from "../../type-dt/type-dt.ts";
 import {AuthContext, DashboardContext} from "../../setup/context/context.ts";
 import {APIPath} from "../../api-endpoint/url-context-type.ts";
 import {DOWNLOAD_IMAGE_FILE} from "../../api-endpoint/Request.ts";

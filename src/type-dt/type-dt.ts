@@ -13,6 +13,12 @@ export type booking = {
     rooms: Room[]
 }
 
+export type ChartMonthlyProgress = {
+    month: string,
+    book: number,
+    amount: number
+}
+
 export type LoginCredential = {
     email?: string,
     password?: string;
@@ -229,6 +235,7 @@ export interface InitAppSys {
     traces: Exchange[]
     exchanges: Exchange[]
     chartData: TrafficData[]
+    monthlyProgress: ChartMonthlyProgress[]
     exchange200: number,
     exchange400: number,
     exchange404: number,

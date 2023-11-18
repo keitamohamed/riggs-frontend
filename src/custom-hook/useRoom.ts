@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {roomAction} from "../setup/redux/room.ts";
-import {Room} from "../interface-type/interface-type.ts";
+import {Room} from "../type-dt/type-dt.ts";
 import {DELETE_REQUEST, GET_REQUEST, POST_REQUEST, PUT_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath, ContextType} from "../api-endpoint/url-context-type.ts";
 import {useContext} from "react";

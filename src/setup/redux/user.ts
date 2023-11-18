@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {UserInit} from "../../interface-type/interface-type.ts";
+import {UserInit} from "../../type-dt/type-dt.ts";
 
 
 const initialState: UserInit = {

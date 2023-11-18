@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {FormInit} from "../../interface-type/interface-type.ts";
+import {FormInit} from "../../type-dt/type-dt.ts";
 
 const resetForm = {
     userID: 0,

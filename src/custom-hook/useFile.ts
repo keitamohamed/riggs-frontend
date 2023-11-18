@@ -5,7 +5,7 @@ import {AuthContext} from "../setup/context/context.ts";
 import {useAppDispatch, useAppSelector} from "../setup/redux/reduxHook.ts";
 import {roomAction} from "../setup/redux/room.ts";
 import {formAction} from "../setup/redux/form.ts";
-import {FileType} from "../interface-type/interface-type.ts";
+import {FileType} from "../type-dt/type-dt.ts";
 
 export const useFile = () => {
     const authCtx = useContext(AuthContext)

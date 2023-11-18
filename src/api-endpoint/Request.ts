@@ -1,6 +1,6 @@
 import axios from "axios";
 import FileSaver from 'file-saver'
-import {LoginCredential} from "../interface-type/interface-type.ts";
+import {LoginCredential} from "../type-dt/type-dt.ts";
 
 
 export const POST_AUTHENTICATE_REQUEST = (

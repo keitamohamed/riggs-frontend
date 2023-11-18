@@ -4,7 +4,7 @@ import {CiMenuBurger, CiHardDrive} from 'react-icons/ci'
 import {BsHddNetwork, BsDatabase} from 'react-icons/bs'
 import {BiTime} from 'react-icons/bi'
 
-import {Room} from "../../interface-type/interface-type.ts";
+import {Room} from "../../type-dt/type-dt.ts";
 
 import {DashboardRoom} from "../reusable/admin-dashboard-room.tsx";
 import {useAppDispatch, useAppSelector} from "../../setup/redux/reduxHook.ts";

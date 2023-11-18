@@ -2,7 +2,7 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Pagination} from "swiper/modules";
 
-import {Room} from "../../interface-type/interface-type.ts";
+import {Room} from "../../type-dt/type-dt.ts";
 import {useEffect, useState} from "react";
 
 type Prop = {

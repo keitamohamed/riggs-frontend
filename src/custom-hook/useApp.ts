@@ -4,7 +4,7 @@ import {APIPath} from "../api-endpoint/url-context-type.ts";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../setup/context/context.ts";
 import {appAction} from "../setup/redux/app.ts";
-import {Exchange} from "../interface-type/interface-type.ts";
+import {ChartMonthlyProgress, Exchange} from "../type-dt/type-dt.ts";
 import {useUser} from "./useUser.ts";
 
 export const useApp = () => {
@@ -13,7 +13,6 @@ export const useApp = () => {
     const authCtx = useContext(AuthContext)
     const dispatch = useAppDispatch()
     const {room: {rooms}, user: {listUser}} = useAppSelector((state) => state)
-    const {database, exchanges} = useAppSelector((state) => state.app)
 
     const [loaded, setLoaded] = useState<boolean>(false)
     
@@ -24,7 +23,18 @@ export const useApp = () => {
 
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        await dispatch(GET_REQUEST(authCtx.getCookie().aToken, APIPath.APP_HTTPEXCHANGES, setExchange, setHealthError, true))
+        await dispatch(GET_REQUEST(authCtx.getCookie().aToken, APIPath.APP_HTTP_EXCHANGES, setExchange, setHealthError, true))
+    }
+
+    const fetchMonthlyProgress = async () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        await dispatch(GET_REQUEST(authCtx.getCookie().aToken, APIPath.MONTHLY_PROGRESS, setMonthlyProgress, setError, false))
+
+    }
+
+    const setMonthlyProgress = (monthlyProgress: ChartMonthlyProgress) => {
+        dispatch(appAction.setMonthlyProgress(monthlyProgress))
     }
 
     const setDatabaseHealth = (health: any) => {
@@ -53,10 +63,15 @@ export const useApp = () => {
         userList()
     }
 
+    const setError = (error: any) => {
+        dispatch(appAction.setError(error))
+    }
+
 
     useEffect(() => {
         if (!loaded) {
             initLoadData()
+            fetchMonthlyProgress()
             setLoaded(true)
         }
     }, [loaded])

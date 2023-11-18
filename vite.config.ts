@@ -5,8 +5,8 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   server: {
     proxy: {
-      // "/riggs": "https://riggs.up.railway.app",
-      "/riggs": "http://localhost:8080",
+      "/riggs": "https://riggs.up.railway.app",
+      // "/riggs": "http://localhost:8080",
     }
   },
   plugins: [react()],

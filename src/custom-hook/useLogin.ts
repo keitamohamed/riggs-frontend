@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {useAppDispatch} from "../setup/redux/reduxHook.ts";
 import {authAction} from "../setup/redux/authenticate.ts";
 
-import {Credentials, LoginCredential, LoginError} from "../interface-type/interface-type.ts";
+import {Credentials, LoginCredential, LoginError} from "../type-dt/type-dt.ts";
 import {POST_AUTHENTICATE_REQUEST} from "../api-endpoint/Request.ts";
 import {APIPath} from "../api-endpoint/url-context-type.ts";
 import {AuthContext} from "../setup/context/context.ts";

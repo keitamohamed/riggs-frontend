@@ -13,7 +13,7 @@ export const RecentBook = () => {
 
     return (
         <>
-            <div className="top-deals-container col-span-3 sm:col-span-12 md:col-span-12 lg:col-span-5 bg-[#2a3447]">
+            <div className="top-deals-container col-span-4 sm:col-span-12 md:col-span-12 lg:col-span-5 bg-[#2a3447]">
                 <div className="most-recent-booking">
                     <div className="title-container">
                         <h1>Recent Booking</h1>

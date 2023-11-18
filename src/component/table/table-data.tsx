@@ -1,4 +1,4 @@
-import {Exchange} from "../../interface-type/interface-type.ts";
+import {Exchange} from "../../type-dt/type-dt.ts";
 
 type DataSet = {
     currentPost: Exchange[]

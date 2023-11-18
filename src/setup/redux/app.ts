@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {InitAppSys} from "../../interface-type/interface-type.ts";
+import {InitAppSys} from "../../type-dt/type-dt.ts";
 
 
 const formatTimeStamp = (str: string) => {
@@ -42,6 +42,7 @@ const initialState: InitAppSys = {
     traces: [],
     exchanges: [],
     chartData: [],
+    monthlyProgress: [],
     database: {components: undefined, status: ""},
     error: undefined,
     message: undefined
@@ -118,6 +119,9 @@ const appSlice = createSlice({
                 code: 500,
                 recurrent: numTime
             })
+        },
+        setMonthlyProgress(state, action) {
+            state.monthlyProgress = action.payload
         },
         resetChartData(state) {
             state.chartData = []
