@@ -15,7 +15,7 @@ export type booking = {
 
 export type ChartMonthlyProgress = {
     month: string,
-    book: number,
+    numRoomBook: number,
     amount: number
 }
 

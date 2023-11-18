@@ -6,8 +6,7 @@ import {
     CategoryScale,
     Tooltip,
 } from 'chart.js/auto'
-import {BookingData, ChartMonthlyProgress} from "../../type-dt/type-dt.ts";
-import {useGraphData} from "../../type-dt/useGraphData.ts";
+import {ChartMonthlyProgress} from "../../type-dt/type-dt.ts";
 
 type DataFormat = {
     labels: string[],
@@ -60,7 +59,6 @@ const options = {
 }
 
 export const BookingChartComp = (props: MonthlyProgress) => {
-    const {getMonth} = useGraphData()
 
     const [trafficDate, setTrafficDate] = useState<DataFormat>({
         labels: props.booking.map((data) => data.month),
@@ -76,6 +74,7 @@ export const BookingChartComp = (props: MonthlyProgress) => {
     useEffect(() => {
         setTrafficDate({
             ...trafficDate,
+            labels: props.booking.map((data) => data.month),
             datasets: [
                 {
                     data: props.booking.map((data) => data.amount),
