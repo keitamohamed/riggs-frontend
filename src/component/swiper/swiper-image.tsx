@@ -46,17 +46,29 @@ export const SwiperImage = () => {
                                                     <div className="images-container" key={`${index}_${book.bookingID}`}>
                                                         <div className="image grid grid-cols-12 w-[96%] sm:w-[100%] ml-auto sm:flex sm:flex-col sm:mb-2 sm:gap-[1.5em]">
                                                             <div className="hotel-image col-span-6">
-                                                                <img className="h-auto max-w-full" src={APIPath.FILE_BASE_DIR_PRODUCTION + APIPath.ROOM_IMAGE_DOWNLOAD(book.rooms[index].roomID)} alt=""/>
+                                                                {
+                                                                    book.rooms.map((r:any) => {
+                                                                        return <img className="h-auto max-w-full" src={APIPath.FILE_BASE_DIR_PRODUCTION + APIPath.ROOM_IMAGE_DOWNLOAD(r.roomID)} alt=""/>
+                                                                    })
+                                                                }
                                                             </div>
                                                             <div className="room-detail col-start-7 col-end-13 w-full sm:mt-1">
                                                                 <h3>{price.roomName}</h3>
                                                                 <div className="detail">
                                                                     <div className="check">
                                                                         <li>Booking#:<i>{book.bookingID}</i></li>
-                                                                        <li>Room#:<i>{book.rooms[index].roomID}</i></li>
+                                                                        {
+                                                                            book.rooms.map((r:any) => {
+                                                                                return <li>Room#:<i>{r.roomID}</i></li>
+                                                                            })
+                                                                        }
                                                                     </div>
                                                                     <div className="check">
-                                                                        <li>Room Name:<i>{book.rooms[index].roomName}</i></li>
+                                                                        {
+                                                                            book.rooms.map((r:any) => {
+                                                                                return <li>Room Name:<i>{r.roomName}</i></li>
+                                                                            })
+                                                                        }
                                                                         <li>Date Book:<i> {book.bookDate}</i></li>
                                                                     </div>
                                                                     <div className="check flex-row">
